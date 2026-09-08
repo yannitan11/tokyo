@@ -1,4 +1,4 @@
-# Tokyo Gurlies 🎀
+# Tokyo Gurlies 🎀🇯🇵
 
 A single-file trip page for six days in Tokyo with Yanni, Sol and Susan, **Wed 25 – Mon 30 November 2026**
 (5 nights, plus one day out of town). Same shape as the
