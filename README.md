@@ -1,6 +1,6 @@
-# Tokyo — Thanksgiving Week 2026
+# Tokyo Gurlies 🎀
 
-A single-file trip page for six days in Tokyo, **Wed 25 – Mon 30 November 2026**
+A single-file trip page for six days in Tokyo with Yanni, Sol and Susan, **Wed 25 – Mon 30 November 2026**
 (5 nights, plus one day out of town). Same shape as the
 [USA trip page](https://yannitan11.github.io/usa/): a Notion-style document with
 view tabs, a month calendar, day-by-day itineraries, a saved-places list, an
