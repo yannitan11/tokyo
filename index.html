@@ -1452,6 +1452,37 @@ body.dark{--accent-edge:rgba(243,118,111,.32)}
 body.dark .pack-summary{background:var(--accent-soft);border-color:var(--accent-edge)}
 body.dark .bst-grand{background:var(--accent-soft)!important;border-color:var(--accent-edge)!important}
 body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
+/* ── PLACES FACETS ───────────────────────────────────────────────
+   Two filter rows that read as one control: a fixed-width label, the
+   chips, and a count per chip so you can see where the options are
+   before you tap. A zero dims rather than hides — "no bars in
+   Kichijōji" is worth knowing. */
+.facet{display:grid;grid-template-columns:46px 1fr;align-items:start;gap:10px;margin-bottom:8px}
+.facet-label{
+  font-size:10.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;
+  color:var(--muted);padding-top:9px;
+}
+/* Both facet rows WRAP rather than scroll. The whole point of the area
+   row is seeing every option at once — a horizontal scroller hides the
+   back half of the city behind a swipe. */
+.facet .places-cats{margin:0;flex-wrap:wrap;overflow:visible;padding:4px 0 6px;row-gap:8px}
+.facet-n{
+  margin-left:6px;font-size:10.5px;font-weight:700;
+  color:var(--muted);font-variant-numeric:tabular-nums;
+}
+.places-cat.active .facet-n{color:#fff;opacity:.85}
+body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
+.places-cat.is-empty{opacity:.4}
+.places-cat.is-empty:not(.active){cursor:default}
+.places-areas .places-cat{font-weight:500}
+.places-count{
+  font-size:12px;color:var(--muted);margin:10px 0 8px;
+  font-variant-numeric:tabular-nums;
+}
+@media(max-width:560px){
+  .facet{grid-template-columns:1fr;gap:2px}
+  .facet-label{padding-top:0;margin-bottom:2px}
+}
 </style>
 </head>
 <body>
@@ -1476,6 +1507,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
     <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
     <button class="tab-btn" onclick="switchTab('tokyo',this)">Tokyo</button>
     <button class="tab-btn" onclick="switchTab('trips',this)">Day Trips</button>
+    <button class="tab-btn" onclick="switchTab('places',this)">📍 Places</button>
     <button class="tab-btn" onclick="switchTab('vintage',this)">👜 Vintage</button>
     <button class="tab-btn" onclick="switchTab('logistics',this)">Flights &amp; Stay</button>
     <button class="tab-btn" onclick="switchTab('tips',this)">Tips</button>
@@ -1952,7 +1984,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
           <div class="dp-desc">
             <p class="dp-lead">This day used to be Asakusa, Kappabashi, Ueno and Yanaka. It is now two places built around the four things you actually want: <strong>shopping, cafés, eating and walking.</strong></p>
             <p><strong>Kichijōji</strong> in the morning — the town Tokyoites vote most desirable to live in, and it earns it: an arcade and a shopping street full of independents, an alley of a hundred tiny food stalls, and a park at the end of it. Then fifteen minutes down the Chūō line to <strong>Shinjuku</strong> for department-store food halls and a night in the alleys.</p>
-            <div class="dp-note">Sensō-ji, Kappabashi and Yanaka are still in the <strong>Places</strong> list if anyone changes their mind — they are just not costing you a Saturday any more.</div>
+            <div class="dp-note">Sensō-ji, Kappabashi and Yanaka are still on the <strong>Places</strong> tab under <em>East side</em> if anyone changes their mind — they are just not costing you a Saturday any more.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Shop</span><span class="dp-tag">Café</span><span class="dp-tag">Eat</span><span class="dp-tag">Walk</span></div>
         </div>
@@ -2287,7 +2319,12 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
 
   </div><!-- /tokyo-day-host -->
 
-  <div class="sh"><h2>📍 Places</h2><p>A short curated list, plus anything you add yourself — saved in this browser, and synced across devices if you set that up</p></div>
+</div>
+
+<!-- ════════════════ PLACES ════════════════ -->
+<div id="tab-places" class="tab-content">
+
+  <div class="sh"><h2>📍 Places</h2><p>Everywhere worth going — filter by what kind of place it is, by which part of the city it's in, or both</p></div>
 
   <div class="places-section">
     <div class="add-place-bar">
@@ -2296,17 +2333,40 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
       <button class="btn btn-ghost sync-btn" onclick="openSync()">Set up sync</button>
       <span class="sync-status"></span>
     </div>
-    <div class="places-cats">
-      <button class="places-cat active" onclick="filterPlaces('tokyo-places','explore',this)">📍 Places</button>
-      <button class="places-cat" onclick="filterPlaces('tokyo-places','cafe',this)">☕ Cafes</button>
-      <button class="places-cat" onclick="filterPlaces('tokyo-places','food',this)">🍴 Food</button>
-      <button class="places-cat" onclick="filterPlaces('tokyo-places','bar',this)">🍸 Bars</button>
-      <button class="places-cat" onclick="filterPlaces('tokyo-places','shop',this)">🛍 Shopping</button>
-      <button class="places-cat" onclick="filterPlaces('tokyo-places','watch',this)">⌚ Watches</button>
+    <p style="font-size:12.5px;color:var(--muted);line-height:1.55;margin:0 0 12px">The two rows stack: pick a type, an area, or both. The number on each chip is what it would leave you given the other row — so a dimmed zero means there is nothing of that kind there, which is worth knowing before you walk.</p>
+    <div class="facet">
+      <span class="facet-label">Type</span>
+      <div class="places-cats">
+      <button class="places-cat active" data-cat="all" onclick="filterPlaces('all',this)">All<span class="facet-n"></span></button>
+      <button class="places-cat" data-cat="explore" onclick="filterPlaces('explore',this)">📍 Places<span class="facet-n"></span></button>
+      <button class="places-cat" data-cat="cafe" onclick="filterPlaces('cafe',this)">☕ Cafes<span class="facet-n"></span></button>
+      <button class="places-cat" data-cat="food" onclick="filterPlaces('food',this)">🍴 Food<span class="facet-n"></span></button>
+      <button class="places-cat" data-cat="bar" onclick="filterPlaces('bar',this)">🍸 Bars<span class="facet-n"></span></button>
+      <button class="places-cat" data-cat="shop" onclick="filterPlaces('shop',this)">🛍 Shopping<span class="facet-n"></span></button>
+      <button class="places-cat" data-cat="watch" onclick="filterPlaces('watch',this)">⌚ Watches<span class="facet-n"></span></button>
+      </div>
     </div>
+    <div class="facet">
+      <span class="facet-label">Area</span>
+      <div class="places-cats places-areas">
+      <button class="places-cat active" data-area="all" onclick="filterArea('all',this)">All<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="shibuya" onclick="filterArea('shibuya',this)">Shibuya<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="harajuku" onclick="filterArea('harajuku',this)">Harajuku &amp; Aoyama<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="nakameguro" onclick="filterArea('nakameguro',this)">Nakameguro<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="daikanyama" onclick="filterArea('daikanyama',this)">Daikanyama<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="ebisu" onclick="filterArea('ebisu',this)">Ebisu<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="shinjuku" onclick="filterArea('shinjuku',this)">Shinjuku<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="kichijoji" onclick="filterArea('kichijoji',this)">Kichijōji &amp; Nakano<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="ginza" onclick="filterArea('ginza',this)">Ginza &amp; Tsukiji<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="east" onclick="filterArea('east',this)">East side<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="many" onclick="filterArea('many',this)">Everywhere<span class="facet-n"></span></button>
+      <button class="places-cat" data-area="other" onclick="filterArea('other',this)">Elsewhere<span class="facet-n"></span></button>
+      </div>
+    </div>
+    <div class="places-count" id="places-count"></div>
     <div class="places-list" id="tokyo-places">
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -2324,7 +2384,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -2342,7 +2402,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="other">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -2360,7 +2420,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🫖</div>
           <div class="place-info">
@@ -2378,7 +2438,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍜</div>
           <div class="place-info">
@@ -2396,7 +2456,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥩</div>
           <div class="place-info">
@@ -2414,7 +2474,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="shinjuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍢</div>
           <div class="place-info">
@@ -2432,7 +2492,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍣</div>
           <div class="place-info">
@@ -2450,7 +2510,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥟</div>
           <div class="place-info">
@@ -2468,7 +2528,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🌇</div>
           <div class="place-info">
@@ -2486,7 +2546,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍂</div>
           <div class="place-info">
@@ -2504,7 +2564,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⛩️</div>
           <div class="place-info">
@@ -2522,7 +2582,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="east">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏮</div>
           <div class="place-info">
@@ -2540,7 +2600,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="other">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🎨</div>
           <div class="place-info">
@@ -2558,7 +2618,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="shinjuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🌿</div>
           <div class="place-info">
@@ -2576,7 +2636,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="daikanyama">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">📚</div>
           <div class="place-info">
@@ -2594,7 +2654,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">✏️</div>
           <div class="place-info">
@@ -2612,7 +2672,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="east">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🔪</div>
           <div class="place-info">
@@ -2630,7 +2690,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🛒</div>
           <div class="place-info">
@@ -2648,7 +2708,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="bar">
+      <div class="place-row" data-cat="bar" data-area="shinjuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥃</div>
           <div class="place-info">
@@ -2666,7 +2726,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="bar">
+      <div class="place-row" data-cat="bar" data-area="ebisu">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍺</div>
           <div class="place-info">
@@ -2684,7 +2744,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
           <div class="place-info">
@@ -2702,7 +2762,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
           <div class="place-info">
@@ -2720,7 +2780,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏬</div>
           <div class="place-info">
@@ -2738,7 +2798,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
           <div class="place-info">
@@ -2756,7 +2816,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🕰</div>
           <div class="place-info">
@@ -2774,7 +2834,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">💰</div>
           <div class="place-info">
@@ -2792,7 +2852,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🛍</div>
           <div class="place-info">
@@ -2809,7 +2869,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -2827,7 +2887,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -2845,7 +2905,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏛</div>
           <div class="place-info">
@@ -2863,7 +2923,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍵</div>
           <div class="place-info">
@@ -2881,7 +2941,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="daikanyama">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏡</div>
           <div class="place-info">
@@ -2899,7 +2959,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="ebisu">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍺</div>
           <div class="place-info">
@@ -2917,7 +2977,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">📓</div>
           <div class="place-info">
@@ -2935,7 +2995,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">📕</div>
           <div class="place-info">
@@ -2952,7 +3012,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
           <div class="place-info">
@@ -2970,7 +3030,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="other">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
           <div class="place-info">
@@ -2988,7 +3048,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
           <div class="place-info">
@@ -3006,7 +3066,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="watch">
+      <div class="place-row" data-cat="watch" data-area="kichijoji">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
           <div class="place-info">
@@ -3024,7 +3084,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="watch">
+      <div class="place-row" data-cat="watch" data-area="kichijoji">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
           <div class="place-info">
@@ -3042,7 +3102,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="watch">
+      <div class="place-row" data-cat="watch" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
           <div class="place-info">
@@ -3060,7 +3120,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="watch">
+      <div class="place-row" data-cat="watch" data-area="other">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
           <div class="place-info">
@@ -3078,7 +3138,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="watch">
+      <div class="place-row" data-cat="watch" data-area="other">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
           <div class="place-info">
@@ -3095,7 +3155,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🛍</div>
           <div class="place-info">
@@ -3115,7 +3175,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥐</div>
           <div class="place-info">
@@ -3133,7 +3193,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍫</div>
           <div class="place-info">
@@ -3151,7 +3211,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍩</div>
           <div class="place-info">
@@ -3169,7 +3229,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -3187,7 +3247,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍽</div>
           <div class="place-info">
@@ -3205,7 +3265,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="nakameguro">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏮</div>
           <div class="place-info">
@@ -3223,7 +3283,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="daikanyama">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥞</div>
           <div class="place-info">
@@ -3241,7 +3301,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="daikanyama">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">📖</div>
           <div class="place-info">
@@ -3259,7 +3319,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="daikanyama">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥖</div>
           <div class="place-info">
@@ -3277,7 +3337,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="daikanyama">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍺</div>
           <div class="place-info">
@@ -3294,7 +3354,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="kichijoji">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🌳</div>
           <div class="place-info">
@@ -3312,7 +3372,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="shop">
+      <div class="place-row" data-cat="shop" data-area="kichijoji">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏠</div>
           <div class="place-info">
@@ -3330,7 +3390,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="kichijoji">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍖</div>
           <div class="place-info">
@@ -3348,7 +3408,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="kichijoji">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏮</div>
           <div class="place-info">
@@ -3366,7 +3426,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="kichijoji">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -3384,7 +3444,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="shinjuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍱</div>
           <div class="place-info">
@@ -3402,7 +3462,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="explore">
+      <div class="place-row" data-cat="explore" data-area="shinjuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🌃</div>
           <div class="place-info">
@@ -3419,7 +3479,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -3437,7 +3497,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -3455,7 +3515,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥪</div>
           <div class="place-info">
@@ -3473,7 +3533,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🌳</div>
           <div class="place-info">
@@ -3491,7 +3551,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍣</div>
           <div class="place-info">
@@ -3509,7 +3569,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍚</div>
           <div class="place-info">
@@ -3527,7 +3587,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏮</div>
           <div class="place-info">
@@ -3545,7 +3605,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍤</div>
           <div class="place-info">
@@ -3563,7 +3623,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="bar">
+      <div class="place-row" data-cat="bar" data-area="shibuya">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏮</div>
           <div class="place-info">
@@ -3581,7 +3641,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍍</div>
           <div class="place-info">
@@ -3599,7 +3659,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🦊</div>
           <div class="place-info">
@@ -3617,7 +3677,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥞</div>
           <div class="place-info">
@@ -3635,7 +3695,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🐖</div>
           <div class="place-info">
@@ -3653,7 +3713,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="harajuku">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥘</div>
           <div class="place-info">
@@ -3670,7 +3730,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
           </div>
         </div>
       </div>
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">☕</div>
           <div class="place-info">
@@ -3688,7 +3748,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍪</div>
           <div class="place-info">
@@ -3706,7 +3766,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🔴</div>
           <div class="place-info">
@@ -3724,7 +3784,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍓</div>
           <div class="place-info">
@@ -3742,7 +3802,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="cafe">
+      <div class="place-row" data-cat="cafe" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍵</div>
           <div class="place-info">
@@ -3760,7 +3820,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍜</div>
           <div class="place-info">
@@ -3778,7 +3838,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍳</div>
           <div class="place-info">
@@ -3796,7 +3856,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍺</div>
           <div class="place-info">
@@ -3814,7 +3874,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍣</div>
           <div class="place-info">
@@ -3832,7 +3892,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food">
+      <div class="place-row" data-cat="food" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍤</div>
           <div class="place-info">
@@ -3850,6 +3910,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         </div>
       </div>
     </div>
+    <div class="wishlist-empty" id="places-empty" hidden>Nothing matches that combination — try a wider area, or set the type back to All.</div>
   </div>
 
 </div>
@@ -5039,13 +5100,57 @@ function switchDay(tab, num, btn) {
   btn.classList.add('active');
 }
 
-function filterPlaces(listId, cat, btn) {
-  document.getElementById(listId).querySelectorAll('.place-row').forEach(r => {
-    r.style.display = (cat === 'all' || r.dataset.cat === cat) ? '' : 'none';
+/* ── Places: two independent filters ───────────────────────────────
+   Type (what it is) and area (where it is) narrow the list together.
+   Each chip row shows how many rows it would leave given the OTHER
+   row's current selection, so you can see where the options are
+   before you tap — and a zero is dimmed rather than hidden, because
+   "no bars in Kichijōji" is itself useful to know. */
+const placeFilter = { cat: 'all', area: 'all' };
+
+function placeRows() {
+  const host = document.getElementById('tokyo-places');
+  return host ? [...host.querySelectorAll('.place-row')] : [];
+}
+function matches(r, cat, area) {
+  return (cat === 'all' || r.dataset.cat === cat) &&
+         (area === 'all' || r.dataset.area === area);
+}
+
+function applyPlaceFilters() {
+  const rows = placeRows();
+  if (!rows.length) return;
+  let shown = 0;
+  rows.forEach(r => {
+    const ok = matches(r, placeFilter.cat, placeFilter.area);
+    r.style.display = ok ? '' : 'none';
+    if (ok) shown++;
   });
+
+  // Count each chip against the opposite axis, not against itself.
+  document.querySelectorAll('.places-cats .places-cat[data-cat]').forEach(b => {
+    const n = rows.filter(r => matches(r, b.dataset.cat, placeFilter.area)).length;
+    b.querySelector('.facet-n').textContent = n;
+    b.classList.toggle('is-empty', n === 0);
+  });
+  document.querySelectorAll('.places-cats .places-cat[data-area]').forEach(b => {
+    const n = rows.filter(r => matches(r, placeFilter.cat, b.dataset.area)).length;
+    b.querySelector('.facet-n').textContent = n;
+    b.classList.toggle('is-empty', n === 0);
+  });
+
+  const count = document.getElementById('places-count');
+  if (count) count.textContent = shown + (shown === 1 ? ' place' : ' places');
+  const empty = document.getElementById('places-empty');
+  if (empty) empty.hidden = shown > 0;
+}
+
+function setChip(btn) {
   btn.closest('.places-cats').querySelectorAll('.places-cat').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 }
+function filterPlaces(cat, btn) { placeFilter.cat = cat; setChip(btn); applyPlaceFilters(); }
+function filterArea(area, btn) { placeFilter.area = area; setChip(btn); applyPlaceFilters(); }
 
 function toggleTip(header) {
   header.closest('.tip-acc-row').classList.toggle('open');
@@ -5130,8 +5235,7 @@ updateTabsScroll();
 document.addEventListener('DOMContentLoaded', function() {
   initCalendar();
 
-  var placesBtn = document.querySelector('#tab-tokyo .places-cats .places-cat');
-  if (placesBtn) filterPlaces('tokyo-places', 'explore', placesBtn);
+  applyPlaceFilters();
 
   // Wrap dp-time + dp-tags + dp-map into a shared pill row
   document.querySelectorAll('.dp-item').forEach(function(item) {
@@ -5252,7 +5356,10 @@ function loadWish() {
   try {
     const l = JSON.parse(localStorage.getItem(WISH_KEY)) || [];
     // Entries written before sync existed have no stamp; fall back to added.
-    l.forEach(w => { if (!w.updated) w.updated = w.added || new Date(0).toISOString(); });
+    l.forEach(w => {
+      if (!w.updated) w.updated = w.added || new Date(0).toISOString();
+      if (!w.area) w.area = 'other';   // saved before areas existed
+    });
     return l;
   } catch (e) { return []; }
 }
@@ -5309,6 +5416,7 @@ function openAddPlace(city) {
   document.getElementById('ap-status').className = 'lookup-status';
   document.getElementById('ap-city').value = city;
   document.getElementById('ap-cat').value = 'explore';
+  document.getElementById('ap-area').value = 'other';
   openModal('add-modal');
   setTimeout(() => document.getElementById('ap-paste').focus(), 50);
 }
@@ -5462,6 +5570,7 @@ function saveAddPlace() {
     name,
     city: document.getElementById('ap-city').value,
     cat: document.getElementById('ap-cat').value,
+    area: document.getElementById('ap-area').value,
     by: document.getElementById('ap-by').value,
     sub: document.getElementById('ap-sub').value.trim(),
     note: document.getElementById('ap-note').value.trim(),
@@ -5501,7 +5610,7 @@ function wishRow(w) {
   const big = w.img
     ? '<img class="place-big-img" src="' + esc(w.img) + '" alt="' + esc(w.name) + '" loading="lazy">'
     : '';
-  return '<div class="place-row user-added" data-cat="' + esc(w.cat) + '" data-id="' + esc(w.id) + '">' +
+  return '<div class="place-row user-added" data-cat="' + esc(w.cat) + '" data-area="' + esc(w.area || 'other') + '" data-id="' + esc(w.id) + '">' +
     '<div class="place-header" onclick="togglePlace(this)">' + thumb +
       '<div class="place-info">' +
         '<div class="place-nameline"><span class="place-name" data-by="' + esc(w.by) + '">' + esc(w.name) + '</span></div>' +
@@ -5525,16 +5634,8 @@ function renderWishlist() {
     const mine = list.filter(w => w.city === city);
     // Newest first, above the curated picks, so additions are easy to spot.
     mine.slice().reverse().forEach(w => host.insertAdjacentHTML('afterbegin', wishRow(w)));
-    // Respect whichever category filter is currently selected.
-    const activeBtn = host.closest('.places-section').querySelector('.places-cat.active');
-    if (activeBtn) {
-      const m = activeBtn.getAttribute('onclick').match(/'([^']+)'\s*\)$|,'([^']+)',/);
-      const cat = m ? (m[1] || m[2]) : null;
-      if (cat) host.querySelectorAll('.place-row.user-added').forEach(r => {
-        r.style.display = (r.dataset.cat === cat) ? '' : 'none';
-      });
-    }
   });
+  applyPlaceFilters();
 }
 
 /* ── Import ──────────────────────────────────────────────────────── */
@@ -5589,7 +5690,7 @@ async function runImport() {
     existing.add(it.name.toLowerCase());
     list.push({
       id:'w'+Date.now()+Math.random().toString(36).slice(2,6),
-      name:it.name, city, cat:'explore', by, sub:'', note:it.note,
+      name:it.name, city, cat:'explore', area:'other', by, sub:'', note:it.note,
       addr:'', img:'', lat:'', lon:'', added:new Date().toISOString(),
       updated:new Date().toISOString(), needsLookup:true
     });
@@ -5849,6 +5950,25 @@ if (syncReady()) syncNow(true);
           <option value="watch">⌚ Watches</option>
         </select>
       </div>
+      <div class="field">
+        <label for="ap-area">Area</label>
+        <select id="ap-area">
+          <option value="shibuya">Shibuya</option>
+          <option value="harajuku">Harajuku &amp; Aoyama</option>
+          <option value="nakameguro">Nakameguro</option>
+          <option value="daikanyama">Daikanyama</option>
+          <option value="ebisu">Ebisu</option>
+          <option value="shinjuku">Shinjuku</option>
+          <option value="kichijoji">Kichijōji &amp; Nakano</option>
+          <option value="ginza">Ginza &amp; Tsukiji</option>
+          <option value="east">East side</option>
+          <option value="many">Everywhere</option>
+          <option value="other" selected>Elsewhere</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
       <div class="field">
         <label for="ap-by">Added by</label>
         <select id="ap-by">
