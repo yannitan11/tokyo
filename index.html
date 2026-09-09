@@ -1439,6 +1439,19 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
   .budget-table .known-row,
   .budget-table .budget-log-row{min-width:430px}
 }
+/* Leftovers from the page this design was ported from. A handful of
+   components still painted themselves in the original Notion blue at low
+   alpha, which reads as a cold cast against the crimson — and in dark mode
+   `body.dark .callout` outranked the accent border added later, so every
+   callout was edged in blue. One soft accent edge token fixes the set. */
+:root{--accent-edge:rgba(179,36,44,.22)}
+body.dark{--accent-edge:rgba(243,118,111,.32)}
+.bst-grand{background:var(--accent-soft)!important;border-color:var(--accent-edge)!important}
+.budget-add-btn{border-color:var(--accent-edge)}
+.pack-summary{background:var(--accent-soft);border-color:var(--accent-edge)}
+body.dark .pack-summary{background:var(--accent-soft);border-color:var(--accent-edge)}
+body.dark .bst-grand{background:var(--accent-soft)!important;border-color:var(--accent-edge)!important}
+body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -1463,6 +1476,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
     <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
     <button class="tab-btn" onclick="switchTab('tokyo',this)">Tokyo</button>
     <button class="tab-btn" onclick="switchTab('trips',this)">Day Trips</button>
+    <button class="tab-btn" onclick="switchTab('vintage',this)">👜 Vintage</button>
     <button class="tab-btn" onclick="switchTab('logistics',this)">Flights &amp; Stay</button>
     <button class="tab-btn" onclick="switchTab('tips',this)">Tips</button>
     <button class="tab-btn" onclick="switchTab('budget',this)">💰 Budget</button>
@@ -1477,7 +1491,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
 <div id="tab-overview" class="tab-content active">
 
   <div class="callout">
-    <strong>Nothing is booked yet.</strong> Flights, hotel and the day trip are all still open — every one of those is marked <span class="tbc">tbc</span> on the page. What <em>is</em> fixed is the shape: land Wednesday, fly home Monday, five nights in the city, one day out of town. Everything else here is a shortlist to choose from.
+    <strong>Nothing is booked yet.</strong> Flights, the Airbnb and the day trip are all still open — every one of those is marked <span class="tbc">tbc</span> on the page. What <em>is</em> fixed is the shape: land Wednesday, fly home Monday, five nights in the city, one day out of town. Everything else here is a shortlist to choose from.
   </div>
 
   <div class="flt-section-label">📅 Calendar</div>
@@ -1613,17 +1627,17 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
 <!-- ════════════════ TOKYO ════════════════ -->
 <div id="tab-tokyo" class="tab-content">
 
-  <div class="flt-section-label">🏨 Where you're staying</div>
+  <div class="flt-section-label">🏡 Where you're staying</div>
   <div class="accom-block">
     <div class="accom-card">
-      <div class="accom-icon">🏨</div>
+      <div class="accom-icon">🏡</div>
       <div class="accom-main">
         <div class="accom-nameline">
-          <span class="accom-name">Hotel TBC</span>
+          <span class="accom-name">Airbnb TBC</span>
           <span class="accom-nights tokyo">5 nights</span>
         </div>
         <div class="accom-detail">
-          Wed 25 Nov – Mon 30 Nov &middot; <strong>three of you</strong> &middot; neighbourhood not decided &middot; the four realistic areas, and the room-for-three problem, are on the <strong>Flights &amp; Stay</strong> tab. <span class="tbc">not booked</span>
+          Wed 25 Nov – Mon 30 Nov &middot; <strong>whole apartment, three of you</strong> &middot; neighbourhood not decided &middot; the four areas, the licence number to check for, and the no-luggage-hold problem are on the <strong>Flights &amp; Stay</strong> tab. <span class="tbc">not booked</span>
         </div>
       </div>
     </div>
@@ -1701,28 +1715,29 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
             <div class="dp-facts">
               <div class="dp-fact"><span class="dp-fact-k">Keikyu line</span><span class="dp-fact-v">~¥330 to Shinagawa, 13 min</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Monorail</span><span class="dp-fact-v">~¥520 to Hamamatsuchō, 15 min</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Limousine bus</span><span class="dp-fact-v">~¥1,400, 45–75 min, door to hotel</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Limousine bus</span><span class="dp-fact-v">~¥1,400, 45–75 min, to major hubs</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Taxi</span><span class="dp-fact-v">~¥7,000–9,000</span></div>
             </div>
-            <div class="dp-alt"><strong>Take the bus instead</strong> if you land after about 21:00, or if the hotel is a long walk from its station. It drops at the door, and dragging a case through Shinjuku station at night is a rite of passage nobody needs.</div>
+            <div class="dp-alt"><strong>Take the bus instead</strong> if you land after about 21:00, or if the flat is a long walk from its station. It drops at a hub rather than a doorstep, but dragging three cases through Shinjuku station at night is a rite of passage nobody needs.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Transit</span><span class="dp-tag">Tap Suica</span></div>
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
           <div class="dp-time">Evening</div>
-          <div class="dp-title">The konbini run — your actual first meal in Japan</div>
+          <div class="dp-title">Check in, then the konbini run</div>
           <div class="dp-desc">
-            <p>Drop the bags, then walk to the nearest 7-Eleven, Lawson or FamilyMart. This is not a joke stop. Get a <strong>tamago sando</strong>, an <strong>onigiri</strong> or two, a hot canned coffee from the warm cabinet, and something from the oden pot if it is out yet. It costs about ¥1,000 and it is genuinely one of the best things about the country.</p>
+            <p class="dp-lead">Airbnb check-in is usually a keybox or a smart lock and a set of instructions rather than a person — read them on the plane, not on the doorstep, and have the host's chat thread open in case the code misbehaves.</p>
+            <p>Then drop the bags and walk to the nearest 7-Eleven, Lawson or FamilyMart. This is not a joke stop. Get a <strong>tamago sando</strong>, an <strong>onigiri</strong> or two, a hot canned coffee from the warm cabinet, and something from the oden pot if it is out yet. It costs about ¥1,000 and it is genuinely one of the best things about the country.</p>
             <div class="dp-note">Bins are almost nonexistent on Japanese streets. The konbini has them, by the door — use them before you leave.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Food</span><span class="dp-tag">~¥1,000</span></div>
+          <div class="dp-tags"><span class="dp-tag">Check-in</span><span class="dp-tag">Food</span><span class="dp-tag">~¥1,000</span></div>
         </div>
         <div class="dp-item">
           <div class="dp-dot"></div>
           <div class="dp-time">Night</div>
           <div class="dp-title">One short walk, then stop</div>
-          <div class="dp-desc">Seven hours in the air and a one-hour time shift is nothing, but the temptation on night one is to go and "do" Shibuya crossing at 11pm and then be wrecked on Thursday. Walk a couple of blocks together, find the neon, get a beer or a bowl of ramen near the hotel, and sleep. Thursday is the big one.</div>
+          <div class="dp-desc">Seven hours in the air and a one-hour time shift is nothing, but the temptation on night one is to go and "do" Shibuya crossing at 11pm and then be wrecked on Thursday. Walk a couple of blocks together, find the neon, get a beer or a bowl of ramen near the flat, and sleep. Thursday is the big one.</div>
           <div class="dp-tags"><span class="dp-tag">Rest</span><span class="dp-tag">Free</span></div>
         </div>
       </div>
@@ -1781,6 +1796,18 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
+          <div class="dp-time">12:15</div>
+          <div class="dp-title">The resale strip — first look, no buying</div>
+          <div class="dp-desc">
+            <p class="dp-lead">The streets either side of Omotesandō are the top of the secondhand luxury market, and they are a five-minute walk from where you already are.</p>
+            <p><strong>AMORE</strong> for the Chanel and Hermès wall, <strong>RAGTAG</strong> for designer resale over several floors, <strong>Kindal</strong> and <strong>RINKAN</strong> for the streetwear crossover. Nearly all of them are on the second to fifth floor of a narrow building — look up for the vertical signs.</p>
+            <div class="dp-note">Today is for calibrating, not buying. See what an AB-rank flap costs here, then compare it in Ginza on Monday. The full playbook — grading, what to check, what Tokyo is genuinely cheap for — is on the <strong>Vintage</strong> tab.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Vintage bags</span><span class="dp-tag">Look, don't buy</span><span class="dp-tag">Passport</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=AMORE+Vintage+Omotesando+Tokyo" target="_blank">📍 Omotesandō resale shops</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
           <div class="dp-time">13:30</div>
           <div class="dp-title">Icho Namiki <span class="jp">銀杏並木</span> — the ginkgo tunnel</div>
           <div class="dp-desc">
@@ -1822,6 +1849,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
       <div class="dest-scroll">
         <a class="dest-card" href="https://maps.google.com/?q=Meiji+Jingu+Shrine+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#14532d,#166534,#4ade80)"><span class="dest-time">07:30</span><span class="dest-img-icon">⛩️</span><span class="dest-card-name">Meiji Jingū</span></div><div class="dest-body"><div class="dest-type">Shrine · Free</div><div class="dest-info">Sunrise to sunset · 70ha forest · Empty before 9am · 60–90 min</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">Go early</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Icho+Namiki+Meiji+Jingu+Gaien+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#854d0e,#ca8a04,#fde047)"><span class="dest-time">13:30</span><span class="dest-img-icon">🍂</span><span class="dest-card-name">Icho Namiki</span></div><div class="dest-body"><div class="dest-type">Autumn · Free</div><div class="dest-info">150 ginkgo trees, gold in the last week of November · Food stalls · 15 min walk from Omotesandō</div><div class="dest-tags"><span class="dest-dtag">Seasonal</span><span class="dest-dtag">Photo</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=AMORE+Vintage+Omotesando+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#4c0519,#9f1239,#fda4af)"><span class="dest-time">12:15</span><span class="dest-img-icon">👜</span><span class="dest-card-name">Resale strip</span></div><div class="dest-body"><div class="dest-type">Vintage bags · Omotesandō</div><div class="dest-info">AMORE, RAGTAG, Kindal, RINKAN · Shops are on upper floors — look up · Today is for pricing, not buying</div><div class="dest-tags"><span class="dest-dtag">Passport</span><span class="dest-dtag">Calibrate</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Shibuya+Sky+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#3b0764,#7e22ce,#f472b6)"><span class="dest-time">16:00</span><span class="dest-img-icon">🌇</span><span class="dest-card-name">Shibuya Sky</span></div><div class="dest-body"><div class="dest-type">View · ~¥2,500</div><div class="dest-info">Open-air 46F rooftop · Sunset ~16:30 · Timed entry, sells out · Closes in bad weather</div><div class="dest-tags"><span class="dest-dtag">Book ahead</span><span class="dest-dtag">Sunset</span></div></div></a>
       </div>
     </div>
@@ -1943,6 +1971,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
               <div class="dp-fact"><span class="dp-fact-k">TNM</span><span class="dp-fact-v">~¥1,000 · closed Mon</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Time</span><span class="dp-fact-v">2–3 hrs</span></div>
             </div>
+            <div class="dp-alt"><strong>If bags are the priority over the museum:</strong> <strong>Ameyoko</strong> is the market street running south from Ueno station, and the <strong>Daikokuya</strong> pawnshops along it are the bargain end of the secondhand luxury market — strip lighting, glass cabinets, sharp prices. Worth an hour once your eye is calibrated from Thursday.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Park</span><span class="dp-tag">Museum</span><span class="dp-tag">Autumn</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Tokyo+National+Museum+Ueno" target="_blank">📍 Tokyo National Museum</a>
@@ -2012,6 +2041,18 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
           <a class="dp-map" href="https://maps.google.com/?q=Nakameguro+Meguro+River+Tokyo" target="_blank">📍 Nakameguro canal</a>
         </div>
         <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">14:15</div>
+          <div class="dp-title">The hand-picked shops — this is the buying day</div>
+          <div class="dp-desc">
+            <p class="dp-lead">Nakameguro and Daikanyama are the small end of the vintage market: one-room shops where somebody has clearly chosen every single piece, rather than a floor of everything.</p>
+            <p><strong>JANTIQUES</strong> in Nakameguro is the reference for properly curated vintage. There is a second <strong>AMORE</strong> in Daikanyama, and enough small shops between the two stations that the walk itself is the browse. Fewer bags than Omotesandō, better odds of something nobody at home has.</p>
+            <div class="dp-note">You've now seen the same pieces at three price points across three days. If something has stayed in your head since Thursday, this is the afternoon to go back for it.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Vintage bags</span><span class="dp-tag">Curated</span><span class="dp-tag">Passport</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Jantiques+Nakameguro+Tokyo" target="_blank">📍 Nakameguro vintage</a>
+        </div>
+        <div class="dp-item">
           <div class="dp-dot"></div>
           <div class="dp-time">15:00</div>
           <div class="dp-title">Daikanyama <span class="jp">代官山</span> — T-Site</div>
@@ -2049,6 +2090,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
       </div>
       <div class="dest-scroll">
         <a class="dest-card" href="https://maps.google.com/?q=Shimokitazawa+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#4c1d95,#7c3aed,#c4b5fd)"><span class="dest-time">10:00</span><span class="dest-img-icon">👕</span><span class="dest-card-name">Shimokitazawa</span></div><div class="dest-body"><div class="dest-type">Vintage · 7 min from Shibuya</div><div class="dest-info">Second-hand, records, tiny theatres · Best on a Sunday · Bring cash</div><div class="dest-tags"><span class="dest-dtag">Vintage</span><span class="dest-dtag">Walkable</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Jantiques+Nakameguro+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#3f0d20,#a13c5e,#f9a8c4)"><span class="dest-time">14:15</span><span class="dest-img-icon">🕰</span><span class="dest-card-name">Nakameguro vintage</span></div><div class="dest-body"><div class="dest-type">Vintage bags · curated</div><div class="dest-info">JANTIQUES, a second AMORE in Daikanyama, small one-room shops · The buying day, after three days of looking</div><div class="dest-tags"><span class="dest-dtag">Hand-picked</span><span class="dest-dtag">Passport</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Daikanyama+T-Site+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0f172a,#1e3a8a,#93c5fd)"><span class="dest-time">15:00</span><span class="dest-img-icon">📚</span><span class="dest-card-name">Daikanyama T-Site</span></div><div class="dest-body"><div class="dest-type">Books · Free</div><div class="dest-info">Three pavilions · Thousands of international magazines · Sit and read upstairs</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">Calm</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Yebisu+Garden+Place+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e1b4b,#4338ca,#a5b4fc)"><span class="dest-time">17:00</span><span class="dest-img-icon">✨</span><span class="dest-card-name">Illuminations</span></div><div class="dest-body"><div class="dest-type">Seasonal · Free</div><div class="dest-info">Yebisu chandelier · Marunouchi gold · Roppongi blue · All running by late November</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">Evening</span></div></div></a>
       </div>
@@ -2086,20 +2128,26 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
           <div class="dp-title">The last haul</div>
           <div class="dp-desc">
             <p>Ginza is ten minutes' walk from Tsukiji, which makes the morning easy: <strong>Muji Ginza</strong> flagship, <strong>Itōya</strong> for stationery across nine floors, <strong>Uniqlo Ginza</strong>. Or go the other way entirely and do a <strong>Don Quijote</strong> run for snacks, skincare and Kit Kat flavours, which is objectively the better souvenir per yen.</p>
+            <p><strong>And the last bag stop.</strong> <strong>KOMEHYO</strong> is a whole building of authenticated secondhand luxury with a tax-free counter, and <strong>Brand Off</strong> is the same idea a few streets over. By now you have seen Omotesandō, Nakameguro and possibly Ueno prices — so if the number here is good, you already know it. This is the only shop on the trip where buying on the spot is the sensible move.</p>
             <div class="dp-note warn"><strong>Check the tax-free rule before you shop.</strong> Japan has been moving from tax-free-at-the-till to buy-with-tax and claim-a-refund-at-the-airport, with the change flagged for around November 2026. Either way: bring your passport, keep every receipt, and leave time at Haneda for the refund counter — it is <em>before</em> security.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Shopping</span><span class="dp-tag">Tax-free</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Ginza+Tokyo" target="_blank">📍 Ginza</a>
+          <div class="dp-tags"><span class="dp-tag">Shopping</span><span class="dp-tag">Vintage bags</span><span class="dp-tag">Tax-free</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Komehyo+Ginza+Tokyo" target="_blank">📍 KOMEHYO Ginza</a>
         </div>
         <div class="dp-item">
           <div class="dp-dot"></div>
           <div class="dp-time">Bags</div>
-          <div class="dp-title">Don't carry the suitcase around all morning</div>
+          <div class="dp-title">Nobody is holding your bags — plan for it</div>
           <div class="dp-desc">
-            <p>Two options, both cheap. Leave it with the hotel after check-out and come back for it — free, and the reason to keep the morning local. Or use a coin locker at any major station; the large ones take a case and run about ¥700 a day, and the <em>Coin Locker Navi</em> app shows what is free.</p>
-            <div class="dp-alt"><strong>Takkyūbin</strong> — Japan's overnight luggage courier — is the local trick, but it is for hotel-to-hotel. For an airport run on the same day it does not help.</div>
+            <p class="dp-lead">This is the one place an Airbnb is genuinely worse than a hotel. There is no front desk, so once you are out at 10:00 with three suitcases, they are yours until the airport.</p>
+            <ol class="dp-steps">
+              <li><strong>Coin lockers</strong> at any major station — large ones take a case and run about ¥700 a day. Tokyo, Shinjuku and Shibuya have hundreds; they still all fill by mid-morning on a weekday. <em>Coin Locker Navi</em> shows what is free.</li>
+              <li><strong>ecbo cloak</strong> — an app that books guaranteed space in a shop or cafe by the bag, around ¥500–800 a day. Worth it precisely because it is reserved and a locker is not.</li>
+              <li><strong>Ask the host</strong> before you book. Some will let you leave bags in the flat until early afternoon, or have a lockbox in the building. It is a fair question and the answer shapes this morning.</li>
+            </ol>
+            <div class="dp-alt"><strong>Takkyūbin</strong>, Japan's overnight luggage courier, is the local trick — but it runs next-day between addresses, so it does not help you get to a flight this afternoon.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Practical</span></div>
+          <div class="dp-tags"><span class="dp-tag">Practical</span><span class="dp-tag">Ask the host</span></div>
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -2522,6 +2570,131 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
         </div>
       </div>
 
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">AMORE <span class="jp">アモーレ</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Omotesandō &amp; Daikanyama · Chanel and Hermès specialist</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Branches around Omotesandō/Aoyama and Daikanyama</div><div class="place-meta-row">🕐 Typically ~11:00–20:00 · tax-free with passport</div></div>
+          <p class="place-desc">The one people fly in for. Walls of Chanel — matelassé, classic flaps, vanity cases — plus Hermès, all authenticated and condition-graded. Prices sit at the top of the Tokyo market and the selection justifies it. Go on the Thursday to calibrate your eye before you buy anywhere else.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=AMORE+Vintage+Omotesando+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">RAGTAG <span class="jp">ラグタグ</span></span></div>
+            <div class="place-sub">Harajuku &amp; Shibuya · designer resale over several floors</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Flagship in Jingūmae, Harajuku · also Shibuya</div><div class="place-meta-row">🕐 Typically ~11:00–20:00</div></div>
+          <p class="place-desc">The most approachable of the big designer resellers — several floors of clothing and bags, everything tagged with a condition rank, staff used to visitors and a proper tax-free desk. Mid-market rather than grail-hunting, which makes it the best place to learn what things actually cost.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=RAGTAG+Harajuku+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🏬</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">KOMEHYO <span class="jp">コメ兵</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Ginza &amp; Shinjuku · a department store of secondhand luxury</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Multi-floor branches in Ginza and Shinjuku</div><div class="place-meta-row">🕐 Typically ~11:00–20:00 · tax-free counter in store</div></div>
+          <p class="place-desc">The single best one-stop: an entire building of authenticated luxury, floor by floor — bags, watches, jewellery — with English-speaking staff and a tax-free counter. Ginza is ten minutes from Tsukiji, so it slots straight into the last morning. If you have priced a bag elsewhere first, this is where you buy it.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Komehyo+Ginza+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Brand Off <span class="jp">ブランドオフ</span></span></div>
+            <div class="place-sub">Ginza &amp; Omotesandō · luxury resale, smaller and calmer</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Branches in Ginza and around Omotesandō</div><div class="place-meta-row">🕐 Typically ~11:00–20:00</div></div>
+          <p class="place-desc">The same idea as KOMEHYO at a smaller scale — authenticated bags, watches and jewellery, condition-ranked. Quieter than the big chains, which makes it easier to actually look at things properly. Worth pairing with KOMEHYO on the Ginza morning.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Brand+Off+Ginza+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🕰</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">JANTIQUES <span class="jp">ジャンティーク</span></span></div>
+            <div class="place-sub">Nakameguro · curated vintage, not a chain</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Nakameguro, near the canal</div><div class="place-meta-row">🕐 Afternoons are safest — check before travelling</div></div>
+          <p class="place-desc">A small, long-running shop where every piece has clearly been chosen by a person rather than bought by the kilo. More clothing than bags, but the reference point for what curated vintage in Tokyo means. Fits the Sunday walk between the canal and Daikanyama.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Jantiques+Nakameguro+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">💰</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Daikokuya <span class="jp">大黒屋</span></span></div>
+            <div class="place-sub">Ueno / Ameyoko · pawnshop prices, no atmosphere</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Many branches; the Ameyoko cluster near Ueno is the one</div><div class="place-meta-row">🕐 Typically ~10:30–20:00 · cash and card</div></div>
+          <p class="place-desc">Not a boutique — strip lighting, glass cabinets, and the sharpest prices in the city. This is where you find a genuine bargain, and also where you need to already know what you are looking at. Go last, once Omotesandō has taught you what things should cost.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Daikokuya+Ameyoko+Ueno+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🛍</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">2nd STREET <span class="jp">セカンドストリート</span></span></div>
+            <div class="place-sub">Everywhere · general secondhand with a luxury cabinet</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Branches in Harajuku, Shimokitazawa, Shibuya and most neighbourhoods</div><div class="place-meta-row">🕐 Typically ~11:00–20:00</div></div>
+          <p class="place-desc">Japan's big general secondhand chain — mostly ordinary clothing, but there is a locked cabinet of designer bags at the front of every branch and the pricing is nothing like the specialist shops. Random by nature, which is the appeal: this is where a ¥12,000 vintage Coach or an old Prada nylon turns up. Worth ten minutes whenever you pass one.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=2nd+Street+Harajuku+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2904,6 +3077,110 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
 
 </div>
 
+<!-- ════════════════ VINTAGE BAGS ════════════════ -->
+<div id="tab-vintage" class="tab-content">
+
+  <div class="sh"><h2>👜 Vintage Bags</h2><p>The best secondhand luxury market on earth, and how to shop it properly</p></div>
+
+  <div class="callout">
+    <strong>Tokyo is the reason people fly to Japan to buy bags.</strong> Three things stacked up: the bubble years put an enormous quantity of European luxury into Japanese wardrobes, the culture here keeps boxes, receipts and dust bags and treats things carefully, and a professional authentication industry grew up around members-only trade auctions. So the supply is huge, the condition is better than you would dare hope, the fake risk at an established shop is close to zero — and the prices are below Europe before the exchange rate even helps.
+  </div>
+
+  <div class="flt-section-label">📏 How the grading works</div>
+  <div class="card">
+    <p style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:12px">Almost every shop ranks condition on the same rough scale, printed on the tag and on the website. Shops vary by a notch here and there, so treat it as a shortlist filter — then read the flaws each listing spells out underneath, which is where the real information is.</p>
+    <div class="dp-facts">
+      <div class="dp-fact"><span class="dp-fact-k">N</span><span class="dp-fact-v">Unused. Often still tagged</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">S</span><span class="dp-fact-v">Barely used, reads as new</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">A</span><span class="dp-fact-v">Light use, nothing you'd notice worn</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">AB</span><span class="dp-fact-v">The sweet spot — visible use, still lovely</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">B</span><span class="dp-fact-v">Clearly used. Fine if the price reflects it</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">C and below</span><span class="dp-fact-v">Project bags. Buy in person only</span></div>
+    </div>
+    <div class="dp-note" style="margin-top:12px">Two words worth recognising on a Japanese condition tag: <strong>スレ</strong> <span class="jp">sure</span> — scuffing, usually at the corners — and <strong>型崩れ</strong> <span class="jp">kata-kuzure</span> — the bag has lost its shape. The first is cosmetic and priced in. The second does not come back.</div>
+  </div>
+
+  <div class="flt-section-label">🗺 Where to go, by day</div>
+  <div class="opts">
+    <div class="opt pick">
+      <h5>Omotesandō &amp; Harajuku</h5>
+      <div class="opt-meta">The curated high end · fits Day 2</div>
+      <p><strong>AMORE</strong> for Chanel and Hermès — the one people come for, walls of matelassé and classic flaps. <strong>RAGTAG</strong> for designer resale at a sane price, clothes and bags over several floors. <strong>Kindal</strong> and <strong>RINKAN</strong> for the streetwear-meets-luxury end. Best selection, highest prices.</p>
+    </div>
+    <div class="opt">
+      <h5>Daikanyama &amp; Nakameguro</h5>
+      <div class="opt-meta">Small and hand-picked · fits Day 5</div>
+      <p>A second <strong>AMORE</strong>, plus a scatter of one-room shops where somebody has clearly chosen every piece. <strong>JANTIQUES</strong> in Nakameguro is the reference for properly curated vintage. Fewer bags than Omotesandō, better odds of something nobody else has.</p>
+    </div>
+    <div class="opt">
+      <h5>Ginza &amp; Shinjuku</h5>
+      <div class="opt-meta">Department-store scale · fits Day 6</div>
+      <p><strong>KOMEHYO</strong> is the single best one-stop: a whole building of authenticated luxury, floor by floor, with English-speaking staff and a tax-free counter. <strong>Brand Off</strong> nearby for the same idea, smaller. Ginza is ten minutes from Tsukiji, which is exactly how the last morning is already shaped.</p>
+    </div>
+    <div class="opt">
+      <h5>Ueno &amp; Ameyoko</h5>
+      <div class="opt-meta">The bargain end · optional on Day 4</div>
+      <p><strong>Daikokuya</strong> — a pawnshop chain, not a boutique. Strip lighting, cabinets, sharp prices, and the best chance of an actual bargain if you already know what you're looking at. Go here last, once your eye is calibrated.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <strong>And the chains that are everywhere:</strong> <strong>2nd STREET</strong> and <strong>Treasure Factory</strong> are general secondhand shops with a luxury cabinet at the front — far cheaper, far more random, and genuinely worth ten minutes whenever you pass one. This is where a ¥12,000 Coach or an old Prada nylon turns up.
+  </div>
+
+  <div class="flt-section-label">💎 What Tokyo is actually cheap for</div>
+  <div class="three-col">
+    <div class="tc"><h4>🏆 The bargains</h4><div class="tc-list"><strong>Vintage Louis Vuitton</strong><br>Monogram and Epi are everywhere<br>Speedy / Alma often ¥30,000–80,000<br><strong>Chanel matelassé</strong> — deep selection<br>Below European prices, better condition<br><em>Supply here is the reason</em></div></div>
+    <div class="tc"><h4>🎀 The Y2K revival</h4><div class="tc-list">Dior saddle &amp; trotter<br>Fendi baguette and mamma<br>Prada nylon, in every colour<br>Gucci bamboo, jackie, horsebit<br><em>Bought new here in 2001, resold now</em></div></div>
+    <div class="tc"><h4>👀 Quietly underpriced</h4><div class="tc-list">Old Céline, pre-Philo<br>Loewe before it was cool again<br>Bottega intrecciato<br>Vintage Coach, often ¥8,000–20,000<br>Japanese labels: Kitamura, Sazaby<br><em>Nobody is bidding these up</em></div></div>
+  </div>
+
+  <div class="flt-section-label">🔍 Before you hand over the card</div>
+  <div class="sig-grid">
+    <div class="sig good">
+      <div class="sig-h">✅ Good signs</div>
+      <ul>
+        <li>The tag states a <strong>rank and the specific flaws</strong>. A shop that lists what is wrong is a shop that knows what it has.</li>
+        <li>Guarantee card, receipt or the shop's own authenticity certificate offered without being asked.</li>
+        <li><strong>The bag holds its shape</strong> when you set it down empty.</li>
+        <li>Lining is dry, clean and smells of nothing.</li>
+        <li>Hardware plating intact, zips run smoothly end to end, all pulls match.</li>
+        <li>Staff happy for you to photograph the tag and take your time.</li>
+      </ul>
+    </div>
+    <div class="sig watch">
+      <div class="sig-h">⚠️ Walk away</div>
+      <ul>
+        <li><strong>A sticky or tacky lining.</strong> Common in late-1990s and early-2000s bags, and it is not fixable — it only gets worse.</li>
+        <li><strong>Any smell.</strong> Smoke or damp does not come out of leather. You will not be the one who fixes it.</li>
+        <li>Heavy corner wear through to the layer beneath — cosmetic at first, structural eventually.</li>
+        <li>A slumped, creased shape that does not recover.</li>
+        <li>Replaced or mismatched hardware, unless the price is a fraction and you know why.</li>
+        <li>A shop that will not show you a certificate or let you photograph the tag.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flt-section-label">🧾 Practicalities</div>
+  <div class="card">
+    <ul class="tip-list">
+      <li><strong>Prices are fixed and haggling is not a thing.</strong> Not in boutiques, not really in pawnshops. Asking reads as rude rather than shrewd, so decide your number before you walk in instead.</li>
+      <li><strong>Look up.</strong> Most of these shops are on the second to fifth floor of a narrow building, advertised on a vertical sign by the door. If you only scan shopfronts you will walk straight past the good ones.</li>
+      <li><strong>Weekday mornings.</strong> Every shop on this page is calm at eleven on a Thursday and heaving on a Saturday afternoon.</li>
+      <li><strong>Bring all three passports</strong> — tax-free applies to secondhand goods at registered shops on ¥5,000+, and the big chains are registered. Same caveat as the rest of the page: Japan is moving to refund-at-the-airport around November 2026, so confirm which system is running and keep every receipt together.</li>
+      <li><strong>Ask before photographing inside.</strong> Plenty of shops don't allow it, and the ones that do will say yes if you ask.</li>
+      <li><strong>Say no to the box.</strong> Take the dust bag, leave the box — it is bulky, it is not worth the case space, and it adds nothing to a bag you are keeping.</li>
+      <li><strong>Photograph the tag and the receipt</strong> before you leave the shop, while the rank and the flaw list are still in front of you.</li>
+      <li><strong>Leave the space.</strong> A bag each is a genuine amount of suitcase. This is the reason the packing tab says to pack for four days, not six.</li>
+    </ul>
+  </div>
+
+  <div class="callout" style="margin-top:18px">
+    <strong>One tactic worth the discipline:</strong> spend the first day looking and not buying. Prices for the same bag in the same rank vary more than you would expect between Omotesandō, Ginza and Ueno, and the only way to know whether ¥180,000 is a good price for that flap is to have seen four of them. You have five days. Nothing here sells out overnight.
+  </div>
+
+</div>
+
 <!-- ════════════════ FLIGHTS & STAY ════════════════ -->
 <div id="tab-logistics" class="tab-content">
 
@@ -2923,27 +3200,28 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
     <strong>Two timing notes for this specific trip.</strong> An arrival before about 17:00 on the Wednesday gives you a usable first evening; a red-eye landing at 07:00 gives you a whole extra day but you will be useless by four. And on the Monday, anything departing before about 11:00 costs you the Tsukiji breakfast — worth checking before you book.
   </div>
 
-  <div class="sh"><h2>🏨 Where to Stay</h2><p>Five nights, one hotel — the neighbourhood matters more than the room</p></div>
+  <div class="sh"><h2>🏡 Where to Stay</h2><p>Five nights in one Airbnb — the neighbourhood matters more than the flat</p></div>
 
   <div class="callout">
     All four of these are fine. The real question is what you want at the end of a long day: to fall out of a station into a wall of neon, or to walk a quiet street. <strong>Anywhere on the Yamanote loop line is well-connected enough</strong> — that is the ring line that most of Tokyo hangs off.
   </div>
 
   <div class="callout" style="margin-top:14px">
-    <strong>Book early, because a room for three is the hard part.</strong> Most Tokyo hotel rooms are doubles or twins and cap at two people. Triples exist but they are a small share of the stock and they go first in autumn. Three realistic shapes, in rough order of value:
+    <strong>An Airbnb is the right call for three of you</strong> — it sidesteps the whole problem that most Tokyo hotel rooms cap at two guests, and you get a washing machine, which means packing lighter. But Japan regulates short-term lets tightly, so there are four things to check <em>before</em> you book.
     <ul style="margin:8px 0 0 18px;line-height:1.7">
-      <li><strong>One triple room</strong> — cheapest per head and you are all in one place. Search specifically for "triple", or set the guest count to 3 before you filter anything else; it is the only way to see real availability.</li>
-      <li><strong>An apartment or aparthotel</strong> — MIMARU, the serviced-apartment brands and most Tokyo Airbnbs are built for exactly this, usually come with a kitchenette and a washing machine, and often land cheaper than two hotel rooms.</li>
-      <li><strong>A twin plus a single</strong> — most available, most expensive, and you lose the shared base. Worth it only if the first two draw a blank.</li>
+      <li><strong>The licence number.</strong> Legal listings show a registration or licence number on the page. Under the 2018 minpaku law a private-home let is capped at 180 nights a year; the bigger operators are instead licensed as lodgings and have no cap. Either is fine — <em>no number at all</em> is the red flag, and unlicensed listings get pulled, sometimes days before arrival.</li>
+      <li><strong>Passports for all three.</strong> Hosts are legally required to record the passport details of foreign guests, so expect to upload or show them. Put all three names on the booking; a guest who isn't on it isn't registered.</li>
+      <li><strong>The walk to the station, and the stairs.</strong> The exact address only appears after booking, but the map circle is enough — aim for under 8 minutes to a Yamanote or major metro stop. Then ask the host whether the building has a <strong>lift</strong>. Older Tokyo apartment blocks often don't, and three suitcases up four floors sets the tone for the week.</li>
+      <li><strong>What "sleeps 3" actually means.</strong> Sometimes a third bed; often a sofa bed or a futon rolled out on tatami. Read the photos and the reviews rather than the headline number.</li>
     </ul>
-    <div style="margin-top:8px">Whatever you book, <strong>put all three names on the reservation</strong>. Japanese hotels register every guest at check-in, and an undeclared third person is a real problem at the desk rather than a shrug.</div>
+    <div style="margin-top:8px">Then two house rules that matter more here than at home: <strong>rubbish gets separated</strong> and only goes out on the right day — the host will leave instructions and they are not optional — and <strong>walls are thin</strong>. Neighbour noise complaints are the single most common reason a Tokyo listing gets shut down.</div>
   </div>
 
   <div class="opts" style="margin-top:14px">
     <div class="opt pick">
       <h5>Shibuya</h5>
       <div class="opt-meta">Best fit for this itinerary</div>
-      <p>Puts you on the doorstep of Day 2 and Day 5, seven minutes from Shimokitazawa, four from Nakameguro. Young, loud until late, and enormously well connected. The station is a genuine maze — pick a hotel with a named exit you can memorise.</p>
+      <p>Puts you on the doorstep of Day 2 and Day 5, seven minutes from Shimokitazawa, four from Nakameguro, and in the middle of the vintage-bag map. Young, loud until late, and enormously well connected. The station is a genuine maze — learn one named exit and always use it.</p>
     </div>
     <div class="opt">
       <h5>Shinjuku</h5>
@@ -2958,18 +3236,20 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
     <div class="opt">
       <h5>Asakusa / Kuramae</h5>
       <div class="opt-meta">Cheapest, most characterful, furthest</div>
-      <p>Old Tokyo, low-rise, the best value in the city, and a lot of good small hotels. But it is on the far east side — every west-side day starts with a 30–40 minute train, and over five days that adds up.</p>
+      <p>Old Tokyo, low-rise, and by far the best value per night — this is where the cheap whole-flat listings are. But it is on the far east side: every west-side day starts with a 30–40 minute train, and over five days that adds up.</p>
     </div>
   </div>
 
   <div class="card" style="margin-top:16px">
     <div class="dp-facts">
       <div class="dp-fact"><span class="dp-fact-k">Book by</span><span class="dp-fact-v">Late September — autumn is peak season</span></div>
-      <div class="dp-fact"><span class="dp-fact-k">Room size</span><span class="dp-fact-v">Tokyo rooms are small; 18m² is normal</span></div>
-      <div class="dp-fact"><span class="dp-fact-k">Check-in</span><span class="dp-fact-v">Usually 15:00, and enforced</span></div>
-      <div class="dp-fact"><span class="dp-fact-k">Luggage</span><span class="dp-fact-v">Every hotel will hold bags before and after</span></div>
-      <div class="dp-fact"><span class="dp-fact-k">Tax</span><span class="dp-fact-v">Tokyo accommodation tax on rooms over ¥10,000/night</span></div>
-      <div class="dp-fact"><span class="dp-fact-k">Passport</span><span class="dp-fact-v">Copied at check-in — this is the law, not nosiness</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">Budget</span><span class="dp-fact-v">~¥25,000–40,000/night for a whole flat for 3</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">Cleaning fee</span><span class="dp-fact-v">Often ¥5,000–15,000 on top — compare totals, not nightly</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">Check-in</span><span class="dp-fact-v">Usually 15:00–16:00, self check-in by keybox</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">Check-out</span><span class="dp-fact-v">Often 10:00 and strict — cleaners are booked</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">Luggage</span><span class="dp-fact-v">No front desk, so no bag hold. Coin lockers or ecbo cloak</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">Laundry</span><span class="dp-fact-v">Most flats have a washing machine — pack for 4 days, not 6</span></div>
+      <div class="dp-fact"><span class="dp-fact-k">Passport</span><span class="dp-fact-v">All three recorded by the host — this is the law, not nosiness</span></div>
     </div>
   </div>
 
@@ -3181,7 +3461,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
   <div class="three-col" style="margin-top:12px">
     <div class="tc"><h4>🗣 Language</h4><div class="tc-list">Signage is bilingual everywhere<br>Spoken English is limited — that's fine<br>Google Translate camera mode for menus<br>"Sumimasen" = excuse me / sorry / thank you<br><em>Pointing politely is a complete sentence</em></div></div>
     <div class="tc"><h4>🌏 Earthquakes</h4><div class="tc-list">Small ones are common and normal<br>Stay inside, away from windows<br>Get under a table if it is strong<br>Phones sound a national alert first<br><em>Buildings here are built for this</em></div></div>
-    <div class="tc"><h4>🧳 Luggage</h4><div class="tc-list">Coin lockers at every big station<br>Large ones ~¥700/day<br>Hotels hold bags before and after stay<br>Takkyūbin couriers hotel-to-hotel overnight<br><em>Do not drag a case through a station at 08:30</em></div></div>
+    <div class="tc"><h4>🧳 Luggage</h4><div class="tc-list">Coin lockers at every big station<br>Large ones ~¥700/day, and they do fill<br><strong>ecbo cloak</strong> books guaranteed space<br>An Airbnb has no desk to hold bags<br><em>Do not drag a case through a station at 08:30</em></div></div>
   </div>
 
   <div class="sh"><h2>🍁 This Specific Week</h2><p>Late November has its own rules</p></div>
@@ -3193,7 +3473,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
       <li><strong>Winter illuminations are on</strong> from mid-November — Marunouchi, Roppongi, Yebisu, Shibuya. Free, and the reason a 16:30 sunset stops mattering.</li>
       <li><strong>Mon 23 November is Labour Thanksgiving Day</strong>, a Japanese public holiday. You land two days after it, so the domestic-travel crush will have cleared, but the preceding weekend is one of the busiest of the year at every foliage spot.</li>
       <li><strong>Indoor heating is aggressive.</strong> Trains, shops and restaurants are hot. Dress in layers you can peel off, not one thick coat you have to carry.</li>
-      <li><strong>The air is very dry.</strong> Lip balm and moisturiser are not optional, and a hotel room will dry your throat out overnight — most have a humidifier setting or a small one in the cupboard.</li>
+      <li><strong>The air is very dry.</strong> Lip balm and moisturiser are not optional, and a heated flat will dry your throat out overnight — hang a damp towel up if there is no humidifier.</li>
     </ul>
   </div>
 
@@ -3217,7 +3497,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
     </div>
     <div class="bst-card">
       <div class="bst-icon">🏨</div>
-      <div class="bst-label">Accommodation</div>
+      <div class="bst-label">Airbnb</div>
       <div class="bst-usd yen" id="sum-hotel-jpy">¥—</div>
       <div class="bst-sgd" id="sum-hotel-sgd">SGD —</div>
     </div>
@@ -3245,13 +3525,14 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
       <span style="width:80px;flex-shrink:0;text-align:right">SGD</span>
     </div>
     <div class="known-row" data-cat="flight"><div class="known-desc" contenteditable>SIN ⇄ HND return · economy · late-November peak · <strong>× 3 travellers</strong></div><span class="known-pill kp-flight">✈️ Flight</span><div class="known-amt yen" contenteditable oninput="updateTotals()">300000</div><div class="known-sgd">—</div></div>
-    <div class="known-row" data-cat="hotel"><div class="known-desc" contenteditable>Hotel · 5 nights · one triple or an apartment · ~¥30,000/night for the three of you</div><span class="known-pill kp-hotel">🏨 Hotel</span><div class="known-amt yen" contenteditable oninput="updateTotals()">150000</div><div class="known-sgd">—</div></div>
+    <div class="known-row" data-cat="hotel"><div class="known-desc" contenteditable>Airbnb · 5 nights · whole flat for three · ~¥30,000/night incl. the cleaning fee</div><span class="known-pill kp-hotel">🏨 Hotel</span><div class="known-amt yen" contenteditable oninput="updateTotals()">150000</div><div class="known-sgd">—</div></div>
     <div class="known-row" data-cat="other"><div class="known-desc" contenteditable>Suica starting top-up · ¥5,000 each · covers most local transport for the week</div><span class="known-pill" style="background:var(--bg);color:var(--muted);border:1px solid var(--sep)">Transport</span><div class="known-amt yen" contenteditable oninput="updateTotals()">15000</div><div class="known-sgd">—</div></div>
     <div class="known-row" data-cat="other"><div class="known-desc" contenteditable>Day trip × 3 · Kamakura trains + temple entries (a Hakone Freepass would be ~¥6,100 each)</div><span class="known-pill" style="background:var(--bg);color:var(--muted);border:1px solid var(--sep)">Day trip</span><div class="known-amt yen" contenteditable oninput="updateTotals()">9000</div><div class="known-sgd">—</div></div>
     <div class="known-row" data-cat="other"><div class="known-desc" contenteditable>Shibuya Sky · sunset slot × 3</div><span class="known-pill" style="background:var(--bg);color:var(--muted);border:1px solid var(--sep)">Ticket</span><div class="known-amt yen" contenteditable oninput="updateTotals()">7500</div><div class="known-sgd">—</div></div>
     <div class="known-row" data-cat="other"><div class="known-desc" contenteditable>teamLab · timed entry × 3 <em>(optional)</em></div><span class="known-pill" style="background:var(--bg);color:var(--muted);border:1px solid var(--sep)">Ticket</span><div class="known-amt yen" contenteditable oninput="updateTotals()">11400</div><div class="known-sgd">—</div></div>
     <div class="known-row" data-cat="other"><div class="known-desc" contenteditable>Travel insurance × 3</div><span class="known-pill" style="background:var(--bg);color:var(--muted);border:1px solid var(--sep)">Admin</span><div class="known-amt yen" contenteditable oninput="updateTotals()">18000</div><div class="known-sgd">—</div></div>
     <div class="known-row" data-cat="other"><div class="known-desc" contenteditable>eSIM · 10GB, 7 days × 3</div><span class="known-pill" style="background:var(--bg);color:var(--muted);border:1px solid var(--sep)">Admin</span><div class="known-amt yen" contenteditable oninput="updateTotals()">7500</div><div class="known-sgd">—</div></div>
+    <div class="known-row" data-cat="other"><div class="known-desc" contenteditable>👜 <strong>Vintage bag fund</strong> · the number you decide before you walk in, not after</div><span class="known-pill" style="background:var(--bg);color:var(--muted);border:1px solid var(--sep)">Shopping</span><div class="known-amt yen" contenteditable oninput="updateTotals()">0</div><div class="known-sgd">—</div></div>
     <div class="known-row" data-cat="other"><div class="known-desc" contenteditable>Add item...</div><span class="known-pill" style="background:var(--bg);color:var(--muted);border:1px solid var(--sep)">Other</span><div class="known-amt yen" contenteditable oninput="updateTotals()">0</div><div class="known-sgd">—</div></div>
   </div>
 
@@ -3263,6 +3544,10 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
   </div>
 
   <!-- ── DAILY SPENDING LOG ── -->
+  <div class="callout" style="margin-top:16px">
+    <strong>Bags sit outside the daily number.</strong> Roughly, in Tokyo: vintage Coach or a small Japanese label <strong>¥8,000–25,000</strong> · vintage Louis Vuitton monogram or Epi <strong>¥30,000–90,000</strong> · Y2K Dior, Fendi or Prada <strong>¥40,000–150,000</strong> · Chanel matelassé and classic flaps <strong>¥150,000 and up</strong>, which is still below what the same rank costs in Europe. Put your own ceiling in the row above and keep the daily log for food and trains, or the two blur and you lose track of both.
+  </div>
+
   <div class="sh"><h2>📝 Daily Spending Log</h2><p>Fill it in as you go · log the group total, same as the estimates above · tap + to add a row</p></div>
   <div class="card budget-table" id="expense-log">
     <div class="budget-col-hdr">
@@ -3297,7 +3582,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
   </div>
 
   <div class="callout" style="margin-bottom:22px">
-    <strong>Pack light on purpose.</strong> Two things make this trip harder than it needs to be: dragging a full case through a station, and having no room for what you buy. Tokyo hotel rooms are small, laundry is available in most of them or at a coin laundry down the street, and Uniqlo is on every corner if you get the layers wrong.
+    <strong>Pack light on purpose, and pack for four days rather than six.</strong> The Airbnb will almost certainly have a washing machine — check the listing and then use it. Two things make this trip harder than it needs to be: dragging a full case through a station, and having no room for what you buy, which on this trip includes bags. Tokyo flats are small, there is a coin laundry down every street, and Uniqlo is on every corner if you get the layers wrong.
   </div>
 
   <div class="sh"><h2>📄 Documents &amp; Money</h2></div>
@@ -3312,7 +3597,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Passport <span class="pack-item-note">Six months' validity · carry it daily for tax-free shopping</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Visit Japan Web QR codes <span class="pack-item-note">One registration each, on their own phone. Screenshot them — airport wifi is not guaranteed</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Flight booking / e-ticket</div></div></div>
-        <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Hotel confirmation, all three names on it <span class="pack-item-note">Send the Japanese address to all three phones, for taxis</span></div></div></div>
+        <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Airbnb booking + host chat, all three names on it <span class="pack-item-note">Save the check-in instructions offline and send the Japanese address to all three phones</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Travel insurance + 24hr emergency number</div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Cards, and the bank told you're travelling</div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">¥15,000–20,000 cash each <span class="pack-item-note">Or plan a 7-Eleven ATM run together on day one</span></div></div></div>
@@ -3384,7 +3669,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
       <div class="pack-items" data-cat="toiletries">
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Lip balm <span class="pack-item-note">Non-negotiable — November air is bone dry</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Moisturiser + hand cream</div></div></div>
-        <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Toothbrush, toothpaste, deodorant <span class="pack-item-note">Hotels supply brush + paste; deodorant is oddly hard to buy</span></div></div></div>
+        <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Toothbrush, toothpaste, deodorant <span class="pack-item-note">A hotel would have supplied the first two — an Airbnb usually won't. Deodorant is oddly hard to buy here</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Prescription meds <span class="pack-item-note">In original packaging, with the prescription — Japan restricts some common ingredients</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Painkillers + stomach tablets</div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Tissues + hand sanitiser <span class="pack-item-note">Many toilets have no paper towels or hand dryers</span></div></div></div>
@@ -3403,7 +3688,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
       <div class="pack-items" data-cat="bags">
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Checked case, packed to about two-thirds <span class="pack-item-note">Leave the third for what comes home</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Small day bag <span class="pack-item-note">Something you can wear on your front on a packed train</span></div></div></div>
-        <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Foldable tote <span class="pack-item-note">Shops charge for bags, and you will buy more than planned</span></div></div></div>
+        <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Foldable tote <span class="pack-item-note">Shops charge for bags, and a vintage bag comes home in a dust bag, not a box</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Packing cubes</div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Luggage lock</div></div></div>
       </div>
@@ -3418,7 +3703,7 @@ body.dark .tbc{background:rgba(203,145,47,.18);color:#e3b661;border-color:rgba(2
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">A small plastic bag for rubbish <span class="pack-item-note">There are almost no public bins. You will carry it all day.</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">A small hand towel <span class="pack-item-note">Public toilets often have no way to dry your hands — everyone carries one</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Compact umbrella <span class="pack-item-note">November is dry, but a ¥600 konbini one is the backup plan</span></div></div></div>
-        <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Folder or pouch for receipts <span class="pack-item-note">Tax refunds need every one of them</span></div></div></div>
+        <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Folder or pouch for receipts <span class="pack-item-note">Tax refunds need every one of them — and so does anything you resell or insure later</span></div></div></div>
         <div class="pack-item" onclick="togglePack(this)"><div class="pack-checkbox"></div><div><div class="pack-item-text">Nothing you'd hate to take shoes off in <span class="pack-item-note">Boots you have to unlace get old fast</span></div></div></div>
       </div>
     </div>

@@ -10,8 +10,9 @@ editable budget and a packing checklist.
 
 ## Status
 
-Nothing is booked. Flights, hotel and the day trip are all shortlists rather
-than plans, and every open item is marked `NOT BOOKED` / `TBC` on the page.
+Nothing is booked. Flights, the Airbnb and the day trip are all shortlists
+rather than plans, and every open item is marked `NOT BOOKED` / `TBC` on the
+page.
 Replace them as they firm up — everything editable is `contenteditable`, and
 the estimates table drives the summary tiles live.
 
@@ -22,7 +23,8 @@ the estimates table drives the summary tiles live.
 | **Overview** | November calendar (tap a day to jump), weather + daylight, outline flights, and the full itinerary browser |
 | **Tokyo** | Six day-by-day plans, plus a curated places list you can add to |
 | **Day Trips** | Kamakura, Hakone, Kawaguchiko and Nikkō written up in full — pick one for the Friday |
-| **Flights & Stay** | Haneda vs Narita, four neighbourhoods compared, passes, eSIM, what sells out |
+| **Vintage** | Secondhand luxury bags: the condition grading scale, the four shopping districts mapped onto the days, what Tokyo is actually cheap for, and what to check before buying |
+| **Flights & Stay** | Haneda vs Narita, four neighbourhoods compared, the Airbnb licence check, passes, eSIM, what sells out |
 | **Tips** | How Japan actually works — money, trains, ordering, onsen, shrines, tax-free |
 | **Budget** | Yen with a live SGD rate you can edit, estimates + a daily spending log |
 | **Packing** | 45 items, checked off in `localStorage` |
