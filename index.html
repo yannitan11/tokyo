@@ -2055,13 +2055,17 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         <div class="dp-item">
           <div class="dp-dot"></div>
           <div class="dp-time">09:30 · optional</div>
-          <div class="dp-title">Shimokitazawa <span class="jp">下北沢</span>, if you want it</div>
+          <div class="dp-title">The optional morning — pick one, or neither</div>
           <div class="dp-desc">
-            <p>Low-rise, car-free, and stuffed with second-hand clothing, record shops and tiny theatres. Sunday is its best day. Seven minutes from Shibuya on the Keiō Inokashira line — but it is <em>west</em>, and Nakameguro is <em>south</em>, so this costs you a Shibuya backtrack and about two hours.</p>
-            <p>If you go: <strong>New York Joe Exchange</strong> in an old bathhouse, <strong>Flamingo</strong>, <strong>Chicago</strong>, <strong>Haight &amp; Ashbury</strong> for the curated end. Coffee at <strong>Bear Pond Espresso</strong> — small, serious, no photos of the bar. Be on a train south by 11:15.</p>
+            <p class="dp-lead">If you want a morning before the river, there are two candidates and they are both north-west of here, so it is one or the other. Either costs you about two hours and a backtrack.</p>
+            <ol class="dp-steps">
+              <li><strong>Shimokitazawa</strong> <span class="jp">下北沢</span> — low-rise, car-free, stuffed with second-hand clothing and record shops, and Sunday is its best day. Seven minutes from Shibuya on the Keiō Inokashira line. <strong>New York Joe Exchange</strong> in an old bathhouse, <strong>Flamingo</strong>, <strong>Chicago</strong>, <strong>Haight &amp; Ashbury</strong>; coffee at <strong>Bear Pond Espresso</strong>.</li>
+              <li><strong>Nakano Broadway</strong> <span class="jp">中野ブロードウェイ</span> — five minutes from Shinjuku on the Chūō line, and the only place on this trip to buy a vintage watch properly. <strong>Jackroad</strong> and <strong>Betty Road</strong> anchor a whole third-floor corridor of dealers. Go here if watches matter more than clothes; the Vintage tab has what to check.</li>
+            </ol>
+            <div class="dp-note">Whichever you pick, <strong>be on a train south by 11:15</strong> — the river, the hill and Ebisu need the rest of the day, and the light goes at half four.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Optional</span><span class="dp-tag">Vintage</span><span class="dp-tag">Cash</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Shimokitazawa+Tokyo" target="_blank">📍 Shimokitazawa</a>
+          <div class="dp-tags"><span class="dp-tag">Optional</span><span class="dp-tag">Vintage</span><span class="dp-tag">Pick one</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Nakano+Broadway+Tokyo" target="_blank">📍 Nakano Broadway</a>
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -2277,6 +2281,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
       <button class="places-cat" onclick="filterPlaces('tokyo-places','food',this)">🍴 Food</button>
       <button class="places-cat" onclick="filterPlaces('tokyo-places','bar',this)">🍸 Bars</button>
       <button class="places-cat" onclick="filterPlaces('tokyo-places','shop',this)">🛍 Shopping</button>
+      <button class="places-cat" onclick="filterPlaces('tokyo-places','watch',this)">⌚ Watches</button>
     </div>
     <div class="places-list" id="tokyo-places">
 
@@ -2926,6 +2931,149 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
           </div>
         </div>
       </div>
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Kindal <span class="jp">カインドオル</span></span></div>
+            <div class="place-sub">Shibuya &amp; Harajuku · designer secondhand, mid-market</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Branches around Shibuya and Harajuku</div><div class="place-meta-row">🕐 Typically ~11:00–20:00</div></div>
+          <p class="place-desc">A designer resale chain sitting between RAGTAG and the luxury specialists — bags, clothing and accessories, condition-ranked, turning over fast. Good for the brands just below Chanel money, and the branches are close enough to RAGTAG that you can do both in one loop.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Kindal+Shibuya+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">CASANOVA <span class="jp">カサノヴァ</span></span><span class="tbc">verify</span></div>
+            <div class="place-sub">Vintage designer bags · on your list</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Branch to confirm — Tokyo vintage-luxury dealer</div><div class="place-meta-row">🕐 <strong>Check hours and location before you go</strong></div></div>
+          <p class="place-desc">One of the smaller vintage-luxury dealers rather than a big chain, which is exactly why it is worth a look — small dealers price by what they paid at auction, not by a corporate matrix. Confirm the current branch and opening hours before making the trip; independents move and keep their own hours.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Casanova+vintage+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="shop">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👜</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Vintage QOO <span class="jp">ヴィンテージ クー</span></span><span class="tbc">verify</span></div>
+            <div class="place-sub">Harajuku · vintage designer · on your list</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Around Jingūmae, Harajuku</div><div class="place-meta-row">🕐 <strong>Check hours before you go</strong></div></div>
+          <p class="place-desc">A Harajuku vintage designer shop — the small, curated end rather than the department-store end, so the stock is personality-led and turns over. It sits inside the Omotesandō/Harajuku loop already on Day 2, so it costs you nothing to add. Confirm the address and hours first.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Vintage+Qoo+Harajuku+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="watch">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Jackroad &amp; Betty Road <span class="jp">ジャックロード</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Nakano Broadway · the used-watch destination</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Nakano Broadway, 3F · Nakano stn, ~5 min from Shinjuku</div><div class="place-meta-row">🕐 Typically ~11:00–20:00 · tax-free available</div></div>
+          <p class="place-desc">The biggest pre-owned watch operation in Tokyo, and the reason people go to Nakano at all. Jackroad is wall-to-wall cases of used Rolex, Omega, Grand Seiko and the rest; Betty Road is its sister shop next door for smaller and women's pieces. Everything is authenticated, condition-noted and priced in the window. Even if you buy nothing, an hour here is the fastest watch education available.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Jackroad+Nakano+Broadway+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="watch">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Nakano Broadway <span class="jp">中野ブロードウェイ</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Nakano · a 1966 mall full of watch dealers</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 5-52-15 Nakano, Nakano-ku · ~5 min walk from Nakano stn</div><div class="place-meta-row">🕐 Most shops ~12:00–20:00 · many closed Wednesdays</div></div>
+          <p class="place-desc">A gloriously scruffy 1966 shopping complex that became Tokyo's secondhand capital. The third floor is a corridor of independent watch dealers — Jackroad and Betty Road are the biggest but far from the only ones — and the rest is Mandarake's manga and figure empire. On the Chūō line, about five minutes from Shinjuku, so it is an easy half-day even though it is nowhere near the rest of this trip.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Nakano+Broadway+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="watch">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">ISHIDA <span class="jp">石田</span></span><span class="tbc">verify</span></div>
+            <div class="place-sub">Ginza / Shinjuku · new and pre-owned luxury watches</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Branches including Ginza and Shinjuku — confirm which</div><div class="place-meta-row">🕐 <strong>Check the branch before you go</strong></div></div>
+          <p class="place-desc">A long-standing Japanese watch retailer handling both new and pre-owned luxury, with a more formal boutique feel than the Nakano dealers — glass cases, seated service, staff who will take a piece out and talk you through it. Sits naturally alongside the KOMEHYO stop on the Ginza morning. Confirm which branch you want first.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Ishida+watch+Ginza+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="watch">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Timeanagram <span class="jp">タイムアナグラム</span></span><span class="tbc">verify</span></div>
+            <div class="place-sub">Vintage watches · on your list</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 To confirm</div><div class="place-meta-row">🕐 <strong>Check hours and location before you go</strong></div></div>
+          <p class="place-desc">On your list rather than mine — I could not verify the address or hours, so treat this as a name to look up rather than a plan. Small independent watch dealers are usually appointment-friendly and often closed one weekday, so a message ahead is worth it.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Timeanagram+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="place-row" data-cat="watch">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">⌚</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Eguchi Store <span class="jp">江口</span></span><span class="tbc">verify</span></div>
+            <div class="place-sub">Vintage watches · on your list</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 To confirm</div><div class="place-meta-row">🕐 <strong>Check hours and location before you go</strong></div></div>
+          <p class="place-desc">Also from your list and also unverified here — look up the current address and hours before building a day around it. If it turns out to be near Nakano or Ginza it slots into an existing stop; if not, it is a dedicated trip and worth deciding on in advance.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Eguchi+Store+watch+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -3311,7 +3459,7 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
 <!-- ════════════════ VINTAGE BAGS ════════════════ -->
 <div id="tab-vintage" class="tab-content">
 
-  <div class="sh"><h2>👜 Vintage Bags</h2><p>The best secondhand luxury market on earth, and how to shop it properly</p></div>
+  <div class="sh"><h2>👜 Vintage Bags &amp; Watches</h2><p>The best secondhand luxury market on earth, and how to shop it properly</p></div>
 
   <div class="callout">
     <strong>Tokyo is the reason people fly to Japan to buy bags.</strong> Three things stacked up: the bubble years put an enormous quantity of European luxury into Japanese wardrobes, the culture here keeps boxes, receipts and dust bags and treats things carefully, and a professional authentication industry grew up around members-only trade auctions. So the supply is huge, the condition is better than you would dare hope, the fake risk at an established shop is close to zero — and the prices are below Europe before the exchange rate even helps.
@@ -3388,6 +3536,55 @@ body.dark .callout{border-color:transparent;border-left-color:var(--accent)}
         <li>A slumped, creased shape that does not recover.</li>
         <li>Replaced or mismatched hardware, unless the price is a fraction and you know why.</li>
         <li>A shop that will not show you a certificate or let you photograph the tag.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flt-section-label">⌚ Watches — a different map</div>
+
+  <div class="callout">
+    <strong>Everything above is true for watches, but the geography is completely different.</strong> Bags are in Omotesandō, Daikanyama and Ginza. Watches are largely in <strong>Nakano</strong> — a scruffy 1966 shopping complex five minutes from Shinjuku on the Chūō line, whose third floor is a corridor of independent dealers. It is nowhere near anything else on this trip, which means it is a deliberate half-day, not a stop you pass.
+  </div>
+
+  <div class="opts" style="margin-top:14px">
+    <div class="opt pick">
+      <h5>Nakano Broadway</h5>
+      <div class="opt-meta">The destination · ~5 min from Shinjuku</div>
+      <p><strong>Jackroad</strong> is the biggest pre-owned watch operation in Tokyo — cases of used Rolex, Omega, Grand Seiko, everything condition-noted and priced in the window — with its sister shop <strong>Betty Road</strong> next door for smaller and women's pieces. Dozens of other dealers line the same floor. An hour here is the fastest watch education available.</p>
+    </div>
+    <div class="opt">
+      <h5>Ginza</h5>
+      <div class="opt-meta">The boutique end · fits Day 6</div>
+      <p><strong>ISHIDA</strong> for new and pre-owned luxury with seated service and someone who will take a piece out and talk you through it, and <strong>KOMEHYO</strong>'s watch floors in the same building as the bags. Calmer, pricier, and already on the last-morning route.</p>
+    </div>
+  </div>
+
+  <div class="flt-section-label">💎 What Japan is cheap for, in watches</div>
+  <div class="three-col">
+    <div class="tc"><h4>🇯🇵 Domestic first</h4><div class="tc-list"><strong>Grand Seiko</strong> — sold here first and cheapest<br>Vintage <strong>King Seiko</strong> and <strong>Lord Marvel</strong><br>1960s–70s Seiko divers and chronographs<br>Citizen, Orient, the whole back catalogue<br><em>Japan is simply the best market on earth for these</em></div></div>
+    <div class="tc"><h4>🌍 And the imports</h4><div class="tc-list">Older Rolex, Omega, Cartier<br>Priced against the Japanese market, not yours<br>Deep stock of unfashionable references<br>Everything authenticated and graded<br><em>The dull-but-lovely stuff is where the value is</em></div></div>
+    <div class="tc"><h4>⚠️ Budget for after</h4><div class="tc-list">A vintage mechanical will need a service<br>Roughly ¥30,000–80,000 for a good movement<br>Vintage water resistance is <strong>zero</strong><br>Assume the price is not the final price<br><em>Factor it in before you fall in love</em></div></div>
+  </div>
+
+  <div class="sig-grid" style="margin-top:16px">
+    <div class="sig good">
+      <div class="sig-h">✅ Ask for</div>
+      <ul>
+        <li><strong>Box and papers</strong> — they move the price a lot, and their absence should move it down.</li>
+        <li><strong>Service history</strong>, and when it was last opened. A recently serviced movement is worth real money.</li>
+        <li>The shop's own guarantee — the big Nakano dealers all give one.</li>
+        <li>Original bracelet and clasp, matching end links.</li>
+        <li>A dial that matches the reference. Ask outright whether it is original.</li>
+      </ul>
+    </div>
+    <div class="sig watch">
+      <div class="sig-h">⚠️ Walk away from</div>
+      <ul>
+        <li><strong>A redial.</strong> A refinished dial guts the value of a vintage watch and can be hard to spot — if the printing looks too crisp for the age, ask.</li>
+        <li>Aftermarket hands, crowns or bezels quietly fitted as "original".</li>
+        <li>Stretch in the bracelet — it never comes back and replacements are expensive.</li>
+        <li>Heavy polishing that has rounded the case edges away.</li>
+        <li><strong>Any suggestion it is water resistant.</strong> On a vintage watch, assume it is not, whatever the dial says.</li>
       </ul>
     </div>
   </div>
@@ -4270,7 +4467,7 @@ document.addEventListener('DOMContentLoaded', updatePackProgress);
    ceiling on what can be auto-filled.
    ══════════════════════════════════════════════════════════════════ */
 const WISH_KEY = 'tokyo-wishlist-v1';
-const CAT_LABEL = { explore:'📍 Place', cafe:'☕ Cafe', food:'🍴 Food', shop:'🛍 Shopping' };
+const CAT_LABEL = { explore:'📍 Place', cafe:'☕ Cafe', food:'🍴 Food', bar:'🍸 Bar', shop:'🛍 Shopping', watch:'⌚ Watch shop' };
 let addTargetCity = 'tokyo';
 
 const DEL_KEY  = 'tokyo-deleted-v1';
@@ -4874,6 +5071,7 @@ if (syncReady()) syncNow(true);
           <option value="food">🍴 Food</option>
           <option value="bar">🍸 Bars</option>
           <option value="shop">🛍 Shopping</option>
+          <option value="watch">⌚ Watches</option>
         </select>
       </div>
       <div class="field">
