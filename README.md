@@ -69,3 +69,14 @@ git add -A
 git commit -m "your message"
 git push
 ```
+
+## Itinerary rewrite (2026-11-12)
+
+- **Friday 27 Nov is Mount Fuji, decided** — by train: Fuji Excursion 3 from Kinshichō 07:07 → Shimoyoshida 09:13
+  (Chūreitō Pagoda) → Kawaguchiko (hōtō, Ōishi Park) → Fuji Excursion 44 at 16:48 → Shinjuku 18:48 → Negishi.
+  The full plan is `#tokyo-day-3`; the Day Trips tab is now the bad-weather bench and points back at it.
+- **Yanni's eight named places each have a day**, marked with a `.must` "on your list" badge: Moheji (Wed),
+  Café Heckeln + Maisen + OH KAMA BAR (Thu), Negishi (Fri), Kinboshi Pasta (Sat), Onibus Coffee (Sun),
+  Shiraishi (Mon). Kinboshi and Shiraishi are best guesses and carry `.tbc` verify badges.
+- **Overview gained a booking board (`.bk-board`) and an eat list (`.eat-grid`)**; rows call `goDay(n)`.
+- **Every day has a `.route` strip** under the day head. Day 2 no longer includes Meiji Jingū or Takeshita.
