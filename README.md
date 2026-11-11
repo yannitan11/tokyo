@@ -80,3 +80,12 @@ git push
   Shiraishi (Mon). Kinboshi and Shiraishi are best guesses and carry `.tbc` verify badges.
 - **Overview gained a booking board (`.bk-board`) and an eat list (`.eat-grid`)**; rows call `goDay(n)`.
 - **Every day has a `.route` strip** under the day head. Day 2 no longer includes Meiji Jingū or Takeshita.
+
+## Correction (2026-11-12, later) — the list came from an Instagram guide
+
+Yanni's restaurant names came from https://www.instagram.com/p/DTlsFIpj22W/ (cameraeatsfirst_nyc, "12 must-try
+food spots in Tokyo"). That settled two wrong guesses: **Kinboshi is in Shibuya** (obanzai small plates — best
+match 酒場きんぼし, still `.tbc`) and is now Saturday 19:00 dinner; **Shiraishi is the soba & udon shop in Roppongi**
+(Tabelog: 銀座蕎麦うどんしら石 六本木店, APA Hotel Roppongi Ekimae 1F, listed 24h) and is now Sunday 10:15, on the
+Hibiya line on the way to Nakameguro. Monday's Ginza lunch is a quick unbooked one again. The guide's other
+spots (Kiwa Giwa, Amam Dacotan, Tsukinikari, Café Zingaro, Sushiro) are Places rows, not on a day.
