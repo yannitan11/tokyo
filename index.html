@@ -1539,6 +1539,23 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
   .pick-d{font-size:12.5px;line-height:1.55;color:var(--text2)}
   .pick-d strong{color:var(--text)}
   .route + .route{margin-top:-4px}
+  /* Day 4: two whole itineraries behind an A/B switch */
+  .opt-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0 12px;padding:4px;border-radius:12px;background:var(--chip)}
+  .opt-tab{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:9px 12px 9px 38px;border:1px solid transparent;border-radius:9px;background:none;font:inherit;font-size:14px;font-weight:700;color:var(--text2);text-align:left;cursor:pointer;transition:background .15s,color .15s}
+  .opt-tab small{font-size:11px;font-weight:500;color:var(--muted)}
+  .opt-tab-k{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;background:var(--surface);color:var(--text2);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .opt-tab.active{background:var(--surface);color:var(--text);border-color:var(--sep);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .opt-tab.active .opt-tab-k{background:var(--tokyo);color:#fff}
+  .opt-tab.active[data-opt="fuji"] .opt-tab-k{background:var(--trip)}
+  .opt-tab:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  .opt-pane{display:none}
+  .opt-pane.active{display:block}
+  .opt-pane-h{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:4px 0 8px}
+  .opt-both{margin-top:18px;padding-top:14px;border-top:1px solid var(--sep)}
+  #tab-tokyo .opt-pane[data-opt="fuji"] .dp-dot.key,#itin-host .opt-pane[data-opt="fuji"] .dp-dot.key{background:var(--trip)!important}
+  #tab-tokyo .opt-pane[data-opt="fuji"] .dp-time,#itin-host .opt-pane[data-opt="fuji"] .dp-time{background:var(--trip-soft);color:var(--trip)}
+  #tab-tokyo .opt-pane[data-opt="fuji"] .dp-steps li::before,#itin-host .opt-pane[data-opt="fuji"] .dp-steps li::before{background:var(--trip-soft);color:var(--trip)}
+  @media(max-width:560px){.opt-tab{font-size:13px;padding:8px 8px 8px 34px}.opt-tab-k{left:8px}}
   @media(max-width:560px){
     .route{padding:10px 12px;font-size:12px}
     .stop + .stop::before{margin:0 6px}
@@ -1572,7 +1589,6 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
   <div class="tabs-inner">
     <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
     <button class="tab-btn" onclick="switchTab('tokyo',this)">Tokyo</button>
-    <button class="tab-btn" onclick="switchTab('trips',this)">🗻 Mt Fuji</button>
     <button class="tab-btn" onclick="switchTab('places',this)">📍 Places</button>
     <button class="tab-btn" onclick="switchTab('vintage',this)">👜 Vintage</button>
     <button class="tab-btn" onclick="switchTab('logistics',this)">Flights &amp; Stay</button>
@@ -1599,11 +1615,11 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
     <button class="bk" onclick="goFuji()"><span class="bk-when"><b>Sat 28</b>07:07</span><span class="bk-what"><strong>Fuji Excursion 3 — Kinshichō → Shimoyoshida</strong><small>3 reserved seats on JR East's Eki-net. All-reserved, already on sale, and Saturday mornings go first. Confirm the Saturday time when you book. Only if you go for Fuji over Asakusa — but book anyway; cancelling costs a few hundred yen.</small></span><span class="bk-st now">Book now</span></button>
     <button class="bk" onclick="goFuji()"><span class="bk-when"><b>Sat 28</b>16:48</span><span class="bk-what"><strong>Fuji Excursion 44 — Kawaguchiko → Shinjuku</strong><small>Book in the same sitting. The afternoon trains back are the ones that fill.</small></span><span class="bk-st now">Book now</span></button>
     <button class="bk" onclick="goDay(1)"><span class="bk-when"><b>Wed 25</b>18:00</span><span class="bk-what"><strong>Moheji — monjayaki, Tsukishima</strong><small>Tabelog, or 03-6204-2314. The most queued-for shop on Monja Street.</small></span><span class="bk-st now">Book</span></button>
-    <button class="bk" onclick="goDay(2)"><span class="bk-when"><b>Thu 26</b>18:30</span><span class="bk-what"><strong>OH KAMA BAR — dinner, Shibuya</strong><small>The guide says you need a reservation: Tabelog or TableCheck, or 03-6427-8884.</small></span><span class="bk-st now">Book</span></button>
+    <button class="bk" onclick="goDay(3)"><span class="bk-when"><b>Fri 27</b>18:30</span><span class="bk-what"><strong>OH KAMA BAR — dinner, Shibuya</strong><small>The guide says you need a reservation: Tabelog or TableCheck, or 03-6427-8884.</small></span><span class="bk-st now">Book</span></button>
     <button class="bk" onclick="goDay(4)"><span class="bk-when"><b>Sat 28</b>19:30</span><span class="bk-what"><strong>Yakiniku Jumbo Hanare — Hongō · must eat</strong><small>Official site only, and it is one of the hardest yakiniku bookings in Tokyo. Try every evening of the trip, not just Saturday — whichever night you get, swap that night's dinner for it.</small></span><span class="bk-st now">Book now</span></button>
     <div class="bk-group opt"><i></i>Worth a booking · not fatal without</div>
-    <button class="bk" onclick="goDay(3)"><span class="bk-when"><b>Fri 27</b>19:00</span><span class="bk-what"><strong>Kinboshi — small plates, Shibuya</strong><small>Friday night for three. Check the pin on the Instagram post for hours first; book if it takes them.</small></span><span class="bk-st opt">Verify, then book</span></button>
-    <button class="bk" onclick="goDay(2)"><span class="bk-when"><b>Thu 26</b>11:00</span><span class="bk-what"><strong>Tonkatsu Maisen Aoyama</strong><small>Takes phone bookings (0120-428-485), but arriving at the 11:00 opening does the same job.</small></span><span class="bk-st opt">Optional</span></button>
+    <button class="bk" onclick="goDay(2)"><span class="bk-when"><b>Thu 26</b>19:00</span><span class="bk-what"><strong>Kinboshi — small plates, Shibuya</strong><small>Thursday night for three. Check the pin on the Instagram post for hours first; book if it takes them.</small></span><span class="bk-st opt">Verify, then book</span></button>
+    <button class="bk" onclick="goDay(3)"><span class="bk-when"><b>Fri 27</b>11:00</span><span class="bk-what"><strong>Tonkatsu Maisen Aoyama</strong><small>Takes phone bookings (0120-428-485), but arriving at the 11:00 opening does the same job.</small></span><span class="bk-st opt">Optional</span></button>
     <button class="bk" onclick="goDay(5)"><span class="bk-when"><b>Sun 29</b>18:30</span><span class="bk-what"><strong>Gyutan no Lemon — beef tongue, Nishi-Shinjuku</strong><small>Only if Sunday dinner is option A. Phone 050-5571-2239 or Tabelog; the 17:00–18:30 slots are the easy ones.</small></span><span class="bk-st opt">If option A</span></button>
     <div class="bk-group walk"><i></i>Just walk in · no bookings taken or needed</div>
     <div class="walk-list">
@@ -1751,18 +1767,18 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
     <button class="eat" onclick="goDay(1)"><span class="eat-e">🍓</span><span class="eat-t">Fruit parfait<small>Sembikiya · Ginza</small></span><span class="eat-d">Wed</span></button>
     <button class="eat mine" onclick="goDay(1)"><span class="eat-e">🍳</span><span class="eat-t">Monjayaki<small>Moheji · Tsukishima</small></span><span class="eat-d">Wed</span></button>
     <button class="eat" onclick="goDay(1)"><span class="eat-e">🍺</span><span class="eat-t">First-night beer<small>Nui. · Kuramae</small></span><span class="eat-d">Wed</span></button>
-    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍮</span><span class="eat-t">Jumbo pudding<small>Café Heckeln · Shimbashi</small></span><span class="eat-d">Thu</span></button>
-    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🐖</span><span class="eat-t">Tonkatsu<small>Maisen Aoyama · Omotesandō · lunch A</small></span><span class="eat-d">Thu</span></button>
-    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🦆</span><span class="eat-t">Duck dipping soba<small>BASO · Omotesandō · lunch B</small></span><span class="eat-d">Thu</span></button>
-    <button class="eat" onclick="goDay(2)"><span class="eat-e">☕</span><span class="eat-t">Pour-over, taken seriously<small>Koffee Mameya · Omotesandō</small></span><span class="eat-d">Thu</span></button>
-    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍚</span><span class="eat-t">Kamameshi<small>OH KAMA BAR · Shibuya</small></span><span class="eat-d">Thu</span></button>
-    <button class="eat" onclick="goDay(2)"><span class="eat-e">🎷</span><span class="eat-t">Whisky and vinyl<small>JBS · Nonbei Yokochō · SG Club</small></span><span class="eat-d">Thu</span></button>
-    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍜</span><span class="eat-t">Soba &amp; udon<small>Shiraishi · Roppongi</small></span><span class="eat-d">Fri</span></button>
-    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">☕</span><span class="eat-t">Coffee by the train line<small>Onibus Coffee · Nakameguro</small></span><span class="eat-d">Fri</span></button>
-    <button class="eat" onclick="goDay(3)"><span class="eat-e">🍺</span><span class="eat-t">A Yebisu at the brewery<small>Yebisu Garden Place · Ebisu</small></span><span class="eat-d">Fri</span></button>
-    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍶</span><span class="eat-t">Obanzai small plates<small>Kinboshi · Shibuya · dinner A</small></span><span class="eat-d">Fri</span></button>
-    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍛</span><span class="eat-t">White curry udon<small>Shodai · Ebisu · dinner B</small></span><span class="eat-d">Fri</span></button>
-    <button class="eat" onclick="goDay(3)"><span class="eat-e">🍸</span><span class="eat-t">Absinthe cocktails<small>Bar Trench · Ebisu</small></span><span class="eat-d">Fri</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍜</span><span class="eat-t">Soba &amp; udon<small>Shiraishi · Roppongi</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">☕</span><span class="eat-t">Coffee by the train line<small>Onibus Coffee · Nakameguro</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat" onclick="goDay(2)"><span class="eat-e">🍺</span><span class="eat-t">A Yebisu at the brewery<small>Yebisu Garden Place · Ebisu</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍶</span><span class="eat-t">Obanzai small plates<small>Kinboshi · Shibuya · dinner A</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍛</span><span class="eat-t">White curry udon<small>Shodai · Ebisu · dinner B</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat" onclick="goDay(2)"><span class="eat-e">🍸</span><span class="eat-t">Absinthe cocktails<small>Bar Trench · Ebisu</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍮</span><span class="eat-t">Jumbo pudding<small>Café Heckeln · Shimbashi</small></span><span class="eat-d">Fri</span></button>
+    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🐖</span><span class="eat-t">Tonkatsu<small>Maisen Aoyama · Omotesandō · lunch A</small></span><span class="eat-d">Fri</span></button>
+    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🦆</span><span class="eat-t">Duck dipping soba<small>BASO · Omotesandō · lunch B</small></span><span class="eat-d">Fri</span></button>
+    <button class="eat" onclick="goDay(3)"><span class="eat-e">☕</span><span class="eat-t">Pour-over, taken seriously<small>Koffee Mameya · Omotesandō</small></span><span class="eat-d">Fri</span></button>
+    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍚</span><span class="eat-t">Kamameshi<small>OH KAMA BAR · Shibuya</small></span><span class="eat-d">Fri</span></button>
+    <button class="eat" onclick="goDay(3)"><span class="eat-e">🎷</span><span class="eat-t">Whisky and vinyl<small>JBS · Nonbei Yokochō · SG Club</small></span><span class="eat-d">Fri</span></button>
     <button class="eat" onclick="goFuji()"><span class="eat-e">🍲</span><span class="eat-t">Hōtō noodles<small>Hōtō Fudō · Kawaguchiko</small></span><span class="eat-d">Sat</span></button>
     <button class="eat mine" onclick="goDay(4)"><span class="eat-e">🍰</span><span class="eat-t">Cheesecake &amp; house coffee<small>Nagi · Ueno · if Asakusa</small></span><span class="eat-d">Sat</span></button>
     <button class="eat mine" onclick="goDay(4)"><span class="eat-e">🍛</span><span class="eat-t">Katsu curry<small>Hinoya Curry · Okachimachi or Shinjuku</small></span><span class="eat-d">Sat/Sun</span></button>
@@ -1784,10 +1800,6 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
       <button class="itin-city active" data-city="tokyo" onclick="switchItinCity('tokyo',this)">
         <span class="itin-city-emoji">🗼</span>
         <span class="itin-city-text"><span class="itin-city-name">Tokyo</span><span class="itin-city-meta">Wed 25 – Mon 30 Nov · 6 days</span></span>
-      </button>
-      <button class="itin-city" data-city="trips" onclick="switchItinCity('trips',this)">
-        <span class="itin-city-emoji">🚃</span>
-        <span class="itin-city-text"><span class="itin-city-name">Mount Fuji</span><span class="itin-city-meta">Sat 28 Nov · day trip</span></span>
       </button>
     </div>
     <div class="day-pills" id="itin-pills"></div>
@@ -1846,8 +1858,8 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
   <div class="flt-section-label">📅 Schedule</div>
   <div class="day-pills">
     <button class="day-pill active" onclick="switchDay('tokyo',1,this)"><span class="dp-pill-date">Wed 25 Nov</span><span class="dp-pill-label">Kuramae &amp; Ginza</span></button>
-    <button class="day-pill" onclick="switchDay('tokyo',2,this)"><span class="dp-pill-date">Thu 26 Nov</span><span class="dp-pill-label">Omotesandō &amp; Shibuya</span></button>
-    <button class="day-pill" onclick="switchDay('tokyo',3,this)"><span class="dp-pill-date">Fri 27 Nov</span><span class="dp-pill-label">Nakameguro → Ebisu</span></button>
+    <button class="day-pill" onclick="switchDay('tokyo',2,this)"><span class="dp-pill-date">Thu 26 Nov</span><span class="dp-pill-label">Nakameguro → Ebisu</span></button>
+    <button class="day-pill" onclick="switchDay('tokyo',3,this)"><span class="dp-pill-date">Fri 27 Nov</span><span class="dp-pill-label">Omotesandō &amp; Shibuya</span></button>
     <button class="day-pill" onclick="switchDay('tokyo',4,this)"><span class="dp-pill-date">Sat 28 Nov</span><span class="dp-pill-label">Fuji or Asakusa</span></button>
     <button class="day-pill" onclick="switchDay('tokyo',5,this)"><span class="dp-pill-date">Sun 29 Nov</span><span class="dp-pill-label">Kichijōji &amp; Shinjuku</span></button>
     <button class="day-pill" onclick="switchDay('tokyo',6,this)"><span class="dp-pill-date">Mon 30 Nov</span><span class="dp-pill-label">Fly home</span></button>
@@ -1984,7 +1996,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <li><strong>Uniqlo Ginza</strong> and <strong>Muji Ginza</strong> — the global flagships. Twelve floors of one, a whole building plus a bakery and a hotel for the other. Tax-free with a passport.</li>
               <li><strong>Ginza Six</strong> — the polished mall, with a rooftop garden and a Tsutaya bookshop wrapped round a Starbucks on 6F.</li>
               <li><strong>Dover Street Market Ginza</strong> — Comme des Garçons' department store. Go for the building even if you buy nothing.</li>
-              <li><strong>KOMEHYO</strong> and <strong>Brand Off</strong> — the vintage-bag scouting stop. <em>Look today, buy on Monday:</em> photograph the tags, see Omotesandō tomorrow and Nakameguro on Friday, and come back on the last morning knowing what a fair number is.</li>
+              <li><strong>KOMEHYO</strong> and <strong>Brand Off</strong> — the vintage-bag scouting stop. <em>Look today, buy on Monday:</em> photograph the tags, see Nakameguro tomorrow and Omotesandō on Friday, and come back on the last morning knowing what a fair number is.</li>
             </ol>
           </div>
           <div class="dp-tags"><span class="dp-tag">Shopping</span><span class="dp-tag">Tax-free</span><span class="dp-tag">Vintage scouting</span></div>
@@ -2029,7 +2041,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="dp-title">One drink on the way home — Nui., Kuramae</div>
           <div class="dp-desc">
             <p>The Ōedo line runs straight from Tsukishima back to <strong>Kuramae</strong> in twelve minutes, and three minutes from the station is <strong>Nui.</strong> — a hostel whose ground floor is a big, warm, timber-and-plants bar that half the neighbourhood drinks in. Craft beer, highballs, a decent cocktail, no cover charge, no dress code, and a ten-minute walk to bed.</p>
-            <div class="dp-note">Quiet hours at the flat are 22:00–07:00. That is about noise, not a curfew — come in whenever you like, just come in quietly. Thursday leaves at 08:20.</div>
+            <div class="dp-note">Quiet hours at the flat are 22:00–07:00. That is about noise, not a curfew — come in whenever you like, just come in quietly. Thursday is a slow start.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Bar</span><span class="dp-tag">No cover</span><span class="dp-tag">10 min from home</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Nui+Hostel+Bar+Lounge+Kuramae" target="_blank">📍 Nui. Hostel &amp; Bar Lounge</a>
@@ -2051,6 +2063,204 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
     <div class="card">
       <div class="dp-dayhead">
         <div class="dp-daytitle">Day 2 — Thursday, 26 November</div>
+        <div class="dp-daysub">Nakameguro → Daikanyama → Ebisu · a river, a hill and a beer town on foot, then Shibuya for dinner</div>
+      </div>
+      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shiraishi, Roppongi <small>10:15</small></span><span class="stop">Naka-Meguro <small>11:15</small></span><span class="stop">Onibus Coffee</span><span class="stop">Meguro River</span><span class="stop">Daikanyama</span><span class="stop">T-Site</span><span class="stop">Ebisu</span><span class="stop">Kinboshi or Shodai <small>19:00</small></span><span class="stop">Bars</span></div>
+      <div class="dp-timeline">
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">The shape</div>
+          <div class="dp-title">One walk, three neighbourhoods</div>
+          <div class="dp-desc">
+            <p class="dp-lead">Nakameguro, Daikanyama and Ebisu sit in a line about two and a half kilometres long, and you can do the whole thing on foot without ever getting the timing wrong.</p>
+            <p>They could not be less alike. <strong>Nakameguro</strong> is a low valley with a river running through it and the shops strung along the water. <strong>Daikanyama</strong> is the quiet expensive hill above it — architecture, bookshops, nobody shouting. <strong>Ebisu</strong> is the grown-up one at the bottom of the other side: a brewery town that became one of the best places to eat in Tokyo. River, then hill, then a beer — and dinner is one stop further, in Shibuya.</p>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">Nakameguro → Daikanyama</span><span class="dp-fact-v">15 min uphill, or 1 stop</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Daikanyama → Ebisu</span><span class="dp-fact-v">10 min downhill</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Total on foot</span><span class="dp-fact-v">~2.5 km across the whole day</span></div>
+            </div>
+            <div class="dp-note warn"><strong>Which is why Shimokitazawa is now optional.</strong> It is the odd one out — west of Shibuya, while these three are south — so it costs you a backtrack. With the sun gone by 16:30 you cannot add a fourth neighbourhood and still have this one feel unhurried. <strong>Skipping it is the better day.</strong></div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Plan</span><span class="dp-tag">All walkable</span><span class="dp-tag">Sunset 16:30</span></div>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot"></div>
+          <div class="dp-time">09:30 · optional</div>
+          <div class="dp-title">The optional morning — pick one, or neither</div>
+          <div class="dp-desc">
+            <p class="dp-lead">If you want a morning before the river, there is one real candidate — and it is north-west of here, so it costs you about two hours and a Shibuya backtrack. <em>Nakano Broadway and its watch dealers are on Sunday</em>, where they sit on the way to Kichijōji for free.</p>
+            <ol class="dp-steps">
+              <li><strong>Shimokitazawa</strong> <span class="jp">下北沢</span> — low-rise, car-free, stuffed with second-hand clothing and record shops. Seven minutes from Shibuya on the Keiō Inokashira line. <strong>New York Joe Exchange</strong> in an old bathhouse, <strong>Flamingo</strong>, <strong>Chicago</strong>, <strong>Haight &amp; Ashbury</strong>; coffee at <strong>Bear Pond Espresso</strong>.</li>
+              <li><strong>Nothing at all</strong> — a slow start, coffee near the flat, and be at the river by eleven. You landed at dawn yesterday; this is a more attractive option than it sounds.</li>
+            </ol>
+            <div class="dp-note">Whichever you pick, <strong>be on a train south by 11:15</strong> — the river, the hill and Ebisu need the rest of the day, and the light goes at half four.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Optional</span><span class="dp-tag">Vintage</span><span class="dp-tag">Pick one</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Shimokitazawa+Tokyo" target="_blank">📍 Shimokitazawa</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">10:15</div>
+          <div class="dp-title">Shiraishi <span class="jp">銀座蕎麦うどん しら石</span>, Roppongi — noodles on the way <span class="must">on your list</span></div>
+          <div class="dp-desc">
+            <p class="dp-lead">The soba-and-udon shop from the guide you sent — the bowl with the egg yolk and the fried tofu. It sits on the Hibiya line between the flat and Nakameguro, so it costs you nothing: get off at Roppongi, eat, get back on the same train.</p>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">Getting there</span><span class="dp-fact-v">Walk 8 min to Akihabara → Hibiya line → Roppongi, ~20 min. Leave the flat 09:40.</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Where</span><span class="dp-fact-v">Ground floor of the APA Hotel Roppongi Ekimae, by the station</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Hours</span><span class="dp-fact-v">Listed as open 24 hours</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Book</span><span class="dp-fact-v">No — walk in</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Then</span><span class="dp-fact-v">Roppongi → Naka-Meguro, same line, 3 stops, ~7 min</span></div>
+            </div>
+            <div class="dp-note"><span class="tbc">verify</span> Tabelog lists it as <em>Ginza Soba Udon Shiraishi, Roppongi branch</em> and as open round the clock. I could not confirm the hours first-hand — glance at Google Maps the night before.</div>
+            <div class="dp-alt"><strong>Taking the optional morning instead?</strong> Then keep this for the end of the night — it is listed as open round the clock, and a late bowl of udon after the bars is a very Tokyo way to finish.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Walk in</span><span class="dp-tag">Soba &amp; udon</span><span class="dp-tag">On the way</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=銀座蕎麦うどんしら石+六本木店" target="_blank">📍 Shiraishi, Roppongi</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">11:15</div>
+          <div class="dp-title">The Meguro River <span class="jp">目黒川</span> — walk it, don't cross it</div>
+          <div class="dp-desc">
+            <p class="dp-lead">Everyone knows this river for the first week of April, when eight hundred cherry trees turn it into a tunnel of blossom and you cannot move. In the last week of November the same trees are red and gold and there is almost nobody on the path.</p>
+            <p>Come out of Nakameguro station, drop down to the water, and walk upstream. It is narrow, low-walled and crossed every fifty metres by a little bridge, and the whole point is that the shops are strung along it rather than clustered — so the walk <em>is</em> the browse. Give it an hour and let yourself be interrupted.</p>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">Arriving</span><span class="dp-fact-v">Hibiya line from Roppongi, 3 stops — Naka-Meguro is the end of the line. (Straight from the flat it is ~30 min.)</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Walk</span><span class="dp-fact-v">~1 km of riverside, flat</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Late Nov</span><span class="dp-fact-v">Autumn colour, and a winter illumination most years</span></div>
+            </div>
+            <div class="dp-note">The river's winter lights usually switch on around late November. Dates move every year — check a listing site the week before rather than counting on it.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Walk</span><span class="dp-tag">Free</span><span class="dp-tag">Autumn</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Meguro+River+Nakameguro+Tokyo" target="_blank">📍 Meguro River, Nakameguro</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">11:30</div>
+          <div class="dp-title">The five stops along the water</div>
+          <div class="dp-desc">
+            <p>In the order they come, roughly. None of them takes long and all of them are on or a street back from the river.</p>
+            <ol class="dp-steps">
+              <li><strong>Starbucks Reserve Roastery</strong> — yes, really. Kengo Kuma built four floors on the riverbank around a copper cask, with a bakery, a tea counter and a cocktail bar upstairs. It is a piece of architecture that happens to sell coffee, and it is free to walk around. Go early; the queue is real by lunchtime.</li>
+              <li><strong>Onibus Coffee</strong> <span class="must">on your list</span> — go here first, straight off the train. The correction to the above. A tiny two-storey wooden house by the tracks with a handful of upstairs seats at train-window height. Excellent coffee, no space to linger, and the trains go past at eye level.</li>
+              <li><strong>Traveler's Factory</strong> — the Traveler's Notebook flagship, up a staircase, small and dense. Leather covers, refills, stamps, and a bench to put your own notebook together. The best souvenir in the neighbourhood.</li>
+              <li><strong>Cow Books</strong> — a one-room secondhand bookshop on the river with a red van's worth of frontage and a motto about there being only one book you need. Mostly Japanese, entirely worth the two minutes.</li>
+              <li><strong>Nakameguro Kōkashita</strong> <span class="jp">高架下</span> — the strip built into the arches under the elevated railway, running seven hundred metres from the station. Bookshop, bars, ramen, standing places. Good for lunch and better after dark.</li>
+            </ol>
+            <div class="dp-note">Lunch here rather than saving it — Daikanyama is more expensive and has fewer casual options.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Coffee</span><span class="dp-tag">Shops</span><span class="dp-tag">Lunch</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Starbucks+Reserve+Roastery+Tokyo+Nakameguro" target="_blank">📍 Reserve Roastery</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">13:30</div>
+          <div class="dp-title">The hand-picked shops — buy it if it is the one</div>
+          <div class="dp-desc">
+            <p class="dp-lead">Nakameguro and Daikanyama are the small end of the vintage market: one-room shops where somebody has clearly chosen every single piece, rather than a floor of everything.</p>
+            <p><strong>JANTIQUES</strong> in Nakameguro is the reference for properly curated vintage. There is a second <strong>AMORE</strong> up in Daikanyama, and enough small shops on the walk between the two stations that you can browse the whole way uphill. Fewer bags than Omotesandō, better odds of something nobody at home has.</p>
+            <div class="dp-note">You scouted Ginza yesterday, so you have prices in your head. Pieces here are one-offs: if one is right, buy it — it will not be waiting at Omotesandō tomorrow or in Ginza on Monday. For a mainstream piece, wait and compare.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Vintage bags</span><span class="dp-tag">Curated</span><span class="dp-tag">Passport</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Jantiques+Nakameguro+Tokyo" target="_blank">📍 Nakameguro vintage</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">14:30</div>
+          <div class="dp-title">Up the hill to Daikanyama <span class="jp">代官山</span></div>
+          <div class="dp-desc">
+            <p class="dp-lead">Fifteen minutes uphill on foot, or one stop on the Tōyoko line if the legs have gone. Walk it if you can — the residential streets between the two are half the appeal, and the shops thin out into houses and then back into shops.</p>
+            <p>Three things worth stopping for before the bookshop:</p>
+            <ol class="dp-steps">
+              <li><strong>Kyū Asakura House</strong> <span class="jp">旧朝倉家住宅</span> — a 1919 wooden merchant's house that survived both the 1923 earthquake and the 1945 firebombing, which almost nothing in Tokyo did. Around ¥100 to go in. Tatami rooms, sliding screens, and a hillside garden whose <strong>maples peak in the last week of November</strong>. Almost nobody goes. This is the find of the day.</li>
+              <li><strong>Hillside Terrace</strong> — Fumihiko Maki spent thirty years adding to this low white complex, one phase at a time from 1969 to 1998. It is one of the most quietly admired pieces of modern Japanese architecture and you can just walk through it. Galleries and shops on the ground floors.</li>
+              <li><strong>Log Road</strong> — a thin strip of park and shops laid along the old Tōyoko railway bed after the line was buried. Spring Valley Brewery for a beer outdoors if the afternoon is being kind.</li>
+            </ol>
+            <div class="dp-alt"><strong>Also:</strong> <strong>Okura</strong> for indigo-dyed clothing in a shop built like an old farmhouse — everything in it is one colour and it is beautiful.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Architecture</span><span class="dp-tag">Autumn</span><span class="dp-tag">~¥100</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Kyu+Asakura+House+Daikanyama+Tokyo" target="_blank">📍 Kyū Asakura House</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot"></div>
+          <div class="dp-time">16:00</div>
+          <div class="dp-title">Daikanyama T-Site at dusk</div>
+          <div class="dp-desc">
+            <p><strong>Daikanyama T-Site</strong> is three linked pavilions of bookshop, wrapped in a lattice of interlocking Ts, with a magazine section running to thousands of international titles and an upstairs lounge you can sit and read in without buying anything. It is the nicest bookshop most people will ever walk into, it is free, and it is at its best once the light has gone and the pavilions are glowing.</p>
+            <p>Which is convenient, because at this time of year the light will have gone by about half four.</p>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Books</span><span class="dp-tag">Free</span><span class="dp-tag">Calm</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Daikanyama+T-Site+Tokyo" target="_blank">📍 Daikanyama T-Site</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">17:00</div>
+          <div class="dp-title">Downhill to Ebisu <span class="jp">恵比寿</span></div>
+          <div class="dp-desc">
+            <p class="dp-lead">Ten minutes down from Daikanyama, and worth knowing before you get there: <strong>the neighbourhood is named after the beer, not the other way round.</strong> Sapporo built the Yebisu brewery here in 1890, the freight station that served it took the brand name, and eventually so did the whole district.</p>
+            <p><strong>Yebisu Garden Place</strong> stands on the old brewery site — a wide plaza of red brick and glass with a replica French château at the far end, which is a restaurant and is exactly as expensive as it looks. In winter the glass-roofed centre holds an <strong>enormous Baccarat chandelier</strong>, a few metres of crystal, and it is free to stand under.</p>
+            <ol class="dp-steps">
+              <li><strong>Museum of Yebisu Beer</strong> — small, free to walk round, with a paid tasting counter at the end if you want to compare the current beer with the 1890 recipe. <strong>This is the five o'clock drink</strong> — a fresh Yebisu at the source, sitting down, before dinner.</li>
+              <li><strong>Tokyo Photographic Art Museum</strong> — Japan's main photography museum, right there in the plaza, usually a few hundred yen to a thousand depending on the show. Check what's on; it is consistently good.</li>
+              <li><strong>The Skywalk</strong> — if you arrive by train instead of on foot, a long covered moving walkway runs from Ebisu station straight into the plaza. Five minutes, entirely indoors.</li>
+            </ol>
+            <div class="dp-alt"><strong>Other illuminations, if you want more after this:</strong> <strong>Marunouchi Naka-dōri</strong> is a kilometre of champagne-gold trees between Tokyo Station and the palace; <strong>Roppongi Keyakizaka</strong> is a blue-and-white avenue with Tokyo Tower framed at the end of it. Start dates shift every year — check a listing site the week before you fly.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Ebisu</span><span class="dp-tag">Illumination</span><span class="dp-tag">Mostly free</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Yebisu+Garden+Place+Tokyo" target="_blank">📍 Yebisu Garden Place</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">19:00</div>
+          <div class="dp-title">Dinner — Kinboshi in Shibuya or Shodai in Ebisu, pick one <span class="must">on your list</span></div>
+          <div class="dp-desc">
+            <p class="dp-lead">From the guide you sent: a Shibuya <em>sakaba</em> where dinner arrives as a tray of little dishes — obanzai-style home cooking, with a daily-special menu that changes with what came in. Order the assortment, then add from the specials board.</p>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">Getting there</span><span class="dp-fact-v">Ebisu → Shibuya, JR Yamanote, one stop, 2 min. Leave Ebisu 18:40.</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Book</span><span class="dp-fact-v">Try to — it is a Thursday night in Shibuya and you are three</span></div>
+            </div>
+            <div class="dp-note warn"><span class="tbc">verify</span> The post only says “Kinboshi, Shibuya”. The best match I can find is the izakaya <strong>酒場きんぼし</strong>, known for exactly this obanzai — but I could not confirm its address, hours or whether it takes reservations. Open the pin tagged on the Instagram post, check Thursday hours, and book from there if it lets you.</div>
+<div class="pick"><div class="pick-h">Dinner · pick one</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">A · Kinboshi <span class="jp">酒場きんぼし</span>, Shibuya <a class="pick-map" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍</a></div><div class="pick-d">Everything above: small plates, one stop away, book if it lets you.</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">B · Shodai <span class="jp">初代</span>, Ebisu <span class="tbc">verify hours</span> <a class="pick-map" href="https://maps.google.com/?q=Shodai+Ebisu+curry+udon" target="_blank">📍</a></div><div class="pick-d">You are already standing in Ebisu, so this costs no travel at all. The famous bowl is the <strong>white curry udon</strong> — curry udon hidden under a cloud of whipped potato foam that you stir in. Ebisu-minami 1-1-10, a couple of minutes from Ebisu station west exit. Expect a queue; groups are seated upstairs. Listings disagree on hours (some say from 11:30, others 17:00 until very late), so check on the day. If it is a late-night shop, it also works as the bowl <em>after</em> Bar Trench.</div></div></div>
+            <div class="dp-alt"><strong>If both are full:</strong> <strong>Tsukinikari</strong>, from the same guide, is the other Shibuya small-plates room. Or <strong>Ebisu Yokochō</strong> — a covered market turned into one loud room of two dozen stalls where you sit wherever there is space.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Obanzai or curry udon</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍 Kinboshi, Shibuya</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot"></div>
+          <div class="dp-time">21:00</div>
+          <div class="dp-title">Thursday night — one more room</div>
+          <div class="dp-desc">
+            <ol class="dp-steps">
+              <li><strong>Grandfather's</strong> — a basement rock-and-soul record bar near Shibuya station that has been playing vinyl since the seventies. Write a request on the slip of paper; they might play it.</li>
+              <li><strong>Bar Trench</strong>, back in Ebisu — small, candlelit, absinthe and herbal cocktails, the bar other bartenders send you to. One stop back on the Yamanote, and the Hibiya line home leaves from there.</li>
+              <li><strong>Nonbei Yokochō</strong> — the alley of six-seat bars by the tracks, ten minutes from Kinboshi. (JBS and the SG Club are tomorrow, after OH KAMA BAR.)</li>
+            </ol>
+            <div class="dp-note warn"><strong>Tomorrow leaves at 08:20</strong> for the pudding, which sells out. One round, not three. From Ebisu the Hibiya line runs direct to Akihabara in ~25 min; from Shibuya it is the Ginza line to Nihombashi and the Asakusa line home, ~35 min.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Bars</span><span class="dp-tag">One round</span><span class="dp-tag">Early start tomorrow</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Bar+Trench+Ebisu" target="_blank">📍 Bar Trench, Ebisu</a>
+        </div>
+      </div>
+      <div class="dest-scroll">
+        <a class="dest-card" href="https://maps.google.com/?q=銀座蕎麦うどんしら石+六本木店" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#44403c,#d6d3d1)"><span class="dest-time">10:15</span><span class="dest-img-icon">🍜</span><span class="dest-card-name">Shiraishi</span></div><div class="dest-body"><div class="dest-type">Soba &amp; udon · walk in</div><div class="dest-info">Roppongi, on the Hibiya line · Listed as 24 hours · Three stops from Naka-Meguro</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Brunch</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Meguro+River+Nakameguro+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7c2d12,#c2410c,#fdba74)"><span class="dest-time">11:15</span><span class="dest-img-icon">🍂</span><span class="dest-card-name">Meguro River</span></div><div class="dest-body"><div class="dest-type">Nakameguro · Free</div><div class="dest-info">800 cherry trees, red in late November · Mobbed in April, empty now · 1 km of flat riverside</div><div class="dest-tags"><span class="dest-dtag">Autumn</span><span class="dest-dtag">Walk it</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Starbucks+Reserve+Roastery+Tokyo+Nakameguro" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#14532d,#166534,#bbf7d0)"><span class="dest-time">11:30</span><span class="dest-img-icon">☕</span><span class="dest-card-name">Reserve Roastery</span></div><div class="dest-body"><div class="dest-type">Kengo Kuma · Free to wander</div><div class="dest-info">Four floors around a copper cask on the riverbank · Bakery, tea counter, cocktail bar · Queues by lunch</div><div class="dest-tags"><span class="dest-dtag">Architecture</span><span class="dest-dtag">Go early</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Jantiques+Nakameguro+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#3f0d20,#a13c5e,#f9a8c4)"><span class="dest-time">13:30</span><span class="dest-img-icon">🕰</span><span class="dest-card-name">Nakameguro vintage</span></div><div class="dest-body"><div class="dest-type">Vintage bags · curated</div><div class="dest-info">JANTIQUES, a second AMORE up in Daikanyama, small shops the whole walk uphill · The buying day</div><div class="dest-tags"><span class="dest-dtag">Hand-picked</span><span class="dest-dtag">Passport</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Kyu+Asakura+House+Daikanyama+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#422006,#a16207,#fde68a)"><span class="dest-time">14:30</span><span class="dest-img-icon">🍁</span><span class="dest-card-name">Kyū Asakura House</span></div><div class="dest-body"><div class="dest-type">Daikanyama · ~¥100</div><div class="dest-info">1919 wooden house that survived 1923 and 1945 · Hillside garden, maples peak late November · Almost empty</div><div class="dest-tags"><span class="dest-dtag">The find</span><span class="dest-dtag">Closed Mon</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Daikanyama+T-Site+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0f172a,#1e3a8a,#93c5fd)"><span class="dest-time">16:00</span><span class="dest-img-icon">📚</span><span class="dest-card-name">Daikanyama T-Site</span></div><div class="dest-body"><div class="dest-type">Books · Free</div><div class="dest-info">Three pavilions · Thousands of international magazines · Best after dark, which here means 16:30</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">Calm</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Yebisu+Garden+Place+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e1b4b,#4338ca,#a5b4fc)"><span class="dest-time">17:00</span><span class="dest-img-icon">✨</span><span class="dest-card-name">Yebisu Garden Place</span></div><div class="dest-body"><div class="dest-type">Ebisu · Mostly free</div><div class="dest-info">Built on the 1890 brewery the district is named after · Winter Baccarat chandelier · Beer museum + photography museum</div><div class="dest-tags"><span class="dest-dtag">10 min downhill</span><span class="dest-dtag">Illumination</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">19:00</span><span class="dest-img-icon">🍶</span><span class="dest-card-name">Kinboshi</span></div><div class="dest-body"><div class="dest-type">Dinner · pick one</div><div class="dest-info">Kinboshi small plates in Shibuya, or Shodai white curry udon in Ebisu with no travel · Verify both</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Dinner</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Bar+Trench+Ebisu" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0f172a,#14532d,#86efac)"><span class="dest-time">21:00</span><span class="dest-img-icon">🍸</span><span class="dest-card-name">One more room</span></div><div class="dest-body"><div class="dest-type">Grandfather's · Bar Trench</div><div class="dest-info">A vinyl bar in Shibuya or absinthe cocktails in Ebisu · One round · Early start tomorrow</div><div class="dest-tags"><span class="dest-dtag">Bars</span><span class="dest-dtag">Early alarm</span></div></div></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOKYO DAY 3 -->
+  <div class="day-panel" id="tokyo-day-3">
+    <div class="card">
+      <div class="dp-dayhead">
+        <div class="dp-daytitle">Day 3 — Friday, 27 November</div>
         <div class="dp-daysub">Pudding for breakfast → the ginkgo avenue → Omotesandō → Cat Street → Shibuya after dark</div>
       </div>
       <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shimbashi</span><span class="stop">Heckeln <small>08:45</small></span><span class="stop">Icho Namiki</span><span class="stop">Maisen or BASO <small>11:00</small></span><span class="stop">Omotesandō</span><span class="stop">Cat Street</span><span class="stop">Shibuya shops</span><span class="stop">OH KAMA BAR <small>18:30</small></span><span class="stop">Bars</span></div>
@@ -2089,7 +2299,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <div class="dp-fact"><span class="dp-fact-k">Pay</span><span class="dp-fact-v">Cash only</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Where</span><span class="dp-fact-v">Ando Bldg 1F, 1-20-11 Nishi-Shinbashi</span></div>
             </div>
-            <div class="dp-note warn"><strong>Why Thursday, and why this early:</strong> it is an office-district café that is reported closed at weekends (and by some accounts on Wednesdays), and the pudding is made in one batch and <strong>sells out</strong>. Sources disagree on whether it opens at 08:00 or 09:00 — arrive at 08:45 and you are at the front either way. <span class="tbc">verify hours</span></div>
+            <div class="dp-note warn"><strong>Why a weekday, and why this early:</strong> it is an office-district café that is reported closed at weekends (and by some accounts on Wednesdays), and the pudding is made in one batch and <strong>sells out</strong>. Sources disagree on whether it opens at 08:00 or 09:00 — arrive at 08:45 and you are at the front either way. <span class="tbc">verify hours</span></div>
             <div class="dp-alt"><strong>Shut, or sold out?</strong> You get a second go on <strong>Monday morning</strong> — it is ten minutes from Ginza. Today, walk on and have a coffee at the ginkgo avenue instead.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Walk in</span><span class="dp-tag">Cash only</span><span class="dp-tag">Sells out</span></div>
@@ -2157,14 +2367,14 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-item">
           <div class="dp-dot key"></div>
           <div class="dp-time">13:40</div>
-          <div class="dp-title">The resale strip — first look, no buying</div>
+          <div class="dp-title">The resale strip — compare, then decide</div>
           <div class="dp-desc">
             <p class="dp-lead">The streets either side of Omotesandō are the top of the secondhand luxury market, and you are standing in them.</p>
             <p><strong>AMORE</strong> for the Chanel and Hermès wall, <strong>RAGTAG</strong> for designer resale over several floors, <strong>Kindal</strong> and <strong>RINKAN</strong> for the streetwear crossover. Nearly all of them are on the second to fifth floor of a narrow building — look up for the vertical signs.</p>
             <div class="dp-alt"><strong>THE TOKYO</strong> is on your list as being inside <strong>Omotesandō Hills</strong> — which you have just walked through. I could not confirm it, so check the directory board at the entrance.</div>
-            <div class="dp-note">Today is for calibrating, not buying. See what an AB-rank flap costs here, then compare it in Ginza on Monday. The full playbook — grading, what to check, what Tokyo is genuinely cheap for — is on the <strong>Vintage</strong> tab.</div>
+            <div class="dp-note">The widest selection and the highest prices. Hold what you saw in Nakameguro yesterday up against it — if something here wins, buy it; if not, Ginza on Monday is the last word. The full playbook — grading, what to check, what Tokyo is genuinely cheap for — is on the <strong>Vintage</strong> tab.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Vintage bags</span><span class="dp-tag">Look, don't buy</span><span class="dp-tag">Passport</span></div>
+          <div class="dp-tags"><span class="dp-tag">Vintage bags</span><span class="dp-tag">Compare</span><span class="dp-tag">Passport</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=AMORE+Vintage+Omotesando+Tokyo" target="_blank">📍 Omotesandō resale shops</a>
         </div>
         <div class="dp-item">
@@ -2227,7 +2437,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <div class="dp-fact"><span class="dp-fact-k">Home</span><span class="dp-fact-v">Ginza line Shibuya → Nihombashi, change to the Asakusa line → Asakusabashi, ~35 min</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Last sensible train</span><span class="dp-fact-v">Leave Shibuya by 23:30. After that it is a taxi, ~¥5,000.</span></div>
             </div>
-            <div class="dp-note">Tomorrow starts at 09:40, not dawn — this is the night with room in it.</div>
+            <div class="dp-note warn"><strong>If tomorrow is Mount Fuji, the alarm is 05:45</strong> — one room, not three, and on the Ginza line by <strong>22:15</strong>. If it is Asakusa, tomorrow starts at eight two stops from home, so this is the night with room in it.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Bars</span><span class="dp-tag">Walk in</span><span class="dp-tag">Cash helps</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Nonbei+Yokocho+Shibuya" target="_blank">📍 Nonbei Yokochō</a>
@@ -2242,204 +2452,6 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <a class="dest-card" href="https://maps.google.com/?q=Shibuya+Parco" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#3b0764,#7e22ce,#f472b6)"><span class="dest-time">16:00</span><span class="dest-img-icon">🛍</span><span class="dest-card-name">Shibuya shops</span></div><div class="dest-body"><div class="dest-type">Parco · Loft · Hands</div><div class="dest-info">Two hours on the ground · Miyashita Park for a first beer · Tax-free with a passport</div><div class="dest-tags"><span class="dest-dtag">Shopping</span><span class="dest-dtag">No booking</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=oh+%E9%87%9C+bar+%E6%B8%8B%E8%B0%B7" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#9a3412,#fdba74)"><span class="dest-time">18:30</span><span class="dest-img-icon">🍚</span><span class="dest-card-name">OH KAMA BAR</span></div><div class="dest-body"><div class="dest-type">Dinner · on your list</div><div class="dest-info">Iron-pot kamameshi izakaya on Dōgenzaka · Book on TableCheck · Order the rice early</div><div class="dest-tags"><span class="dest-dtag">Book ahead</span><span class="dest-dtag">~¥6,000</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Nonbei+Yokocho+Shibuya" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#7f1d1d,#fca5a5)"><span class="dest-time">20:30</span><span class="dest-img-icon">🍸</span><span class="dest-card-name">Shibuya bars</span></div><div class="dest-body"><div class="dest-type">JBS · Nonbei Yokochō · SG Club</div><div class="dest-info">A record bar, an alley of six-seat rooms, a proper cocktail · All within ten minutes of dinner</div><div class="dest-tags"><span class="dest-dtag">Night</span><span class="dest-dtag">Walk in</span></div></div></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOKYO DAY 3 -->
-  <div class="day-panel" id="tokyo-day-3">
-    <div class="card">
-      <div class="dp-dayhead">
-        <div class="dp-daytitle">Day 3 — Friday, 27 November</div>
-        <div class="dp-daysub">Nakameguro → Daikanyama → Ebisu · a river, a hill and a beer town on foot, then Shibuya for dinner</div>
-      </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shiraishi, Roppongi <small>10:15</small></span><span class="stop">Naka-Meguro <small>11:15</small></span><span class="stop">Onibus Coffee</span><span class="stop">Meguro River</span><span class="stop">Daikanyama</span><span class="stop">T-Site</span><span class="stop">Ebisu</span><span class="stop">Kinboshi or Shodai <small>19:00</small></span><span class="stop">Bars</span></div>
-      <div class="dp-timeline">
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">The shape</div>
-          <div class="dp-title">One walk, three neighbourhoods</div>
-          <div class="dp-desc">
-            <p class="dp-lead">Nakameguro, Daikanyama and Ebisu sit in a line about two and a half kilometres long, and you can do the whole thing on foot without ever getting the timing wrong.</p>
-            <p>They could not be less alike. <strong>Nakameguro</strong> is a low valley with a river running through it and the shops strung along the water. <strong>Daikanyama</strong> is the quiet expensive hill above it — architecture, bookshops, nobody shouting. <strong>Ebisu</strong> is the grown-up one at the bottom of the other side: a brewery town that became one of the best places to eat in Tokyo. River, then hill, then a beer — and dinner is one stop further, in Shibuya.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Nakameguro → Daikanyama</span><span class="dp-fact-v">15 min uphill, or 1 stop</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Daikanyama → Ebisu</span><span class="dp-fact-v">10 min downhill</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Total on foot</span><span class="dp-fact-v">~2.5 km across the whole day</span></div>
-            </div>
-            <div class="dp-note warn"><strong>Which is why Shimokitazawa is now optional.</strong> It is the odd one out — west of Shibuya, while these three are south — so it costs you a backtrack. With the sun gone by 16:30 you cannot add a fourth neighbourhood and still have this one feel unhurried. <strong>Skipping it is the better day.</strong></div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Plan</span><span class="dp-tag">All walkable</span><span class="dp-tag">Sunset 16:30</span></div>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot"></div>
-          <div class="dp-time">09:30 · optional</div>
-          <div class="dp-title">The optional morning — pick one, or neither</div>
-          <div class="dp-desc">
-            <p class="dp-lead">If you want a morning before the river, there is one real candidate — and it is north-west of here, so it costs you about two hours and a Shibuya backtrack. <em>Nakano Broadway and its watch dealers are on Sunday</em>, where they sit on the way to Kichijōji for free.</p>
-            <ol class="dp-steps">
-              <li><strong>Shimokitazawa</strong> <span class="jp">下北沢</span> — low-rise, car-free, stuffed with second-hand clothing and record shops. Seven minutes from Shibuya on the Keiō Inokashira line. <strong>New York Joe Exchange</strong> in an old bathhouse, <strong>Flamingo</strong>, <strong>Chicago</strong>, <strong>Haight &amp; Ashbury</strong>; coffee at <strong>Bear Pond Espresso</strong>.</li>
-              <li><strong>Nothing at all</strong> — a slow start, coffee near the flat, and be at the river by eleven. Thursday was a long one; this is a more attractive option than it sounds.</li>
-            </ol>
-            <div class="dp-note">Whichever you pick, <strong>be on a train south by 11:15</strong> — the river, the hill and Ebisu need the rest of the day, and the light goes at half four.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Optional</span><span class="dp-tag">Vintage</span><span class="dp-tag">Pick one</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Shimokitazawa+Tokyo" target="_blank">📍 Shimokitazawa</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">10:15</div>
-          <div class="dp-title">Shiraishi <span class="jp">銀座蕎麦うどん しら石</span>, Roppongi — noodles on the way <span class="must">on your list</span></div>
-          <div class="dp-desc">
-            <p class="dp-lead">The soba-and-udon shop from the guide you sent — the bowl with the egg yolk and the fried tofu. It sits on the Hibiya line between the flat and Nakameguro, so it costs you nothing: get off at Roppongi, eat, get back on the same train.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Getting there</span><span class="dp-fact-v">Walk 8 min to Akihabara → Hibiya line → Roppongi, ~20 min. Leave the flat 09:40.</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Where</span><span class="dp-fact-v">Ground floor of the APA Hotel Roppongi Ekimae, by the station</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Hours</span><span class="dp-fact-v">Listed as open 24 hours</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Book</span><span class="dp-fact-v">No — walk in</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Then</span><span class="dp-fact-v">Roppongi → Naka-Meguro, same line, 3 stops, ~7 min</span></div>
-            </div>
-            <div class="dp-note"><span class="tbc">verify</span> Tabelog lists it as <em>Ginza Soba Udon Shiraishi, Roppongi branch</em> and as open round the clock. I could not confirm the hours first-hand — glance at Google Maps the night before.</div>
-            <div class="dp-alt"><strong>Taking the optional morning instead?</strong> Then keep this for the end of the night — it is listed as open round the clock, and a late bowl of udon after the bars is a very Tokyo way to finish.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Walk in</span><span class="dp-tag">Soba &amp; udon</span><span class="dp-tag">On the way</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=銀座蕎麦うどんしら石+六本木店" target="_blank">📍 Shiraishi, Roppongi</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">11:15</div>
-          <div class="dp-title">The Meguro River <span class="jp">目黒川</span> — walk it, don't cross it</div>
-          <div class="dp-desc">
-            <p class="dp-lead">Everyone knows this river for the first week of April, when eight hundred cherry trees turn it into a tunnel of blossom and you cannot move. In the last week of November the same trees are red and gold and there is almost nobody on the path.</p>
-            <p>Come out of Nakameguro station, drop down to the water, and walk upstream. It is narrow, low-walled and crossed every fifty metres by a little bridge, and the whole point is that the shops are strung along it rather than clustered — so the walk <em>is</em> the browse. Give it an hour and let yourself be interrupted.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Arriving</span><span class="dp-fact-v">Hibiya line from Roppongi, 3 stops — Naka-Meguro is the end of the line. (Straight from the flat it is ~30 min.)</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Walk</span><span class="dp-fact-v">~1 km of riverside, flat</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Late Nov</span><span class="dp-fact-v">Autumn colour, and a winter illumination most years</span></div>
-            </div>
-            <div class="dp-note">The river's winter lights usually switch on around late November. Dates move every year — check a listing site the week before rather than counting on it.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Walk</span><span class="dp-tag">Free</span><span class="dp-tag">Autumn</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Meguro+River+Nakameguro+Tokyo" target="_blank">📍 Meguro River, Nakameguro</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">11:30</div>
-          <div class="dp-title">The five stops along the water</div>
-          <div class="dp-desc">
-            <p>In the order they come, roughly. None of them takes long and all of them are on or a street back from the river.</p>
-            <ol class="dp-steps">
-              <li><strong>Starbucks Reserve Roastery</strong> — yes, really. Kengo Kuma built four floors on the riverbank around a copper cask, with a bakery, a tea counter and a cocktail bar upstairs. It is a piece of architecture that happens to sell coffee, and it is free to walk around. Go early; the queue is real by lunchtime.</li>
-              <li><strong>Onibus Coffee</strong> <span class="must">on your list</span> — go here first, straight off the train. The correction to the above. A tiny two-storey wooden house by the tracks with a handful of upstairs seats at train-window height. Excellent coffee, no space to linger, and the trains go past at eye level.</li>
-              <li><strong>Traveler's Factory</strong> — the Traveler's Notebook flagship, up a staircase, small and dense. Leather covers, refills, stamps, and a bench to put your own notebook together. The best souvenir in the neighbourhood.</li>
-              <li><strong>Cow Books</strong> — a one-room secondhand bookshop on the river with a red van's worth of frontage and a motto about there being only one book you need. Mostly Japanese, entirely worth the two minutes.</li>
-              <li><strong>Nakameguro Kōkashita</strong> <span class="jp">高架下</span> — the strip built into the arches under the elevated railway, running seven hundred metres from the station. Bookshop, bars, ramen, standing places. Good for lunch and better after dark.</li>
-            </ol>
-            <div class="dp-note">Lunch here rather than saving it — Daikanyama is more expensive and has fewer casual options.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Coffee</span><span class="dp-tag">Shops</span><span class="dp-tag">Lunch</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Starbucks+Reserve+Roastery+Tokyo+Nakameguro" target="_blank">📍 Reserve Roastery</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">13:30</div>
-          <div class="dp-title">The hand-picked shops — this is the buying day</div>
-          <div class="dp-desc">
-            <p class="dp-lead">Nakameguro and Daikanyama are the small end of the vintage market: one-room shops where somebody has clearly chosen every single piece, rather than a floor of everything.</p>
-            <p><strong>JANTIQUES</strong> in Nakameguro is the reference for properly curated vintage. There is a second <strong>AMORE</strong> up in Daikanyama, and enough small shops on the walk between the two stations that you can browse the whole way uphill. Fewer bags than Omotesandō, better odds of something nobody at home has.</p>
-            <div class="dp-note">You have now seen the same pieces in Ginza on Wednesday, Omotesandō yesterday and here. If a number looked good, you know it by now — and Ginza is still to come on Monday morning.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Vintage bags</span><span class="dp-tag">Curated</span><span class="dp-tag">Passport</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Jantiques+Nakameguro+Tokyo" target="_blank">📍 Nakameguro vintage</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">14:30</div>
-          <div class="dp-title">Up the hill to Daikanyama <span class="jp">代官山</span></div>
-          <div class="dp-desc">
-            <p class="dp-lead">Fifteen minutes uphill on foot, or one stop on the Tōyoko line if the legs have gone. Walk it if you can — the residential streets between the two are half the appeal, and the shops thin out into houses and then back into shops.</p>
-            <p>Three things worth stopping for before the bookshop:</p>
-            <ol class="dp-steps">
-              <li><strong>Kyū Asakura House</strong> <span class="jp">旧朝倉家住宅</span> — a 1919 wooden merchant's house that survived both the 1923 earthquake and the 1945 firebombing, which almost nothing in Tokyo did. Around ¥100 to go in. Tatami rooms, sliding screens, and a hillside garden whose <strong>maples peak in the last week of November</strong>. Almost nobody goes. This is the find of the day.</li>
-              <li><strong>Hillside Terrace</strong> — Fumihiko Maki spent thirty years adding to this low white complex, one phase at a time from 1969 to 1998. It is one of the most quietly admired pieces of modern Japanese architecture and you can just walk through it. Galleries and shops on the ground floors.</li>
-              <li><strong>Log Road</strong> — a thin strip of park and shops laid along the old Tōyoko railway bed after the line was buried. Spring Valley Brewery for a beer outdoors if the afternoon is being kind.</li>
-            </ol>
-            <div class="dp-alt"><strong>Also:</strong> <strong>Okura</strong> for indigo-dyed clothing in a shop built like an old farmhouse — everything in it is one colour and it is beautiful.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Architecture</span><span class="dp-tag">Autumn</span><span class="dp-tag">~¥100</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Kyu+Asakura+House+Daikanyama+Tokyo" target="_blank">📍 Kyū Asakura House</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot"></div>
-          <div class="dp-time">16:00</div>
-          <div class="dp-title">Daikanyama T-Site at dusk</div>
-          <div class="dp-desc">
-            <p><strong>Daikanyama T-Site</strong> is three linked pavilions of bookshop, wrapped in a lattice of interlocking Ts, with a magazine section running to thousands of international titles and an upstairs lounge you can sit and read in without buying anything. It is the nicest bookshop most people will ever walk into, it is free, and it is at its best once the light has gone and the pavilions are glowing.</p>
-            <p>Which is convenient, because at this time of year the light will have gone by about half four.</p>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Books</span><span class="dp-tag">Free</span><span class="dp-tag">Calm</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Daikanyama+T-Site+Tokyo" target="_blank">📍 Daikanyama T-Site</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">17:00</div>
-          <div class="dp-title">Downhill to Ebisu <span class="jp">恵比寿</span></div>
-          <div class="dp-desc">
-            <p class="dp-lead">Ten minutes down from Daikanyama, and worth knowing before you get there: <strong>the neighbourhood is named after the beer, not the other way round.</strong> Sapporo built the Yebisu brewery here in 1890, the freight station that served it took the brand name, and eventually so did the whole district.</p>
-            <p><strong>Yebisu Garden Place</strong> stands on the old brewery site — a wide plaza of red brick and glass with a replica French château at the far end, which is a restaurant and is exactly as expensive as it looks. In winter the glass-roofed centre holds an <strong>enormous Baccarat chandelier</strong>, a few metres of crystal, and it is free to stand under.</p>
-            <ol class="dp-steps">
-              <li><strong>Museum of Yebisu Beer</strong> — small, free to walk round, with a paid tasting counter at the end if you want to compare the current beer with the 1890 recipe. <strong>This is the five o'clock drink</strong> — a fresh Yebisu at the source, sitting down, before dinner.</li>
-              <li><strong>Tokyo Photographic Art Museum</strong> — Japan's main photography museum, right there in the plaza, usually a few hundred yen to a thousand depending on the show. Check what's on; it is consistently good.</li>
-              <li><strong>The Skywalk</strong> — if you arrive by train instead of on foot, a long covered moving walkway runs from Ebisu station straight into the plaza. Five minutes, entirely indoors.</li>
-            </ol>
-            <div class="dp-alt"><strong>Other illuminations, if you want more after this:</strong> <strong>Marunouchi Naka-dōri</strong> is a kilometre of champagne-gold trees between Tokyo Station and the palace; <strong>Roppongi Keyakizaka</strong> is a blue-and-white avenue with Tokyo Tower framed at the end of it. Start dates shift every year — check a listing site the week before you fly.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Ebisu</span><span class="dp-tag">Illumination</span><span class="dp-tag">Mostly free</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Yebisu+Garden+Place+Tokyo" target="_blank">📍 Yebisu Garden Place</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">19:00</div>
-          <div class="dp-title">Dinner — Kinboshi in Shibuya or Shodai in Ebisu, pick one <span class="must">on your list</span></div>
-          <div class="dp-desc">
-            <p class="dp-lead">From the guide you sent: a Shibuya <em>sakaba</em> where dinner arrives as a tray of little dishes — obanzai-style home cooking, with a daily-special menu that changes with what came in. Order the assortment, then add from the specials board.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Getting there</span><span class="dp-fact-v">Ebisu → Shibuya, JR Yamanote, one stop, 2 min. Leave Ebisu 18:40.</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Book</span><span class="dp-fact-v">Try to — it is Friday night in Shibuya and you are three</span></div>
-            </div>
-            <div class="dp-note warn"><span class="tbc">verify</span> The post only says “Kinboshi, Shibuya”. The best match I can find is the izakaya <strong>酒場きんぼし</strong>, known for exactly this obanzai — but I could not confirm its address, hours or whether it takes reservations. Open the pin tagged on the Instagram post, check Friday hours, and book from there if it lets you.</div>
-<div class="pick"><div class="pick-h">Dinner · pick one</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">A · Kinboshi <span class="jp">酒場きんぼし</span>, Shibuya <a class="pick-map" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍</a></div><div class="pick-d">Everything above: small plates, one stop away, book if it lets you.</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">B · Shodai <span class="jp">初代</span>, Ebisu <span class="tbc">verify hours</span> <a class="pick-map" href="https://maps.google.com/?q=Shodai+Ebisu+curry+udon" target="_blank">📍</a></div><div class="pick-d">You are already standing in Ebisu, so this costs no travel at all. The famous bowl is the <strong>white curry udon</strong> — curry udon hidden under a cloud of whipped potato foam that you stir in. Ebisu-minami 1-1-10, a couple of minutes from Ebisu station west exit. Expect a queue; groups are seated upstairs. Listings disagree on hours (some say from 11:30, others 17:00 until very late), so check on the day. If it is a late-night shop, it also works as the bowl <em>after</em> Bar Trench.</div></div></div>
-            <div class="dp-alt"><strong>If both are full:</strong> <strong>Tsukinikari</strong>, from the same guide, is the other Shibuya small-plates room. Or <strong>Ebisu Yokochō</strong> — a covered market turned into one loud room of two dozen stalls where you sit wherever there is space.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Obanzai or curry udon</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍 Kinboshi, Shibuya</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot"></div>
-          <div class="dp-time">21:00</div>
-          <div class="dp-title">Friday night — one more room</div>
-          <div class="dp-desc">
-            <ol class="dp-steps">
-              <li><strong>Grandfather's</strong> — a basement rock-and-soul record bar near Shibuya station that has been playing vinyl since the seventies. Write a request on the slip of paper; they might play it.</li>
-              <li><strong>Bar Trench</strong>, back in Ebisu — small, candlelit, absinthe and herbal cocktails, the bar other bartenders send you to. One stop back on the Yamanote, and the Hibiya line home leaves from there.</li>
-              <li><strong>Whichever of last night's three</strong> you did not get to — the SG Club and Nonbei Yokochō are both ten minutes from Kinboshi.</li>
-            </ol>
-            <div class="dp-note warn"><strong>If tomorrow is Mount Fuji, the alarm is 05:45.</strong> One round, not three. (If it is Asakusa, the morning is gentler — stay out.) Be on a train by <strong>22:15</strong>: from Ebisu the Hibiya line runs direct to Akihabara in ~25 min; from Shibuya it is the Ginza line to Nihombashi and the Asakusa line home, ~35 min.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Bars</span><span class="dp-tag">One round</span><span class="dp-tag">Train by 22:15</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Bar+Trench+Ebisu" target="_blank">📍 Bar Trench, Ebisu</a>
-        </div>
-      </div>
-      <div class="dest-scroll">
-        <a class="dest-card" href="https://maps.google.com/?q=銀座蕎麦うどんしら石+六本木店" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#44403c,#d6d3d1)"><span class="dest-time">10:15</span><span class="dest-img-icon">🍜</span><span class="dest-card-name">Shiraishi</span></div><div class="dest-body"><div class="dest-type">Soba &amp; udon · walk in</div><div class="dest-info">Roppongi, on the Hibiya line · Listed as 24 hours · Three stops from Naka-Meguro</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Brunch</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Meguro+River+Nakameguro+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7c2d12,#c2410c,#fdba74)"><span class="dest-time">11:15</span><span class="dest-img-icon">🍂</span><span class="dest-card-name">Meguro River</span></div><div class="dest-body"><div class="dest-type">Nakameguro · Free</div><div class="dest-info">800 cherry trees, red in late November · Mobbed in April, empty now · 1 km of flat riverside</div><div class="dest-tags"><span class="dest-dtag">Autumn</span><span class="dest-dtag">Walk it</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Starbucks+Reserve+Roastery+Tokyo+Nakameguro" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#14532d,#166534,#bbf7d0)"><span class="dest-time">11:30</span><span class="dest-img-icon">☕</span><span class="dest-card-name">Reserve Roastery</span></div><div class="dest-body"><div class="dest-type">Kengo Kuma · Free to wander</div><div class="dest-info">Four floors around a copper cask on the riverbank · Bakery, tea counter, cocktail bar · Queues by lunch</div><div class="dest-tags"><span class="dest-dtag">Architecture</span><span class="dest-dtag">Go early</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Jantiques+Nakameguro+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#3f0d20,#a13c5e,#f9a8c4)"><span class="dest-time">13:30</span><span class="dest-img-icon">🕰</span><span class="dest-card-name">Nakameguro vintage</span></div><div class="dest-body"><div class="dest-type">Vintage bags · curated</div><div class="dest-info">JANTIQUES, a second AMORE up in Daikanyama, small shops the whole walk uphill · The buying day</div><div class="dest-tags"><span class="dest-dtag">Hand-picked</span><span class="dest-dtag">Passport</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Kyu+Asakura+House+Daikanyama+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#422006,#a16207,#fde68a)"><span class="dest-time">14:30</span><span class="dest-img-icon">🍁</span><span class="dest-card-name">Kyū Asakura House</span></div><div class="dest-body"><div class="dest-type">Daikanyama · ~¥100</div><div class="dest-info">1919 wooden house that survived 1923 and 1945 · Hillside garden, maples peak late November · Almost empty</div><div class="dest-tags"><span class="dest-dtag">The find</span><span class="dest-dtag">Closed Mon</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Daikanyama+T-Site+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0f172a,#1e3a8a,#93c5fd)"><span class="dest-time">16:00</span><span class="dest-img-icon">📚</span><span class="dest-card-name">Daikanyama T-Site</span></div><div class="dest-body"><div class="dest-type">Books · Free</div><div class="dest-info">Three pavilions · Thousands of international magazines · Best after dark, which here means 16:30</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">Calm</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Yebisu+Garden+Place+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e1b4b,#4338ca,#a5b4fc)"><span class="dest-time">17:00</span><span class="dest-img-icon">✨</span><span class="dest-card-name">Yebisu Garden Place</span></div><div class="dest-body"><div class="dest-type">Ebisu · Mostly free</div><div class="dest-info">Built on the 1890 brewery the district is named after · Winter Baccarat chandelier · Beer museum + photography museum</div><div class="dest-tags"><span class="dest-dtag">10 min downhill</span><span class="dest-dtag">Illumination</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">19:00</span><span class="dest-img-icon">🍶</span><span class="dest-card-name">Kinboshi</span></div><div class="dest-body"><div class="dest-type">Dinner · pick one</div><div class="dest-info">Kinboshi small plates in Shibuya, or Shodai white curry udon in Ebisu with no travel · Verify both</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Dinner</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Bar+Trench+Ebisu" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0f172a,#14532d,#86efac)"><span class="dest-time">21:00</span><span class="dest-img-icon">🍸</span><span class="dest-card-name">One more room</span></div><div class="dest-body"><div class="dest-type">Grandfather's · Bar Trench</div><div class="dest-info">A vinyl bar in Shibuya or absinthe cocktails in Ebisu · One round · Train by 22:15</div><div class="dest-tags"><span class="dest-dtag">Bars</span><span class="dest-dtag">Early alarm</span></div></div></a>
       </div>
     </div>
   </div>
@@ -2466,27 +2478,186 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <div class="dp-fact"><span class="dp-fact-k">Either way</span><span class="dp-fact-v">Yakiniku Jumbo Hanare, Hongō, 19:30</span></div>
             </div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Weather decides</span></div>
+          <div class="dp-tags"><span class="dp-tag">Pick one — tap A or B below</span><span class="dp-tag">Weather decides</span></div>
         </div>
+      </div>
+      <div class="opt-switch" role="tablist" aria-label="Saturday plan"><button class="opt-tab active" role="tab" aria-selected="true" data-opt="fuji" onclick="pickOpt(this)"><span class="opt-tab-k">A</span>🗻 Mount Fuji<small>Full day out · alarm 05:45</small></button><button class="opt-tab" role="tab" aria-selected="false" data-opt="asakusa" onclick="pickOpt(this)"><span class="opt-tab-k">B</span>⛩ Asakusa &amp; Ueno<small>On the doorstep · start 08:00</small></button></div>
+      <div class="opt-pane active" data-opt="fuji">
+        <div class="opt-pane-h">Option A · Mount Fuji, hour by hour</div>
+        <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
-          <div class="dp-time">A · all day</div>
-          <div class="dp-title">Mount Fuji — the classic Kawaguchiko loop, by direct train</div>
+          <div class="dp-time">The plan</div>
+          <div class="dp-title">No car, no tour, no changes — the Fuji Excursion does the whole thing</div>
           <div class="dp-desc">
-            <p class="dp-lead">One reserved train out from Kinshichō, two stops from the flat; the pagoda, the photo street, hōtō noodles, the ropeway and the lake; one reserved train back to Shinjuku, and the Marunouchi line straight to Jumbo Hanare.</p>
+            <p class="dp-lead">The <strong>Fuji Excursion</strong> <span class="jp">富士回遊</span> is a JR limited express that runs straight through from Tokyo onto the private Fujikyū line and ends at Lake Kawaguchi. You sit down in the city and stand up at the mountain.</p>
+            <p>This is the route every Tokyo vlog does, in the order that works: the pagoda while the sky is clear, the photo street on the way down, noodles, the ropeway, the lake, and the train home. And the best train for you does not even start at Shinjuku. The first train of the day comes in from Chiba and <strong>stops at Kinshichō — two stops from your flat</strong> — at 07:07. That saves the cross-town ride to Shinjuku and puts you at the pagoda while the air is still cold and clear, which is when Fuji is most reliably out.</p>
             <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Alarm</span><span class="dp-fact-v">05:45 — check the live camera, leave the flat 06:35</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Out</span><span class="dp-fact-v">Fuji Excursion 3 · Kinshichō 07:07 → Shimoyoshida 09:13</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Back</span><span class="dp-fact-v">Fuji Excursion 44 · Kawaguchiko 16:48 → Shinjuku 18:48</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Dinner</span><span class="dp-fact-v">Jumbo Hanare, Hongō, 19:30 — booked</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Fare</span><span class="dp-fact-v">~¥4,200 each way from Shinjuku; a little more from Kinshichō</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Seats</span><span class="dp-fact-v">All reserved — no ticket, no boarding</span></div>
             </div>
-            <p><a href="#" onclick="goFuji();return false" style="color:var(--accent);font-weight:600">Open the full Mount Fuji plan →</a></p>
+            <div class="dp-note warn"><strong>Book both trains now.</strong> Seats went on sale a month ahead (28 October for this date) and on a Saturday the morning trains to Fuji sell out first. Use JR East's <strong>Eki-net</strong> in English, pay by card, and collect the paper tickets from any JR ticket machine with the QR code and a passport — do it at Asakusabashi or Akihabara earlier in the week, not at 06:45 on the day.</div>
+            <div class="dp-alt"><span class="tbc">verify</span> <strong>These times are from the weekday timetable</strong> on an unofficial site, and you are going on a Saturday. Weekends usually run the same trains plus extras, but Eki-net will show the real Saturday times when you book, and those are what count. If train 3 is full, <strong>Fuji Excursion 7</strong> leaves <em>Shinjuku</em> at 08:30 and reaches Shimoyoshida at 10:13; every time below simply moves an hour later.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">2 trains to book</span><span class="dp-tag">Weather-dependent</span></div>
+          <div class="dp-tags"><span class="dp-tag">Book now</span><span class="dp-tag">Direct train</span><span class="dp-tag">~¥8,500 return</span></div>
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
-          <div class="dp-time">B · 08:00</div>
+          <div class="dp-time">05:45</div>
+          <div class="dp-title">Look at the mountain before you leave the flat</div>
+          <div class="dp-desc">
+            <p>Search <strong>"Kawaguchiko live camera"</strong> — there are several pointed straight at the summit — and check a forecast for <em>Fujikawaguchiko</em>, not Tokyo. Clear or thin high cloud: go. A solid grey lid and rain: do not spend four hours on trains to look at fog.</p>
+            <div class="dp-note"><strong>The bad-weather swap:</strong> tap <strong>B · Asakusa</strong> above and do that instead, and cancel the train seats on Eki-net before departure (a few hundred yen). If you would still rather see the mountain, Sunday's Kichijōji day has nothing booked and can trade places with Saturday — but move the seats on Friday night, while they remain.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Weather check</span><span class="dp-tag">2 min</span></div>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">06:35</div>
+          <div class="dp-title">Flat → Kinshichō <span class="jp">錦糸町</span></div>
+          <div class="dp-desc">
+            <ol class="dp-steps">
+              <li>Walk four minutes to <strong>JR Asakusabashi</strong> and take the yellow <strong>Sōbu line local</strong> towards Chiba.</li>
+              <li>Two stops — Ryōgoku, then <strong>Kinshichō</strong>. About five minutes.</li>
+              <li>Change to the <strong>Sōbu rapid</strong> platform for the Fuji Excursion. The departure board will list it by name with the car positions; you want <strong>cars 1–3</strong>, which are the ones that go to Kawaguchiko. The rest of the train splits off at Ōtsuki and goes somewhere else entirely.</li>
+            </ol>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">Leave the flat</span><span class="dp-fact-v">06:35 at the latest</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">At Kinshichō</span><span class="dp-fact-v">~06:50, 15 min in hand</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Breakfast</span><span class="dp-fact-v">Konbini onigiri, bought the night before</span></div>
+            </div>
+            <div class="dp-note">Bring: cash (¥10,000 each is plenty — the lake buses and small restaurants are happier with it), a charged phone, and <strong>one more layer than Tokyo needs</strong>. Kawaguchiko sits at 850 m and runs 4–6°C colder, and the pagoda deck is in the wind.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">2 stops from home</span><span class="dp-tag">Cars 1–3</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Kinshicho+Station+Tokyo" target="_blank">📍 Kinshichō Station</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">07:07</div>
+          <div class="dp-title">Fuji Excursion 3 — two hours, sit on the left</div>
+          <div class="dp-desc">
+            <p>Through Shinjuku at 07:30, out past Hachiōji into the mountains, and onto the Fujikyū line at Ōtsuki around 08:40. From there the train climbs for forty minutes and Fuji appears, disappears and reappears out of the <strong>left-hand windows</strong>, bigger each time.</p>
+            <div class="dp-note warn"><strong>Get off at Shimoyoshida</strong> <span class="jp">下吉田</span> at 09:13 — <em>not</em> at the end of the line. It is two stops before Kawaguchiko and it is the station for the pagoda. Book the outbound ticket to Shimoyoshida, not Kawaguchiko.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Train</span><span class="dp-tag">2h 06m</span><span class="dp-tag">Left side</span></div>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">09:20</div>
+          <div class="dp-title">Chūreitō Pagoda <span class="jp">忠霊塔</span> — the photograph</div>
+          <div class="dp-desc">
+            <p class="dp-lead">The picture everyone has seen: a five-storey vermilion pagoda in the foreground, Fuji filling the sky behind it. It is in Arakurayama Sengen Park, ten minutes' signposted walk from Shimoyoshida station, and then <strong>398 steps</strong> up.</p>
+            <p>There is a gentler switchback path beside the staircase if anyone's knees object. The viewing deck is behind and above the pagoda; on a clear Saturday morning there will be a queue for the front rail — ten to twenty minutes — and it moves. Being on the 09:13 arrival puts you ahead of the tour coaches.</p>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">Entry</span><span class="dp-fact-v">Free</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Walk</span><span class="dp-fact-v">10 min from the station + 398 steps</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Why first</span><span class="dp-fact-v">Fuji clouds over as the day warms</span></div>
+            </div>
+            
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Iconic</span><span class="dp-tag">Free</span><span class="dp-tag">398 steps</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Chureito+Pagoda+Arakurayama+Sengen+Park" target="_blank">📍 Chūreitō Pagoda</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot"></div>
+          <div class="dp-time">10:30</div>
+          <div class="dp-title">Honchō Street <span class="jp">本町通り</span> — the other photograph</div>
+          <div class="dp-desc">
+            <p>The retro shopping street with Fuji standing at the end of it like a painted backdrop, under a tangle of power lines and old shop signs. It is about ten minutes on foot from the bottom of the pagoda steps, and ten more back to Shimoyoshida station.</p>
+            <div class="dp-note warn">It is a working road. The town now posts guards at the crossing because people stood in the traffic — take the picture from the pavement.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Photo stop</span><span class="dp-tag">15 min</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Honcho+Street+Fujiyoshida" target="_blank">📍 Honchō Street</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot"></div>
+          <div class="dp-time">11:15</div>
+          <div class="dp-title">Shimoyoshida → Kawaguchiko <span class="jp">河口湖</span></div>
+          <div class="dp-desc">
+            <p>Back at the station, take any <strong>Fujikyū line</strong> train two stops to the end of the line. About fifteen minutes and a few hundred yen; tap the Suica. Trains run roughly every half hour, so look at the timetable board on your way <em>out</em> to the pagoda and you will know which one you are walking back for.</p>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Local train</span><span class="dp-tag">~15 min</span></div>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">11:45</div>
+          <div class="dp-title">Hōtō for lunch <span class="jp">ほうとう</span></div>
+          <div class="dp-desc">
+            <p class="dp-lead">The regional dish, and exactly right after a cold morning: thick flat wheat noodles stewed with pumpkin and mountain vegetables in miso, brought to the table still boiling in an iron pot.</p>
+            <p><strong>Hōtō Fudō</strong> <span class="jp">ほうとう不動</span> has a branch directly across from Kawaguchiko station. The menu is essentially one thing, it costs a little over ¥1,000, and it comes fast. Walk in — no booking, and the queue at noon clears quickly because nobody lingers.</p>
+            <div class="dp-note">One pot each is a lot of food. Two pots and a side between three is the more sensible order.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Walk in</span><span class="dp-tag">Local dish</span><span class="dp-tag">Cash helps</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Hoto+Fudo+Kawaguchiko+Station" target="_blank">📍 Hōtō Fudō, station branch</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">12:45</div>
+          <div class="dp-title">The ropeway <span class="jp">富士山パノラマロープウェイ</span> — Fuji over the whole lake</div>
+          <div class="dp-desc">
+            <p class="dp-lead">Fifteen minutes' walk from the station along the lake shore, then three minutes up in a cable car to a deck on Mount Tenjō with the mountain on one side and the entire lake on the other.</p>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">Ticket</span><span class="dp-fact-v">About ¥1,000 return; buy at the base</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Queue</span><span class="dp-fact-v">It is Saturday — allow 20–40 min to go up</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">On the way</span><span class="dp-fact-v">The <strong>Lawson</strong> by Kawaguchiko station — the convenience store with Fuji rising behind its sign. Thirty seconds, from the right side of the road.</span></div>
+            </div>
+            <div class="dp-alt"><strong>If the queue is over 40 minutes, skip it</strong> and go straight to Ōishi Park. The lake view is the better of the two, and the 16:48 train does not wait.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">View</span><span class="dp-tag">~¥1,000</span><span class="dp-tag">Skippable</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Mt+Fuji+Panoramic+Ropeway+Kawaguchiko" target="_blank">📍 Mt. Fuji Panoramic Ropeway</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">14:15</div>
+          <div class="dp-title">Ōishi Park <span class="jp">大石公園</span> — the lake, the mountain, and a café to sit in</div>
+          <div class="dp-desc">
+            <p class="dp-lead">Fuji is south of the lake, so the view is from the <strong>north shore</strong>. Ōishi Park is the classic spot: a lakeside promenade with the whole mountain across the water.</p>
+            <ol class="dp-steps">
+              <li><strong>Getting there:</strong> the <strong>Red Line</strong> sightseeing bus stops at the ropeway and runs on round the lake to Ōishi Park, about 25 minutes. With three of you a <strong>taxi is about ¥2,500</strong> and takes 15 — on a Saturday, when the bus queue runs down the pavement, that is money well spent.</li>
+              <li><strong>The walk:</strong> ten minutes along the water in either direction and the crowd thins to nothing.</li>
+              <li><strong>The chill:</strong> <strong>Fuji Ōishi Hanaterrace</strong> next to the park is a cluster of small shops and cafés in low white buildings; <strong>Lake Bake</strong>, a few minutes along the shore, is a bakery café with a terrace facing the mountain. Coffee, something baked, and an hour with nowhere to be.</li>
+            </ol>
+            <div class="dp-note">The famous maple corridor on this shore peaks in early-to-mid November and will be over. You are here for the mountain, and late November is the clearest window of the year for it.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Lake</span><span class="dp-tag">Café</span><span class="dp-tag">Bus or taxi</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Oishi+Park+Lake+Kawaguchi" target="_blank">📍 Ōishi Park</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">15:30</div>
+          <div class="dp-title">Start back to the station — earlier than feels necessary</div>
+          <div class="dp-desc">
+            <p>The buses fill in the late afternoon and a full one will drive past you. Be at the Ōishi Park stop by <strong>15:30</strong>, or better, have a taxi called from the Hanaterrace. That puts you at Kawaguchiko station by 16:15 with time for the souvenir shop and a hot drink.</p>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Don't cut it fine</span></div>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">16:48</div>
+          <div class="dp-title">Fuji Excursion 44 → Shinjuku</div>
+          <div class="dp-desc">
+            <p>The sun sets around 16:30, so the first twenty minutes of the ride are Fuji going pink and then dark out of the <strong>right-hand</strong> windows. After that, sleep. Shinjuku at <strong>18:48</strong>.</p>
+            <div class="dp-alt"><strong>If the seats are gone:</strong> the highway bus from Kawaguchiko station to <strong>Busta Shinjuku</strong> is about ¥2,200, takes around 1h45 without traffic and noticeably longer with it on a Saturday evening. Book it online as well; it also sells out.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Train</span><span class="dp-tag">2h</span><span class="dp-tag">Right side</span></div>
+        </div>
+        </div>
+        <div class="dest-scroll">
+        <a class="dest-card" href="https://maps.google.com/?q=Kinshicho+Station+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e293b,#33528c,#bfdbfe)"><span class="dest-time">07:07</span><span class="dest-img-icon">🚆</span><span class="dest-card-name">Fuji Excursion 3</span></div><div class="dest-body"><div class="dest-type">Kinshichō → Shimoyoshida</div><div class="dest-info">Direct, 2h 06m · All seats reserved · Cars 1–3 only · Two stops from the flat</div><div class="dest-tags"><span class="dest-dtag">Book now</span><span class="dest-dtag">Left side</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Chureito+Pagoda+Arakurayama+Sengen+Park" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7f1d1d,#dc2626,#e0f2fe)"><span class="dest-time">09:20</span><span class="dest-img-icon">🗻</span><span class="dest-card-name">Chūreitō Pagoda</span></div><div class="dest-body"><div class="dest-type">Free · 398 steps</div><div class="dest-info">The classic Fuji frame · First, while the air is clear · Honchō Street on the way down</div><div class="dest-tags"><span class="dest-dtag">Iconic</span><span class="dest-dtag">Morning</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Hoto+Fudo+Kawaguchiko+Station" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7c2d12,#c2410c,#fed7aa)"><span class="dest-time">11:45</span><span class="dest-img-icon">🍲</span><span class="dest-card-name">Hōtō Fudō</span></div><div class="dest-body"><div class="dest-type">Lunch · walk in</div><div class="dest-info">Flat noodles, pumpkin and miso in an iron pot · Opposite Kawaguchiko station · A little over ¥1,000</div><div class="dest-tags"><span class="dest-dtag">Local dish</span><span class="dest-dtag">No booking</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Mt+Fuji+Panoramic+Ropeway+Kawaguchiko" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6,#dbeafe)"><span class="dest-time">12:45</span><span class="dest-img-icon">🚡</span><span class="dest-card-name">Ropeway</span></div><div class="dest-body"><div class="dest-type">View · ~¥1,000</div><div class="dest-info">Three minutes up Mount Tenjō · Fuji one side, the lake the other · Skip if the queue is over 40 min</div><div class="dest-tags"><span class="dest-dtag">Classic</span><span class="dest-dtag">Skippable</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Oishi+Park+Lake+Kawaguchi" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#164e63,#0891b2,#a5f3fc)"><span class="dest-time">14:15</span><span class="dest-img-icon">🏞</span><span class="dest-card-name">Ōishi Park</span></div><div class="dest-body"><div class="dest-type">North shore · Free</div><div class="dest-info">Lake, then mountain · Red Line bus or taxi ~¥2,500 · Hanaterrace and Lake Bake for coffee</div><div class="dest-tags"><span class="dest-dtag">Chill</span><span class="dest-dtag">Leave by 15:30</span></div></div></a>
+        </div>
+      </div>
+      <div class="opt-pane" data-opt="asakusa">
+        <div class="opt-pane-h">Option B · Asakusa and Ueno, hour by hour</div>
+        <div class="dp-timeline">
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">08:00</div>
           <div class="dp-title">Asakusa <span class="jp">浅草</span> — Sensō-ji before the crowds</div>
           <div class="dp-desc">
             <p class="dp-lead">Two stops (three minutes) on the Asakusa line from Asakusabashi, or a 20-minute walk up the river. Tokyo's oldest temple is the most visited spot in the city, so the trick is time: before about nine the lanterns are lit and almost nobody is under them.</p>
@@ -2496,39 +2667,50 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <li><strong>Sensō-ji and the five-storey pagoda</strong> — waft the incense smoke, draw an omikuji fortune for ¥100 (tie a bad one to the rack).</li>
             </ol>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Option B</span><span class="dp-tag">Free</span><span class="dp-tag">2 stops from home</span></div>
+          <div class="dp-tags"><span class="dp-tag">Free</span><span class="dp-tag">2 stops from home</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Sensoji+Temple+Asakusa+Tokyo" target="_blank">📍 Sensō-ji</a>
         </div>
         <div class="dp-item">
           <div class="dp-dot"></div>
-          <div class="dp-time">B · 10:30</div>
+          <div class="dp-time">10:30</div>
           <div class="dp-title">Kappabashi <span class="jp">かっぱ橋道具街</span> — kitchen street</div>
           <div class="dp-desc">
             <p>Ten minutes' walk west. 800 metres of restaurant-supply shops: knives, ceramics, lacquer, and the plastic food models from shop windows. Saturday is a good day — plenty of it closes on Sunday. Then keep walking west towards Ueno; it is all one flat stroll.</p>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Option B</span><span class="dp-tag">Shopping</span></div>
+          <div class="dp-tags"><span class="dp-tag">Shopping</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Kappabashi+Kitchen+Town" target="_blank">📍 Kappabashi</a>
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
-          <div class="dp-time">B · 12:00</div>
+          <div class="dp-time">12:00</div>
           <div class="dp-title">Lunch, then cake — Hinoya Curry and Nagi <span class="must">on your list</span></div>
           <div class="dp-desc">
             <p class="dp-lead">Keep lunch light-ish — Jumbo Hanare is tonight.</p>
 <div class="pick"><div class="pick-h">Lunch and an afternoon café</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">Hinoya Curry <span class="jp">日乃屋カレー</span>, Okachimachi <span class="tbc">verify</span> <a class="pick-map" href="https://maps.google.com/?q=日乃屋カレー+御徒町" target="_blank">📍</a></div><div class="pick-d">Tokyo's favourite chain katsu curry: a sweet-then-spicy roux over rice with a crisp cutlet on top, ~¥1,000, in and out in twenty minutes. There is a branch by Okachimachi, a few minutes south of Ueno — check the map for the nearest one, as the chain opens and moves shops often. (If you do Fuji instead, Hinoya is also a Sunday option in Shinjuku.)</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">Nagi <span class="jp">凪</span>, Ueno — café <a class="pick-map" href="https://maps.google.com/?q=Nagi+cafe+Ueno" target="_blank">📍</a></div><div class="pick-d">A small café about three minutes from Ueno station: the house cheesecake (strawberry and cacao rare cheese), a famously not-too-sweet pudding (~¥650) and its own roasted coffee. Listed 08:30–17:00 — check <strong>@nagiueno</strong> on Instagram for the current hours. Go mid-afternoon as the sit-down break.</div></div></div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Option B</span><span class="dp-tag">Curry</span><span class="dp-tag">Café</span></div>
+          <div class="dp-tags"><span class="dp-tag">Curry</span><span class="dp-tag">Café</span></div>
         </div>
         <div class="dp-item">
           <div class="dp-dot"></div>
-          <div class="dp-time">B · 15:00</div>
+          <div class="dp-time">15:00</div>
           <div class="dp-title">Ueno Park and Ameyoko <span class="jp">上野公園 · アメ横</span></div>
           <div class="dp-desc">
             <p>The park's ginkgo and maple are at their best in late November — walk up past Shinobazu Pond to the gingko-lined avenue to the museums. Then <strong>Ameyoko</strong>, the old market street under the train tracks: dried fruit, cosmetics, trainers, fresh-cut fruit on sticks. From there it is one stop on the Ōedo line, or a 20-minute walk, to Hongō for dinner. If there is time to spare, go back to the flat in between — it is 10 minutes away.</p>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Option B</span><span class="dp-tag">Autumn colour</span><span class="dp-tag">Market</span></div>
+          <div class="dp-tags"><span class="dp-tag">Autumn colour</span><span class="dp-tag">Market</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Ameyoko+Ueno" target="_blank">📍 Ameyoko</a>
         </div>
+        </div>
+        <div class="dest-scroll">
+        <a class="dest-card" href="https://maps.google.com/?q=Sensoji+Temple+Asakusa+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7f1d1d,#dc2626,#fecaca)"><span class="dest-time">08:00</span><span class="dest-img-icon">⛩</span><span class="dest-card-name">Sensō-ji</span></div><div class="dest-body"><div class="dest-type">Asakusa · Free</div><div class="dest-info">Two stops from the flat · Kaminarimon and Nakamise before the crowds · Draw a fortune</div><div class="dest-tags"><span class="dest-dtag">Go early</span><span class="dest-dtag">On the doorstep</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Kappabashi+Kitchen+Town" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#44403c,#a8a29e,#f5f5f4)"><span class="dest-time">10:30</span><span class="dest-img-icon">🔪</span><span class="dest-card-name">Kappabashi</span></div><div class="dest-body"><div class="dest-type">Kitchen street · shopping</div><div class="dest-info">Knives, ceramics, plastic food models · Open Saturday, much of it shut Sunday</div><div class="dest-tags"><span class="dest-dtag">Souvenirs</span><span class="dest-dtag">10 min walk</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=日乃屋カレー+御徒町" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#78350f,#b45309,#fde68a)"><span class="dest-time">12:00</span><span class="dest-img-icon">🍛</span><span class="dest-card-name">Hinoya Curry</span></div><div class="dest-body"><div class="dest-type">Lunch · on your list</div><div class="dest-info">Katsu curry, ~¥1,000 · Okachimachi branch, verify on the map · Keep it light</div><div class="dest-tags"><span class="dest-dtag">Walk in</span><span class="dest-dtag">Quick</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Nagi+cafe+Ueno" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#831843,#db2777,#fbcfe8)"><span class="dest-time">14:00</span><span class="dest-img-icon">🍰</span><span class="dest-card-name">Nagi</span></div><div class="dest-body"><div class="dest-type">Café · on your list</div><div class="dest-info">Cheesecake, pudding and house coffee · 3 min from Ueno · Check @nagiueno for hours</div><div class="dest-tags"><span class="dest-dtag">Sit down</span><span class="dest-dtag">Ueno</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Ameyoko+Ueno" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7c2d12,#ca8a04,#fde68a)"><span class="dest-time">15:00</span><span class="dest-img-icon">🍁</span><span class="dest-card-name">Ueno Park · Ameyoko</span></div><div class="dest-body"><div class="dest-type">Walk · market</div><div class="dest-info">Autumn colour in the park, then the market under the tracks · One stop to Hongō for dinner</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">Before dark</span></div></div></a>
+        </div>
+      </div>
+      <div class="opt-pane-h opt-both">Either way · dinner</div>
+      <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
           <div class="dp-time">19:30</div>
@@ -2545,6 +2727,9 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="dp-tags"><span class="dp-tag">Book now</span><span class="dp-tag">Yakiniku</span><span class="dp-tag">Must eat</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Yakiniku+Jumbo+Hanare+Hongo" target="_blank">📍 Jumbo Hanare, Hongō</a>
         </div>
+      </div>
+      <div class="dest-scroll">
+        <a class="dest-card" href="https://maps.google.com/?q=Yakiniku+Jumbo+Hanare+Hongo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#7f1d1d,#f87171)"><span class="dest-time">19:30</span><span class="dest-img-icon">🔥</span><span class="dest-card-name">Jumbo Hanare</span></div><div class="dest-body"><div class="dest-type">Hongō · must eat</div><div class="dest-info">Wagyu yakiniku · From Shinjuku on the Marunouchi line or one stop from Ueno · Ōedo line home</div><div class="dest-tags"><span class="dest-dtag">Book now</span><span class="dest-dtag">Either plan</span></div></div></a>
       </div>
     </div>
   </div>
@@ -2758,7 +2943,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="dp-desc">
             <p class="dp-lead">You are already there, the shops open at ten or eleven, and you have about two and a half hours. That is enough if you know what you are going for.</p>
             <p><strong>Shopping:</strong> <strong>Muji Ginza</strong> flagship, <strong>Itōya</strong> for stationery across nine floors, <strong>Uniqlo</strong>. Or a <strong>Don Quijote</strong> run for snacks, skincare and Kit Kats, which is the better souvenir per yen.</p>
-            <p><strong>And the last bag stop.</strong> <strong>KOMEHYO</strong> is a whole building of authenticated secondhand luxury with a tax-free counter, <strong>Brand Off</strong> is the same idea a few streets over. You scouted these shelves on Wednesday, then saw Omotesandō on Thursday and Nakameguro on Friday — so if the number here is good, you already know it. This is the one shop on the trip where buying on the spot is the sensible move.</p>
+            <p><strong>And the last bag stop.</strong> <strong>KOMEHYO</strong> is a whole building of authenticated secondhand luxury with a tax-free counter, <strong>Brand Off</strong> is the same idea a few streets over. You scouted these shelves on Wednesday, then saw Nakameguro on Thursday and Omotesandō on Friday — so if the number here is good, you already know it. This is the one shop on the trip where buying on the spot is the sensible move.</p>
             <div class="dp-alt"><strong>Coffee, if you want to sit:</strong> <strong>Tricolore Honten</strong> pours nel-drip under a red awning it has had since 1936 and opens early; <strong>Ginza West</strong> refills your coffee unasked and sells the leaf-pie tins that are the best formal souvenir here. Both are a few minutes from the lockers.</div>
             <div class="dp-note warn"><strong>Check the tax-free rule before you shop.</strong> Japan has been moving from tax-free-at-the-till to buy-with-tax and claim-a-refund-at-the-airport, flagged for around November 2026. Either way: bring your passports, keep every receipt together, and leave time at Narita — the refund desks are <em>before</em> security.</div>
           </div>
@@ -2775,7 +2960,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <li><strong>Whichever of Wednesday's two you skipped</strong> — <strong>Ginza Sato Yosuke</strong> for udon or <strong>Tonkatsu Marushichi</strong>. Both are a few minutes from KOMEHYO; be at the door for the 11:30 opening and you are out by 12:30.</li>
               <li><strong>Mitsukoshi's depachika</strong> — a katsu sando and something sweet in a box, eaten on the train to Narita. The no-risk answer.</li>
               <li><strong>Sembikiya</strong> — a fruit parfait in the parlour above the fruit shop, if you would rather sit for half an hour.</li>
-              <li><strong>Café Heckeln</strong> — ten minutes' walk across the tracks in Nishi-Shimbashi. If Thursday's pudding failed, this is the second chance; go at 10:45 instead of the first shop.</li>
+              <li><strong>Café Heckeln</strong> — ten minutes' walk across the tracks in Nishi-Shimbashi. If Friday's pudding failed, this is the second chance; go at 10:45 instead of the first shop.</li>
             </ol>
             <div class="dp-note warn"><strong>Hard stop 12:50.</strong> Lockers, then Higashi-Ginza by 13:15.</div>
           </div>
@@ -3238,7 +3423,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         </div>
         <div class="place-body">
           <div class="place-meta"><div class="place-meta-row">📍 Branches around Omotesandō/Aoyama and Daikanyama</div><div class="place-meta-row">🕐 Typically ~11:00–20:00 · tax-free with passport</div></div>
-          <p class="place-desc">The one people fly in for. Walls of Chanel — matelassé, classic flaps, vanity cases — plus Hermès, all authenticated and condition-graded. Prices sit at the top of the Tokyo market and the selection justifies it. Go on the Thursday to calibrate your eye before you buy anywhere else.</p>
+          <p class="place-desc">The one people fly in for. Walls of Chanel — matelassé, classic flaps, vanity cases — plus Hermès, all authenticated and condition-graded. Prices sit at the top of the Tokyo market and the selection justifies it. It is on the Friday walk — compare it with what you saw in Nakameguro the day before.</p>
           <div class="place-links">
             <a class="place-link" href="https://maps.google.com/?q=AMORE+Vintage+Omotesando+Tokyo" target="_blank">📍 Maps</a>
           </div>
@@ -3542,7 +3727,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         </div>
         <div class="place-body">
           <div class="place-meta"><div class="place-meta-row">📍 Around Jingūmae, Harajuku</div><div class="place-meta-row">🕐 <strong>Check hours before you go</strong></div></div>
-          <p class="place-desc">A Harajuku vintage designer shop — the small, curated end rather than the department-store end, so the stock is personality-led and turns over. It sits inside the Omotesandō/Harajuku loop already on Day 2, so it costs you nothing to add. Confirm the address and hours first.</p>
+          <p class="place-desc">A Harajuku vintage designer shop — the small, curated end rather than the department-store end, so the stock is personality-led and turns over. It sits inside the Omotesandō/Harajuku loop already on Day 3, so it costs you nothing to add. Confirm the address and hours first.</p>
           <div class="place-links">
             <a class="place-link" href="https://maps.google.com/?q=Vintage+Qoo+Harajuku+Tokyo" target="_blank">📍 Maps</a>
           </div>
@@ -3652,7 +3837,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
             <div class="place-meta-row">📍 Omotesandō Hills, per your note — <strong>confirm the floor</strong></div>
             <div class="place-meta-row">🕐 <strong>Check it is still there before you go</strong></div>
           </div>
-          <p class="place-desc">On your list rather than mine — I could not confirm the shop or which floor it is on, so treat the location as a lead, not a fact. The good news is that it costs you nothing to check: <strong>Omotesandō Hills is already on the Day 2 walk</strong>, sixty seconds from the resale strip. Tadao Ando built the interior as one continuous spiral ramp pitched at the same angle as the street, so there are no normal floors — check the directory board at the entrance and follow the slope round rather than looking for a lift.</p>
+          <p class="place-desc">On your list rather than mine — I could not confirm the shop or which floor it is on, so treat the location as a lead, not a fact. The good news is that it costs you nothing to check: <strong>Omotesandō Hills is already on the Day 3 walk</strong>, sixty seconds from the resale strip. Tadao Ando built the interior as one continuous spiral ramp pitched at the same angle as the street, so there are no normal floors — check the directory board at the entrance and follow the slope round rather than looking for a lift.</p>
           <div class="place-links">
             <a class="place-link" href="https://maps.google.com/?q=Omotesando+Hills+Tokyo" target="_blank">📍 Omotesandō Hills</a>
           </div>
@@ -4380,13 +4565,13 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍮</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Café Heckeln <span class="jp">ヘッケルン</span></span><span class="place-must">must</span> <span class="tbc">verify</span></div>
-            <div class="place-sub">Shimbashi · The jumbo pudding · Thu 08:45</div>
+            <div class="place-sub">Shimbashi · The jumbo pudding · Fri 08:45</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
         <div class="place-body">
           <div class="place-meta"><div class="place-meta-row">📍 Ando Bldg 1F, 1-20-11 Nishi-Shimbashi, Minato-ku</div><div class="place-meta-row">🕐 Weekday mornings into the afternoon — sources disagree, check before you go</div></div>
-          <p class="place-desc">A 1970s kissaten run by one master, famous for a tall, firm, bittersweet custard pudding. Cash only, no reservations, a handful of seats, and the pudding sells out. On the plan as Thursday breakfast, with Monday morning as the second chance.</p>
+          <p class="place-desc">A 1970s kissaten run by one master, famous for a tall, firm, bittersweet custard pudding. Cash only, no reservations, a handful of seats, and the pudding sells out. On the plan as Friday breakfast, with Monday morning as the second chance.</p>
           <div class="place-links">
             <a class="place-link" href="https://maps.google.com/?q=Cafe+Heckeln+Nishi-Shinbashi" target="_blank">📍 Maps</a>
           </div>
@@ -4414,7 +4599,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍚</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">OH KAMA BAR</span><span class="place-must">must</span> <span class="tbc">verify</span></div>
-            <div class="place-sub">Shibuya · Kamameshi and drinks · Thu 18:30 · book</div>
+            <div class="place-sub">Shibuya · Kamameshi and drinks · Fri 18:30 · book</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4431,7 +4616,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍶</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Kinboshi <span class="jp">酒場きんぼし</span></span><span class="place-must">must</span> <span class="tbc">verify</span></div>
-            <div class="place-sub">Shibuya · Obanzai small plates · Fri 19:00</div>
+            <div class="place-sub">Shibuya · Obanzai small plates · Thu 19:00</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4448,7 +4633,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍜</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Shiraishi <span class="jp">銀座蕎麦うどん しら石</span></span><span class="place-must">must</span> <span class="tbc">verify</span></div>
-            <div class="place-sub">Roppongi · Soba &amp; udon · Fri 10:15 · walk in</div>
+            <div class="place-sub">Roppongi · Soba &amp; udon · Thu 10:15 · walk in</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4488,7 +4673,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         </div>
         <div class="place-body">
           <div class="place-meta"><div class="place-meta-row">📍 Omotesandō, a few minutes from the station</div><div class="place-meta-row">🕐 Daytime · sells out</div></div>
-          <p class="place-desc">In the guide you sent: elaborate pastries and doughnuts, with a queue the author put at about forty minutes. It is on Thursday’s route, so it is there if the line is short.</p>
+          <p class="place-desc">In the guide you sent: elaborate pastries and doughnuts, with a queue the author put at about forty minutes. It is on Friday’s route, so it is there if the line is short.</p>
           <div class="place-links">
             <a class="place-link" href="https://maps.google.com/?q=Amam+Dacotan+Omotesando" target="_blank">📍 Maps</a>
           </div>
@@ -4505,7 +4690,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         </div>
         <div class="place-body">
           <div class="place-meta"><div class="place-meta-row">📍 Shibuya — use the pin on the Instagram post</div><div class="place-meta-row">🕐 Evenings</div></div>
-          <p class="place-desc">In the guide you sent: a striking interior and traditional home-style dishes in small portions. The fallback if Kinboshi cannot seat you on Friday.</p>
+          <p class="place-desc">In the guide you sent: a striking interior and traditional home-style dishes in small portions. The fallback if Kinboshi cannot seat you on Thursday.</p>
           <div class="place-links">
             <a class="place-link" href="https://maps.google.com/?q=ツキニカリ+渋谷" target="_blank">📍 Maps</a>
           </div>
@@ -4618,7 +4803,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🦆</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">BASO Omotesandō <span class="jp">BASO 表参道</span></span><span class="place-must">must</span></div>
-            <div class="place-sub">Omotesandō · Duck tsuke-soba · Thu lunch B</div>
+            <div class="place-sub">Omotesandō · Duck tsuke-soba · Fri lunch B</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4635,7 +4820,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍛</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Shodai <span class="jp">初代</span></span><span class="place-must">must</span></div>
-            <div class="place-sub">Ebisu · White curry udon · Fri dinner B</div>
+            <div class="place-sub">Ebisu · White curry udon · Thu dinner B</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4771,7 +4956,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🎷</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">JBS</span></div>
-            <div class="place-sub">Shibuya · Jazz, blues and soul record bar · Thu</div>
+            <div class="place-sub">Shibuya · Jazz, blues and soul record bar · Fri</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4805,7 +4990,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🎸</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Grandfather's</span></div>
-            <div class="place-sub">Shibuya · Rock and soul vinyl bar · Fri</div>
+            <div class="place-sub">Shibuya · Rock and soul vinyl bar · Thu</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4822,7 +5007,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🌿</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Bar Trench</span></div>
-            <div class="place-sub">Ebisu · Absinthe and herbal cocktails · Fri</div>
+            <div class="place-sub">Ebisu · Absinthe and herbal cocktails · Thu</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4839,7 +5024,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍺</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Yebisu Brewery Tokyo</span></div>
-            <div class="place-sub">Ebisu · Brewery taproom · Fri 17:00</div>
+            <div class="place-sub">Ebisu · Brewery taproom · Thu 17:00</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4854,218 +5039,6 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
     </div>
     <div class="wishlist-empty" id="places-empty" hidden>Nothing matches that combination — try a wider area, or set the type back to All.</div>
   </div>
-
-</div>
-
-<!-- ════════════════ DAY TRIPS ════════════════ -->
-<div id="tab-trips" class="tab-content">
-
-  <div class="sh"><h2>🗻 Mount Fuji Day Trip</h2><p>Saturday 28 November, if you pick it over Asakusa · Kawaguchiko by direct train, no car · back for dinner at Jumbo Hanare</p></div>
-
-  <div class="callout">
-    <strong>Two trains to book, and one thing to check on the morning.</strong> Reserve three seats each way on JR East's Eki-net — out on Fuji Excursion 3 from Kinshichō to <em>Shimoyoshida</em>, back on Fuji Excursion 44 from Kawaguchiko to Shinjuku. Then at 05:45 on the day, look at a Kawaguchiko live camera: if the mountain is in cloud, do the Asakusa plan (Day 4, option B) instead.
-  </div>
-
-  <div class="day-pills" style="display:none">
-    <button class="day-pill active" onclick="switchDay('trips',1,this)"><span class="dp-pill-date">Sat 28 Nov</span><span class="dp-pill-label">Mount Fuji</span></button>
-  </div>
-
-  <div class="day-host" id="trips-day-host">
-
-  <div class="day-panel active" id="trips-day-1">
-    <div class="card">
-      <div class="dp-dayhead">
-        <div class="dp-daytitle">Saturday, 28 November · Mount Fuji <span class="jp">富士山</span></div>
-        <div class="dp-daysub">The classic Kawaguchiko loop: pagoda → Honchō Street → hōtō → ropeway → Ōishi Park → home</div>
-      </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Kinshichō <small>07:07</small></span><span class="stop">Shimoyoshida <small>09:13</small></span><span class="stop">Chūreitō Pagoda</span><span class="stop">Honchō Street</span><span class="stop">Kawaguchiko</span><span class="stop">Ropeway</span><span class="stop">Ōishi Park</span><span class="stop">Kawaguchiko <small>16:48</small></span><span class="stop">Shinjuku <small>18:48</small></span></div>
-      <div class="dp-timeline">
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">The plan</div>
-          <div class="dp-title">No car, no tour, no changes — the Fuji Excursion does the whole thing</div>
-          <div class="dp-desc">
-            <p class="dp-lead">The <strong>Fuji Excursion</strong> <span class="jp">富士回遊</span> is a JR limited express that runs straight through from Tokyo onto the private Fujikyū line and ends at Lake Kawaguchi. You sit down in the city and stand up at the mountain.</p>
-            <p>This is the route every Tokyo vlog does, in the order that works: the pagoda while the sky is clear, the photo street on the way down, noodles, the ropeway, the lake, and the train home. And the best train for you does not even start at Shinjuku. The first train of the day comes in from Chiba and <strong>stops at Kinshichō — two stops from your flat</strong> — at 07:07. That saves the cross-town ride to Shinjuku and puts you at the pagoda while the air is still cold and clear, which is when Fuji is most reliably out.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Out</span><span class="dp-fact-v">Fuji Excursion 3 · Kinshichō 07:07 → Shimoyoshida 09:13</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Back</span><span class="dp-fact-v">Fuji Excursion 44 · Kawaguchiko 16:48 → Shinjuku 18:48</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Fare</span><span class="dp-fact-v">~¥4,200 each way from Shinjuku; a little more from Kinshichō</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Seats</span><span class="dp-fact-v">All reserved — no ticket, no boarding</span></div>
-            </div>
-            <div class="dp-note warn"><strong>Book both trains now.</strong> Seats went on sale a month ahead (28 October for this date) and on a Saturday the morning trains to Fuji sell out first. Use JR East's <strong>Eki-net</strong> in English, pay by card, and collect the paper tickets from any JR ticket machine with the QR code and a passport — do it at Asakusabashi or Akihabara earlier in the week, not at 06:45 on the day.</div>
-            <div class="dp-alt"><span class="tbc">verify</span> <strong>These times are from the weekday timetable</strong> on an unofficial site, and you are going on a Saturday. Weekends usually run the same trains plus extras, but Eki-net will show the real Saturday times when you book, and those are what count. If train 3 is full, <strong>Fuji Excursion 7</strong> leaves <em>Shinjuku</em> at 08:30 and reaches Shimoyoshida at 10:13; every time below simply moves an hour later.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Book now</span><span class="dp-tag">Direct train</span><span class="dp-tag">~¥8,500 return</span></div>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">05:45</div>
-          <div class="dp-title">Look at the mountain before you leave the flat</div>
-          <div class="dp-desc">
-            <p>Search <strong>"Kawaguchiko live camera"</strong> — there are several pointed straight at the summit — and check a forecast for <em>Fujikawaguchiko</em>, not Tokyo. Clear or thin high cloud: go. A solid grey lid and rain: do not spend four hours on trains to look at fog.</p>
-            <div class="dp-note"><strong>The bad-weather swap:</strong> do Sunday's Kichijōji day today and go to Fuji tomorrow instead — Sunday has nothing booked, so it moves freely. That only works if you move the train seats first: Eki-net allows a change before departure while seats remain, so check Sunday's availability <em>on Friday night</em> if the forecast looks doubtful.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Weather check</span><span class="dp-tag">2 min</span></div>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">06:35</div>
-          <div class="dp-title">Flat → Kinshichō <span class="jp">錦糸町</span></div>
-          <div class="dp-desc">
-            <ol class="dp-steps">
-              <li>Walk four minutes to <strong>JR Asakusabashi</strong> and take the yellow <strong>Sōbu line local</strong> towards Chiba.</li>
-              <li>Two stops — Ryōgoku, then <strong>Kinshichō</strong>. About five minutes.</li>
-              <li>Change to the <strong>Sōbu rapid</strong> platform for the Fuji Excursion. The departure board will list it by name with the car positions; you want <strong>cars 1–3</strong>, which are the ones that go to Kawaguchiko. The rest of the train splits off at Ōtsuki and goes somewhere else entirely.</li>
-            </ol>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Leave the flat</span><span class="dp-fact-v">06:35 at the latest</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">At Kinshichō</span><span class="dp-fact-v">~06:50, 15 min in hand</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Breakfast</span><span class="dp-fact-v">Konbini onigiri, bought the night before</span></div>
-            </div>
-            <div class="dp-note">Bring: cash (¥10,000 each is plenty — the lake buses and small restaurants are happier with it), a charged phone, and <strong>one more layer than Tokyo needs</strong>. Kawaguchiko sits at 850 m and runs 4–6°C colder, and the pagoda deck is in the wind.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">2 stops from home</span><span class="dp-tag">Cars 1–3</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Kinshicho+Station+Tokyo" target="_blank">📍 Kinshichō Station</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">07:07</div>
-          <div class="dp-title">Fuji Excursion 3 — two hours, sit on the left</div>
-          <div class="dp-desc">
-            <p>Through Shinjuku at 07:30, out past Hachiōji into the mountains, and onto the Fujikyū line at Ōtsuki around 08:40. From there the train climbs for forty minutes and Fuji appears, disappears and reappears out of the <strong>left-hand windows</strong>, bigger each time.</p>
-            <div class="dp-note warn"><strong>Get off at Shimoyoshida</strong> <span class="jp">下吉田</span> at 09:13 — <em>not</em> at the end of the line. It is two stops before Kawaguchiko and it is the station for the pagoda. Book the outbound ticket to Shimoyoshida, not Kawaguchiko.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Train</span><span class="dp-tag">2h 06m</span><span class="dp-tag">Left side</span></div>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">09:20</div>
-          <div class="dp-title">Chūreitō Pagoda <span class="jp">忠霊塔</span> — the photograph</div>
-          <div class="dp-desc">
-            <p class="dp-lead">The picture everyone has seen: a five-storey vermilion pagoda in the foreground, Fuji filling the sky behind it. It is in Arakurayama Sengen Park, ten minutes' signposted walk from Shimoyoshida station, and then <strong>398 steps</strong> up.</p>
-            <p>There is a gentler switchback path beside the staircase if anyone's knees object. The viewing deck is behind and above the pagoda; on a clear Saturday morning there will be a queue for the front rail — ten to twenty minutes — and it moves. Being on the 09:13 arrival puts you ahead of the tour coaches.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Entry</span><span class="dp-fact-v">Free</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Walk</span><span class="dp-fact-v">10 min from the station + 398 steps</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Why first</span><span class="dp-fact-v">Fuji clouds over as the day warms</span></div>
-            </div>
-            
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Iconic</span><span class="dp-tag">Free</span><span class="dp-tag">398 steps</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Chureito+Pagoda+Arakurayama+Sengen+Park" target="_blank">📍 Chūreitō Pagoda</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot"></div>
-          <div class="dp-time">10:30</div>
-          <div class="dp-title">Honchō Street <span class="jp">本町通り</span> — the other photograph</div>
-          <div class="dp-desc">
-            <p>The retro shopping street with Fuji standing at the end of it like a painted backdrop, under a tangle of power lines and old shop signs. It is about ten minutes on foot from the bottom of the pagoda steps, and ten more back to Shimoyoshida station.</p>
-            <div class="dp-note warn">It is a working road. The town now posts guards at the crossing because people stood in the traffic — take the picture from the pavement.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Photo stop</span><span class="dp-tag">15 min</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Honcho+Street+Fujiyoshida" target="_blank">📍 Honchō Street</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot"></div>
-          <div class="dp-time">11:15</div>
-          <div class="dp-title">Shimoyoshida → Kawaguchiko <span class="jp">河口湖</span></div>
-          <div class="dp-desc">
-            <p>Back at the station, take any <strong>Fujikyū line</strong> train two stops to the end of the line. About fifteen minutes and a few hundred yen; tap the Suica. Trains run roughly every half hour, so look at the timetable board on your way <em>out</em> to the pagoda and you will know which one you are walking back for.</p>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Local train</span><span class="dp-tag">~15 min</span></div>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">11:45</div>
-          <div class="dp-title">Hōtō for lunch <span class="jp">ほうとう</span></div>
-          <div class="dp-desc">
-            <p class="dp-lead">The regional dish, and exactly right after a cold morning: thick flat wheat noodles stewed with pumpkin and mountain vegetables in miso, brought to the table still boiling in an iron pot.</p>
-            <p><strong>Hōtō Fudō</strong> <span class="jp">ほうとう不動</span> has a branch directly across from Kawaguchiko station. The menu is essentially one thing, it costs a little over ¥1,000, and it comes fast. Walk in — no booking, and the queue at noon clears quickly because nobody lingers.</p>
-            <div class="dp-note">One pot each is a lot of food. Two pots and a side between three is the more sensible order.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Walk in</span><span class="dp-tag">Local dish</span><span class="dp-tag">Cash helps</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Hoto+Fudo+Kawaguchiko+Station" target="_blank">📍 Hōtō Fudō, station branch</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">12:45</div>
-          <div class="dp-title">The ropeway <span class="jp">富士山パノラマロープウェイ</span> — Fuji over the whole lake</div>
-          <div class="dp-desc">
-            <p class="dp-lead">Fifteen minutes' walk from the station along the lake shore, then three minutes up in a cable car to a deck on Mount Tenjō with the mountain on one side and the entire lake on the other.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Ticket</span><span class="dp-fact-v">About ¥1,000 return; buy at the base</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Queue</span><span class="dp-fact-v">It is Saturday — allow 20–40 min to go up</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">On the way</span><span class="dp-fact-v">The <strong>Lawson</strong> by Kawaguchiko station — the convenience store with Fuji rising behind its sign. Thirty seconds, from the right side of the road.</span></div>
-            </div>
-            <div class="dp-alt"><strong>If the queue is over 40 minutes, skip it</strong> and go straight to Ōishi Park. The lake view is the better of the two, and the 16:48 train does not wait.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">View</span><span class="dp-tag">~¥1,000</span><span class="dp-tag">Skippable</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Mt+Fuji+Panoramic+Ropeway+Kawaguchiko" target="_blank">📍 Mt. Fuji Panoramic Ropeway</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">14:15</div>
-          <div class="dp-title">Ōishi Park <span class="jp">大石公園</span> — the lake, the mountain, and a café to sit in</div>
-          <div class="dp-desc">
-            <p class="dp-lead">Fuji is south of the lake, so the view is from the <strong>north shore</strong>. Ōishi Park is the classic spot: a lakeside promenade with the whole mountain across the water.</p>
-            <ol class="dp-steps">
-              <li><strong>Getting there:</strong> the <strong>Red Line</strong> sightseeing bus stops at the ropeway and runs on round the lake to Ōishi Park, about 25 minutes. With three of you a <strong>taxi is about ¥2,500</strong> and takes 15 — on a Saturday, when the bus queue runs down the pavement, that is money well spent.</li>
-              <li><strong>The walk:</strong> ten minutes along the water in either direction and the crowd thins to nothing.</li>
-              <li><strong>The chill:</strong> <strong>Fuji Ōishi Hanaterrace</strong> next to the park is a cluster of small shops and cafés in low white buildings; <strong>Lake Bake</strong>, a few minutes along the shore, is a bakery café with a terrace facing the mountain. Coffee, something baked, and an hour with nowhere to be.</li>
-            </ol>
-            <div class="dp-note">The famous maple corridor on this shore peaks in early-to-mid November and will be over. You are here for the mountain, and late November is the clearest window of the year for it.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Lake</span><span class="dp-tag">Café</span><span class="dp-tag">Bus or taxi</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Oishi+Park+Lake+Kawaguchi" target="_blank">📍 Ōishi Park</a>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">15:30</div>
-          <div class="dp-title">Start back to the station — earlier than feels necessary</div>
-          <div class="dp-desc">
-            <p>The buses fill in the late afternoon and a full one will drive past you. Be at the Ōishi Park stop by <strong>15:30</strong>, or better, have a taxi called from the Hanaterrace. That puts you at Kawaguchiko station by 16:15 with time for the souvenir shop and a hot drink.</p>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Don't cut it fine</span></div>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot key"></div>
-          <div class="dp-time">16:48</div>
-          <div class="dp-title">Fuji Excursion 44 → Shinjuku</div>
-          <div class="dp-desc">
-            <p>The sun sets around 16:30, so the first twenty minutes of the ride are Fuji going pink and then dark out of the <strong>right-hand</strong> windows. After that, sleep. Shinjuku at <strong>18:48</strong>.</p>
-            <div class="dp-alt"><strong>If the seats are gone:</strong> the highway bus from Kawaguchiko station to <strong>Busta Shinjuku</strong> is about ¥2,200, takes around 1h45 without traffic and noticeably longer with it on a Saturday evening. Book it online as well; it also sells out.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Train</span><span class="dp-tag">2h</span><span class="dp-tag">Right side</span></div>
-        </div>
-        <div class="dp-item">
-          <div class="dp-dot"></div>
-          <div class="dp-time">19:00</div>
-          <div class="dp-title">Yakiniku Jumbo Hanare <span class="jp">焼肉ジャンボ はなれ</span>, Hongō — dinner <span class="must">must eat</span></div>
-          <div class="dp-desc">
-            <p class="dp-lead">Off the train at Shinjuku and straight onto the <strong>Marunouchi line</strong>, direct to Hongō-sanchōme in about twenty minutes, for a 19:30 table. Wagyu yakiniku, and the thin-sliced wagyu dipped in raw egg.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Booking</span><span class="dp-fact-v">Essential — official site</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Home</span><span class="dp-fact-v">Ōedo line, Hongō-sanchōme → Kuramae direct, ~10 min</span></div>
-            </div>
-            <div class="dp-alt"><strong>Train late?</strong> Ring ahead — the number is on the booking. The full write-up is on Day 4 in the Tokyo tab.</div>
-          </div>
-          <div class="dp-tags"><span class="dp-tag">Booked</span><span class="dp-tag">Yakiniku</span><span class="dp-tag">Must eat</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Yakiniku+Jumbo+Hanare+Hongo" target="_blank">📍 Jumbo Hanare, Hongō</a>
-        </div>
-      </div>
-      <div class="dest-scroll">
-        <a class="dest-card" href="https://maps.google.com/?q=Kinshicho+Station+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e293b,#33528c,#bfdbfe)"><span class="dest-time">07:07</span><span class="dest-img-icon">🚆</span><span class="dest-card-name">Fuji Excursion 3</span></div><div class="dest-body"><div class="dest-type">Kinshichō → Shimoyoshida</div><div class="dest-info">Direct, 2h 06m · All seats reserved · Cars 1–3 only · Two stops from the flat</div><div class="dest-tags"><span class="dest-dtag">Book now</span><span class="dest-dtag">Left side</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Chureito+Pagoda+Arakurayama+Sengen+Park" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7f1d1d,#dc2626,#e0f2fe)"><span class="dest-time">09:20</span><span class="dest-img-icon">🗻</span><span class="dest-card-name">Chūreitō Pagoda</span></div><div class="dest-body"><div class="dest-type">Free · 398 steps</div><div class="dest-info">The classic Fuji frame · First, while the air is clear · Honchō Street on the way down</div><div class="dest-tags"><span class="dest-dtag">Iconic</span><span class="dest-dtag">Morning</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Hoto+Fudo+Kawaguchiko+Station" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7c2d12,#c2410c,#fed7aa)"><span class="dest-time">11:45</span><span class="dest-img-icon">🍲</span><span class="dest-card-name">Hōtō Fudō</span></div><div class="dest-body"><div class="dest-type">Lunch · walk in</div><div class="dest-info">Flat noodles, pumpkin and miso in an iron pot · Opposite Kawaguchiko station · A little over ¥1,000</div><div class="dest-tags"><span class="dest-dtag">Local dish</span><span class="dest-dtag">No booking</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Mt+Fuji+Panoramic+Ropeway+Kawaguchiko" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6,#dbeafe)"><span class="dest-time">12:45</span><span class="dest-img-icon">🚡</span><span class="dest-card-name">Ropeway</span></div><div class="dest-body"><div class="dest-type">View · ~¥1,000</div><div class="dest-info">Three minutes up Mount Tenjō · Fuji one side, the lake the other · Skip if the queue is over 40 min</div><div class="dest-tags"><span class="dest-dtag">Classic</span><span class="dest-dtag">Skippable</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Oishi+Park+Lake+Kawaguchi" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#164e63,#0891b2,#a5f3fc)"><span class="dest-time">14:15</span><span class="dest-img-icon">🏞</span><span class="dest-card-name">Ōishi Park</span></div><div class="dest-body"><div class="dest-type">North shore · Free</div><div class="dest-info">Lake, then mountain · Red Line bus or taxi ~¥2,500 · Hanaterrace and Lake Bake for coffee</div><div class="dest-tags"><span class="dest-dtag">Chill</span><span class="dest-dtag">Leave by 15:30</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Yakiniku+Jumbo+Hanare+Hongo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#7f1d1d,#f87171)"><span class="dest-time">19:30</span><span class="dest-img-icon">🔥</span><span class="dest-card-name">Jumbo Hanare</span></div><div class="dest-body"><div class="dest-type">Hongō · must eat</div><div class="dest-info">Wagyu yakiniku · Marunouchi line direct from Shinjuku, ~20 min · Ōedo line home</div><div class="dest-tags"><span class="dest-dtag">Book now</span><span class="dest-dtag">Yakiniku</span></div></div></a>
-      </div>
-    </div>
-  </div>
-
-  </div><!-- /trips-day-host -->
 
 </div>
 
@@ -5096,12 +5069,12 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
   <div class="opts">
     <div class="opt pick">
       <h5>Omotesandō &amp; Harajuku</h5>
-      <div class="opt-meta">The curated high end · fits Day 2</div>
+      <div class="opt-meta">The curated high end · fits Day 3, Friday</div>
       <p><strong>AMORE</strong> for Chanel and Hermès — the one people come for, walls of matelassé and classic flaps. <strong>RAGTAG</strong> for designer resale at a sane price, clothes and bags over several floors. <strong>Kindal</strong> and <strong>RINKAN</strong> for the streetwear-meets-luxury end. Best selection, highest prices.</p>
     </div>
     <div class="opt">
       <h5>Daikanyama &amp; Nakameguro</h5>
-      <div class="opt-meta">Small and hand-picked · fits Day 3</div>
+      <div class="opt-meta">Small and hand-picked · fits Day 2, Thursday</div>
       <p>A second <strong>AMORE</strong>, plus a scatter of one-room shops where somebody has clearly chosen every piece. <strong>JANTIQUES</strong> in Nakameguro is the reference for properly curated vintage. Fewer bags than Omotesandō, better odds of something nobody else has.</p>
     </div>
     <div class="opt">
@@ -5111,8 +5084,8 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
     </div>
     <div class="opt">
       <h5>Ueno &amp; Ameyoko</h5>
-      <div class="opt-meta">The bargain end · not on any day now</div>
-      <p><strong>Daikokuya</strong> — a pawnshop chain, not a boutique. Strip lighting, cabinets, sharp prices, and the best chance of an actual bargain if you already know what you're looking at. It came off the itinerary with the rest of the east side, so it is a deliberate detour rather than a stop — worth it only if the hunt is the fun part.</p>
+      <div class="opt-meta">The bargain end · Saturday, if you pick Asakusa</div>
+      <p><strong>Daikokuya</strong> — a pawnshop chain, not a boutique. Strip lighting, cabinets, sharp prices, and the best chance of an actual bargain if you already know what you're looking at. It is on Ameyoko, which is on Saturday's Asakusa plan — worth ten minutes if the hunt is the fun part.</p>
     </div>
   </div>
 
@@ -5258,8 +5231,8 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
       <div class="dp-fact"><span class="dp-fact-k">Shibuya &amp; Harajuku</span><span class="dp-fact-v">Yamanote from Akihabara · ~32–35 min</span></div>
       <div class="dp-fact"><span class="dp-fact-k">Asakusa</span><span class="dp-fact-v">Two stops · 3 min</span></div>
     </div>
-    <div class="dp-note"><strong>The Hibiya line is the quiet win.</strong> Walk eight minutes to Akihabara and one train takes you through Ginza and Roppongi to Ebisu and Naka-Meguro — so Friday, the Nakameguro day, is a single ride with no changes.</div>
-    <div class="dp-alt"><strong>The one day that pays:</strong> Thursday. Shibuya and Harajuku are the far corner from here, about 35 minutes each way. Leave earlier than feels necessary, and do not plan to nip back to the flat mid-day.</div>
+    <div class="dp-note"><strong>The Hibiya line is the quiet win.</strong> Walk eight minutes to Akihabara and one train takes you through Ginza and Roppongi to Ebisu and Naka-Meguro — so Thursday, the Nakameguro day, is a single ride with no changes.</div>
+    <div class="dp-alt"><strong>The one day that pays:</strong> Friday. Shibuya and Harajuku are the far corner from here, about 35 minutes each way. Leave earlier than feels necessary, and do not plan to nip back to the flat mid-day.</div>
   </div>
 
   <div class="flt-section-label">🔑 Living there</div>
@@ -5355,7 +5328,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-desc">
           <ol class="dp-steps">
             <li><strong>Fuji Excursion seats, both ways</strong> — Sat 28: No. 3 from Kinshichō 07:07, No. 44 from Kawaguchiko 16:48. All-reserved, on sale a month ahead on Eki-net; confirm the Saturday times there.</li>
-            <li><strong>Three dinners</strong> — Moheji (Wed 18:00), OH KAMA BAR (Thu 18:30), Kinboshi (Fri 19:00, once you have verified it).</li>
+            <li><strong>Three dinners</strong> — Moheji (Wed 18:00), Kinboshi (Thu 19:00, once you have verified it), OH KAMA BAR (Fri 18:30), and Jumbo Hanare (Sat 19:30).</li>
             <li><strong>teamLab</strong>, only if you add it — timed entry, routinely sold out days ahead. It is not in the plan.</li>
           </ol>
           <p>The whole list, with how to book each and everything that is walk-in, is the booking board at the top of the <strong>Overview</strong>.</p>
@@ -5879,8 +5852,20 @@ function switchItinCity(city, btn) {
 
 // Booking board and eat list rows jump straight to a Tokyo day.
 function goFuji() {
-  const btn = document.querySelector('.tab-btn[onclick*="\'trips\'"]');
-  if (btn) switchTab('trips', btn);
+  goDay(4);
+  const t = document.querySelector('#tokyo-day-4 .opt-tab[data-opt="fuji"]');
+  if (t) pickOpt(t);
+}
+// Day 4 holds two complete itineraries; the switch shows one at a time.
+function pickOpt(btn) {
+  const day = btn.closest('.day-panel');
+  if (!day) return;
+  day.querySelectorAll('.opt-tab').forEach(b => {
+    const on = b === btn;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  day.querySelectorAll('.opt-pane').forEach(p => p.classList.toggle('active', p.dataset.opt === btn.dataset.opt));
 }
 function goDay(n) {
   const btn = document.querySelector('.tab-btn[onclick*="\'tokyo\'"]');
@@ -6060,9 +6045,9 @@ document.addEventListener('DOMContentLoaded', function() {
 var _calEvents = {
   24:{ev:'Fly',     tab:'tokyo', day:1},
   25:{ev:'Land',    tab:'tokyo', day:1},
-  26:{ev:'Shibuya', tab:'tokyo', day:2},
-  27:{ev:'Nakame',  tab:'tokyo', day:3},
-  28:{ev:'Fuji',    tab:'trips', day:1},
+  26:{ev:'Nakame',  tab:'tokyo', day:2},
+  27:{ev:'Shibuya', tab:'tokyo', day:3},
+  28:{ev:'Fuji?',   tab:'tokyo', day:4},
   29:{ev:'Kichijōji',tab:'tokyo', day:5},
   30:{ev:'Home',    tab:'tokyo', day:6}
 };

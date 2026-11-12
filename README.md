@@ -26,8 +26,7 @@ the estimates table drives the summary tiles live.
 | Tab | What it holds |
 |---|---|
 | **Overview** | November calendar (tap a day to jump), weather + daylight, outline flights, and the full itinerary browser |
-| **Tokyo** | Six day-by-day plans, plus a curated places list you can add to |
-| **Day Trips** | Kamakura, Hakone, Kawaguchiko and Nikkō written up in full — pick one for the Friday |
+| **Tokyo** | Six day-by-day plans — Day 4 holds both Saturday plans (Mount Fuji / Asakusa) behind an A/B switch |
 | **Vintage** | Secondhand luxury bags: the condition grading scale, the four shopping districts mapped onto the days, what Tokyo is actually cheap for, and what to check before buying |
 | **Flights & Stay** | Both airport runs, what the Asakusabashi flat is plugged into, living there, passes, eSIM, what sells out |
 | **Tips** | How Japan actually works — money, trains, ordering, onsen, shrines, tax-free |
@@ -99,9 +98,18 @@ is) — choose on the day. **Removed:** Negishi (beef tongue) and all ramen (Gin
 | Day | Slot | Options |
 |---|---|---|
 | Wed | Ginza lunch | Ginza Sato Yosuke (Inaniwa udon) · Tonkatsu Marushichi (Ginza branch, `verify`) |
-| Thu | Omotesandō lunch | Maisen · BASO Omotesandō (duck tsuke-soba) |
-| Fri | Dinner | Kinboshi, Shibuya · Shodai, Ebisu (white curry udon, hours `verify`) |
+| Thu | Dinner (Nakameguro day) | Kinboshi, Shibuya · Shodai, Ebisu (white curry udon, hours `verify`) |
+| Fri | Omotesandō lunch | Maisen · BASO Omotesandō (duck tsuke-soba) |
 | Sat | Asakusa option | Hinoya Curry, Okachimachi · Nagi café, Ueno |
 | Sat | Dinner, either option | **Yakiniku Jumbo Hanare, Hongō — must eat, book now** |
 | Sun | Shinjuku dinner | Gyutan no Lemon (book) · Gyukatsu Motomura · Udon Shin · Hinoya Curry |
 | Mon | Ginza lunch | whichever of Wednesday's two you skipped |
+
+## Day order and Saturday switch (2026-11-12, later still)
+
+- **Days 2 and 3 swapped:** Thu 26 is now Nakameguro → Daikanyama → Ebisu (`#tokyo-day-2`, Kinboshi or Shodai for dinner);
+  Fri 27 is Heckeln → Omotesandō → Cat Street → Shibuya (`#tokyo-day-3`, OH KAMA BAR). Bookings, eat list, calendar,
+  Places and the vintage "by day" map follow. Nakameguro is now "buy if it's the one"; Omotesandō is "compare, then decide".
+- **The Mt Fuji tab is gone — Day 4 owns both plans.** `#tokyo-day-4` has an A/B switch (`.opt-switch`, `pickOpt()`):
+  A is the full hour-by-hour Fuji timeline (moved, not copied), B is Asakusa → Kappabashi → Hinoya → Nagi → Ueno/Ameyoko.
+  Jumbo Hanare sits below both as the shared dinner. `goFuji()` now opens Day 4 with A selected.
