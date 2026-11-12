@@ -97,13 +97,13 @@ is) — choose on the day. **Removed:** Negishi (beef tongue) and all ramen (Gin
 
 | Day | Slot | Options |
 |---|---|---|
-| Wed | Ginza lunch | Ginza Sato Yosuke (Inaniwa udon) · Tonkatsu Marushichi (Ginza branch, `verify`) |
+| Wed | Ginza lunch | Ginza Sato Yosuke (Inaniwa udon) · Tonkatsu Marushichi (Ginza branch, `verify`) · Ginza Katsukami (Bib Gourmand tonkatsu, bookable) |
 | Thu | Dinner (Nakameguro day) | Kinboshi, Shibuya · Shodai, Ebisu (white curry udon, hours `verify`) |
 | Fri | Omotesandō lunch | Maisen · BASO Omotesandō (duck tsuke-soba) |
 | Sat | Asakusa option | Hinoya Curry, Okachimachi · Nagi café, Ueno |
 | Sat | Dinner, either option | **Yakiniku Jumbo Hanare, Hongō — must eat, book now** |
 | Sun | Shinjuku dinner | Gyutan no Lemon (book) · Gyukatsu Motomura · Udon Shin · Hinoya Curry |
-| Mon | Ginza lunch | whichever of Wednesday's two you skipped |
+| Mon | Ginza lunch | one of Wednesday's three you skipped |
 
 ## Day order and Saturday switch (2026-11-12, later still)
 
