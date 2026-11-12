@@ -1527,6 +1527,18 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
   .eat-d{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
   .eat.mine{border-color:var(--accent-edge);background:var(--accent-soft)}
   .eat.mine .eat-d{color:var(--accent)}
+  /* .pick — a meal slot with several options; choose on the day */
+  .pick{display:grid;gap:6px;margin-top:11px}
+  .pick-h{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .pick-o{display:grid;grid-template-columns:22px 1fr;column-gap:10px;row-gap:2px;padding:9px 12px;border:1px solid var(--sep);border-radius:10px;background:var(--surface)}
+  .pick-o.mine{border-color:var(--accent-edge);background:var(--accent-soft)}
+  .pick-l{grid-row:span 2;width:22px;height:22px;border-radius:50%;background:var(--chip);color:var(--text2);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .pick-o.mine .pick-l{background:var(--accent);color:#fff}
+  .pick-n{font-size:13.5px;font-weight:600;line-height:1.35;color:var(--text)}
+  .pick-map{text-decoration:none;font-size:12px;margin-left:2px}
+  .pick-d{font-size:12.5px;line-height:1.55;color:var(--text2)}
+  .pick-d strong{color:var(--text)}
+  .route + .route{margin-top:-4px}
   @media(max-width:560px){
     .route{padding:10px 12px;font-size:12px}
     .stop + .stop::before{margin:0 6px}
@@ -1548,7 +1560,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
     <h1>Tokyo Gurlies</h1>
     <div class="page-props">
       <div class="prop"><span class="prop-k">📅 Dates</span><span class="prop-v">Fly Tue 24 Nov · in Tokyo Wed 25 – Mon 30 Nov · home Tue 1 Dec</span></div>
-      <div class="prop"><span class="prop-k">📍 Base</span><span class="prop-v"><span class="ptag">Asakusabashi</span><span class="ptag">Taito City</span><span class="ptag">+ Mount Fuji day</span></span></div>
+      <div class="prop"><span class="prop-k">📍 Base</span><span class="prop-v"><span class="ptag">Asakusabashi</span><span class="ptag">Taito City</span><span class="ptag">+ Mount Fuji or Asakusa</span></span></div>
       <div class="prop"><span class="prop-k">✈️ Route</span><span class="prop-v">SIN → HND · NRT → SIN <span class="ptag">JAL · booked</span></span></div>
       <div class="prop"><span class="prop-k">🍁 Season</span><span class="prop-v">Peak autumn colour · sunset ~16:30 · 7–16°C</span></div>
       <div class="prop"><span class="prop-k">👥 Travellers</span><span class="prop-v"><span class="ptag">Yanni</span><span class="ptag">Sol</span><span class="ptag">Susan</span></span></div>
@@ -1578,26 +1590,33 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
 
   <div class="callout">
     <strong>Flights and the flat are booked.</strong> JAL out of Changi on the Tuesday night, landing Haneda at dawn on the Wednesday; home from <em>Narita</em> on the Monday evening. The Airbnb is in <strong>Asakusabashi</strong>, and it is yours from Tuesday afternoon — which matters more than it sounds, because it means you can walk in and drop the cases the moment you land.
-    <br><br><strong>Saturday is Mount Fuji</strong> — the classic Kawaguchiko loop, by direct train, no car. Every other day is shops, cafés, food and a bar to end on, and all eight places you named have a day and a time; they carry an <span class="must" style="margin-left:0">on your list</span> badge. Anything marked <span class="tbc">verify</span> is a detail I could not confirm, not a decision.
+    <br><br><strong>Saturday is your call: Mount Fuji or Asakusa</strong> — the Kawaguchiko loop by direct train, or the old east side two stops from the flat. Both end at <strong>Yakiniku Jumbo Hanare</strong>, so the must-eat happens either way. Every other day is shops, cafés, food and a bar to end on. Where there are more places you want than meals, a slot shows <strong>A / B / C options</strong> — all of them near where you already are that day — and you pick on the day. Everything you named is on a day; they carry an <span class="must" style="margin-left:0">on your list</span> badge. Anything marked <span class="tbc">verify</span> is a detail I could not confirm, not a decision.
   </div>
 
   <div class="flt-section-label">🎟 Book these — everything else you walk into</div>
   <div class="bk-board">
     <div class="bk-group now"><i></i>Book now · these sell out</div>
-    <button class="bk" onclick="goFuji()"><span class="bk-when"><b>Sat 28</b>07:07</span><span class="bk-what"><strong>Fuji Excursion 3 — Kinshichō → Shimoyoshida</strong><small>3 reserved seats on JR East's Eki-net. All-reserved, already on sale, and Saturday mornings go first. Confirm the Saturday time when you book.</small></span><span class="bk-st now">Book now</span></button>
+    <button class="bk" onclick="goFuji()"><span class="bk-when"><b>Sat 28</b>07:07</span><span class="bk-what"><strong>Fuji Excursion 3 — Kinshichō → Shimoyoshida</strong><small>3 reserved seats on JR East's Eki-net. All-reserved, already on sale, and Saturday mornings go first. Confirm the Saturday time when you book. Only if you go for Fuji over Asakusa — but book anyway; cancelling costs a few hundred yen.</small></span><span class="bk-st now">Book now</span></button>
     <button class="bk" onclick="goFuji()"><span class="bk-when"><b>Sat 28</b>16:48</span><span class="bk-what"><strong>Fuji Excursion 44 — Kawaguchiko → Shinjuku</strong><small>Book in the same sitting. The afternoon trains back are the ones that fill.</small></span><span class="bk-st now">Book now</span></button>
     <button class="bk" onclick="goDay(1)"><span class="bk-when"><b>Wed 25</b>18:00</span><span class="bk-what"><strong>Moheji — monjayaki, Tsukishima</strong><small>Tabelog, or 03-6204-2314. The most queued-for shop on Monja Street.</small></span><span class="bk-st now">Book</span></button>
     <button class="bk" onclick="goDay(2)"><span class="bk-when"><b>Thu 26</b>18:30</span><span class="bk-what"><strong>OH KAMA BAR — dinner, Shibuya</strong><small>The guide says you need a reservation: Tabelog or TableCheck, or 03-6427-8884.</small></span><span class="bk-st now">Book</span></button>
+    <button class="bk" onclick="goDay(4)"><span class="bk-when"><b>Sat 28</b>19:30</span><span class="bk-what"><strong>Yakiniku Jumbo Hanare — Hongō · must eat</strong><small>Official site only, and it is one of the hardest yakiniku bookings in Tokyo. Try every evening of the trip, not just Saturday — whichever night you get, swap that night's dinner for it.</small></span><span class="bk-st now">Book now</span></button>
     <div class="bk-group opt"><i></i>Worth a booking · not fatal without</div>
     <button class="bk" onclick="goDay(3)"><span class="bk-when"><b>Fri 27</b>19:00</span><span class="bk-what"><strong>Kinboshi — small plates, Shibuya</strong><small>Friday night for three. Check the pin on the Instagram post for hours first; book if it takes them.</small></span><span class="bk-st opt">Verify, then book</span></button>
     <button class="bk" onclick="goDay(2)"><span class="bk-when"><b>Thu 26</b>11:00</span><span class="bk-what"><strong>Tonkatsu Maisen Aoyama</strong><small>Takes phone bookings (0120-428-485), but arriving at the 11:00 opening does the same job.</small></span><span class="bk-st opt">Optional</span></button>
+    <button class="bk" onclick="goDay(5)"><span class="bk-when"><b>Sun 29</b>18:30</span><span class="bk-what"><strong>Gyutan no Lemon — beef tongue, Nishi-Shinjuku</strong><small>Only if Sunday dinner is option A. Phone 050-5571-2239 or Tabelog; the 17:00–18:30 slots are the easy ones.</small></span><span class="bk-st opt">If option A</span></button>
     <div class="bk-group walk"><i></i>Just walk in · no bookings taken or needed</div>
     <div class="walk-list">
       <span><b>Café Heckeln</b> · cash only, go early</span>
       <span><b>Onibus Coffee</b></span>
       <span><b>Shiraishi</b> · Roppongi, listed 24h</span>
-      <span><b>Negishi</b> · any Shinjuku branch</span>
-      <span><b>Ginza Kagari</b> · queue</span>
+      <span><b>Ginza Sato Yosuke</b> · be there at 11:30</span>
+      <span><b>Tonkatsu Marushichi</b> · Ginza</span>
+      <span><b>BASO</b> · Omotesandō, ¥500 skip-the-queue ticket</span>
+      <span><b>Shodai</b> · Ebisu, check hours</span>
+      <span><b>Nagi</b> café · Ueno</span>
+      <span><b>Gyukatsu Motomura</b> · Shinjuku, queue</span>
+      <span><b>Hinoya Curry</b> · any branch</span>
       <span><b>Hōtō Fudō</b> · Kawaguchiko</span>
       <span><b>Satou</b> menchi-katsu · queue</span>
       <span><b>Harmonica Yokochō</b></span>
@@ -1623,7 +1642,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
       </div>
       <div class="cal-legend">
         <div class="cal-leg"><div class="cal-leg-dot" style="background:var(--tokyo-soft);border:1px solid var(--tokyo)"></div>In Tokyo</div>
-        <div class="cal-leg"><div class="cal-leg-dot" style="background:var(--trip-soft);border:1px solid var(--trip)"></div>Mount Fuji</div>
+        <div class="cal-leg"><div class="cal-leg-dot" style="background:var(--trip-soft);border:1px solid var(--trip)"></div>Fuji or Asakusa</div>
         <div class="cal-leg"><div class="cal-leg-dot" style="background:var(--amber-l);border:1px solid var(--amber)"></div>Flying day</div>
       </div>
       <p style="font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5">Tap a coloured day to jump to that day's plan. <strong>Mon 23 Nov is Labour Thanksgiving Day</strong> in Japan — a public holiday, so the weekend before you land is a busy one. By Wednesday it has cleared.</p>
@@ -1724,28 +1743,35 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
   </div>
   <p style="font-size:12.5px;color:var(--muted);margin:-2px 0 4px;line-height:1.5">Both airport runs, and how the flat connects to the rest of the city, are on the <strong>Flights &amp; Stay</strong> tab.</p>
 
-  <div class="sh"><h2>🍜 Eat &amp; Drink List</h2><p>Your eight, plus the food and bars Tokyo does better than anywhere — each already on a day. Tap one to jump there.</p></div>
+  <div class="sh"><h2>🍜 Eat &amp; Drink List</h2><p>Everything you named (highlighted), plus the food and bars Tokyo does better than anywhere — each already on a day, some as one of a pick-one set. Tap one to jump there.</p></div>
   <div class="eat-grid">
     <button class="eat" onclick="goDay(1)"><span class="eat-e">🥪</span><span class="eat-t">Konbini tamago sando<small>Any 7-Eleven · the morning you land</small></span><span class="eat-d">Wed</span></button>
-    <button class="eat" onclick="goDay(1)"><span class="eat-e">🍜</span><span class="eat-t">Chicken-broth ramen<small>Ginza Kagari · Ginza</small></span><span class="eat-d">Wed</span></button>
+    <button class="eat mine" onclick="goDay(1)"><span class="eat-e">🍜</span><span class="eat-t">Inaniwa udon<small>Ginza Sato Yosuke · Ginza · lunch A</small></span><span class="eat-d">Wed</span></button>
+    <button class="eat mine" onclick="goDay(1)"><span class="eat-e">🐖</span><span class="eat-t">Two-inch tonkatsu<small>Tonkatsu Marushichi · Ginza · lunch B</small></span><span class="eat-d">Wed</span></button>
     <button class="eat" onclick="goDay(1)"><span class="eat-e">🍓</span><span class="eat-t">Fruit parfait<small>Sembikiya · Ginza</small></span><span class="eat-d">Wed</span></button>
     <button class="eat mine" onclick="goDay(1)"><span class="eat-e">🍳</span><span class="eat-t">Monjayaki<small>Moheji · Tsukishima</small></span><span class="eat-d">Wed</span></button>
     <button class="eat" onclick="goDay(1)"><span class="eat-e">🍺</span><span class="eat-t">First-night beer<small>Nui. · Kuramae</small></span><span class="eat-d">Wed</span></button>
     <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍮</span><span class="eat-t">Jumbo pudding<small>Café Heckeln · Shimbashi</small></span><span class="eat-d">Thu</span></button>
-    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🐖</span><span class="eat-t">Tonkatsu<small>Maisen Aoyama · Omotesandō</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🐖</span><span class="eat-t">Tonkatsu<small>Maisen Aoyama · Omotesandō · lunch A</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🦆</span><span class="eat-t">Duck dipping soba<small>BASO · Omotesandō · lunch B</small></span><span class="eat-d">Thu</span></button>
     <button class="eat" onclick="goDay(2)"><span class="eat-e">☕</span><span class="eat-t">Pour-over, taken seriously<small>Koffee Mameya · Omotesandō</small></span><span class="eat-d">Thu</span></button>
     <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍚</span><span class="eat-t">Kamameshi<small>OH KAMA BAR · Shibuya</small></span><span class="eat-d">Thu</span></button>
     <button class="eat" onclick="goDay(2)"><span class="eat-e">🎷</span><span class="eat-t">Whisky and vinyl<small>JBS · Nonbei Yokochō · SG Club</small></span><span class="eat-d">Thu</span></button>
     <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍜</span><span class="eat-t">Soba &amp; udon<small>Shiraishi · Roppongi</small></span><span class="eat-d">Fri</span></button>
     <button class="eat mine" onclick="goDay(3)"><span class="eat-e">☕</span><span class="eat-t">Coffee by the train line<small>Onibus Coffee · Nakameguro</small></span><span class="eat-d">Fri</span></button>
     <button class="eat" onclick="goDay(3)"><span class="eat-e">🍺</span><span class="eat-t">A Yebisu at the brewery<small>Yebisu Garden Place · Ebisu</small></span><span class="eat-d">Fri</span></button>
-    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍶</span><span class="eat-t">Obanzai small plates<small>Kinboshi · Shibuya</small></span><span class="eat-d">Fri</span></button>
+    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍶</span><span class="eat-t">Obanzai small plates<small>Kinboshi · Shibuya · dinner A</small></span><span class="eat-d">Fri</span></button>
+    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍛</span><span class="eat-t">White curry udon<small>Shodai · Ebisu · dinner B</small></span><span class="eat-d">Fri</span></button>
     <button class="eat" onclick="goDay(3)"><span class="eat-e">🍸</span><span class="eat-t">Absinthe cocktails<small>Bar Trench · Ebisu</small></span><span class="eat-d">Fri</span></button>
-    <button class="eat" onclick="goDay(4)"><span class="eat-e">🍲</span><span class="eat-t">Hōtō noodles<small>Hōtō Fudō · Kawaguchiko</small></span><span class="eat-d">Sat</span></button>
-    <button class="eat mine" onclick="goDay(4)"><span class="eat-e">🥩</span><span class="eat-t">Gyūtan &amp; barley rice<small>Negishi · Shinjuku</small></span><span class="eat-d">Sat</span></button>
+    <button class="eat" onclick="goFuji()"><span class="eat-e">🍲</span><span class="eat-t">Hōtō noodles<small>Hōtō Fudō · Kawaguchiko</small></span><span class="eat-d">Sat</span></button>
+    <button class="eat mine" onclick="goDay(4)"><span class="eat-e">🍰</span><span class="eat-t">Cheesecake &amp; house coffee<small>Nagi · Ueno · if Asakusa</small></span><span class="eat-d">Sat</span></button>
+    <button class="eat mine" onclick="goDay(4)"><span class="eat-e">🍛</span><span class="eat-t">Katsu curry<small>Hinoya Curry · Okachimachi or Shinjuku</small></span><span class="eat-d">Sat/Sun</span></button>
+    <button class="eat mine" onclick="goDay(4)"><span class="eat-e">🔥</span><span class="eat-t">Wagyu yakiniku · must eat<small>Yakiniku Jumbo Hanare · Hongō</small></span><span class="eat-d">Sat</span></button>
     <button class="eat" onclick="goDay(5)"><span class="eat-e">🥟</span><span class="eat-t">Menchi-katsu, eaten standing<small>Satou · Kichijōji</small></span><span class="eat-d">Sun</span></button>
     <button class="eat" onclick="goDay(5)"><span class="eat-e">🍱</span><span class="eat-t">Depachika grazing<small>Isetan Shinjuku basement</small></span><span class="eat-d">Sun</span></button>
-    <button class="eat" onclick="goDay(5)"><span class="eat-e">🍢</span><span class="eat-t">Udon, tsukemen or yakitori<small>Udon Shin · Fūunji · Omoide Yokochō</small></span><span class="eat-d">Sun</span></button>
+    <button class="eat mine" onclick="goDay(5)"><span class="eat-e">👅</span><span class="eat-t">Thick-cut beef tongue<small>Gyutan no Lemon · Shinjuku · dinner A</small></span><span class="eat-d">Sun</span></button>
+    <button class="eat mine" onclick="goDay(5)"><span class="eat-e">🥩</span><span class="eat-t">Gyūkatsu on a hot stone<small>Gyukatsu Motomura · Shinjuku · dinner B</small></span><span class="eat-d">Sun</span></button>
+    <button class="eat mine" onclick="goDay(5)"><span class="eat-e">🍜</span><span class="eat-t">Udon cut to order<small>Udon Shin · Yoyogi · dinner C</small></span><span class="eat-d">Sun</span></button>
     <button class="eat" onclick="goDay(5)"><span class="eat-e">🥃</span><span class="eat-t">The last night<small>Golden Gai · Shinjuku</small></span><span class="eat-d">Sun</span></button>
     <button class="eat" onclick="goDay(6)"><span class="eat-e">🍣</span><span class="eat-t">Tsukiji breakfast<small>Tamagoyaki, tuna, uni · 07:00</small></span><span class="eat-d">Mon</span></button>
     <button class="eat" onclick="goDay(6)"><span class="eat-e">🥪</span><span class="eat-t">Katsu sando for the train<small>Mitsukoshi depachika · Ginza</small></span><span class="eat-d">Mon</span></button>
@@ -1822,7 +1848,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
     <button class="day-pill active" onclick="switchDay('tokyo',1,this)"><span class="dp-pill-date">Wed 25 Nov</span><span class="dp-pill-label">Kuramae &amp; Ginza</span></button>
     <button class="day-pill" onclick="switchDay('tokyo',2,this)"><span class="dp-pill-date">Thu 26 Nov</span><span class="dp-pill-label">Omotesandō &amp; Shibuya</span></button>
     <button class="day-pill" onclick="switchDay('tokyo',3,this)"><span class="dp-pill-date">Fri 27 Nov</span><span class="dp-pill-label">Nakameguro → Ebisu</span></button>
-    <button class="day-pill" onclick="switchDay('tokyo',4,this)"><span class="dp-pill-date">Sat 28 Nov</span><span class="dp-pill-label">Mount Fuji</span></button>
+    <button class="day-pill" onclick="switchDay('tokyo',4,this)"><span class="dp-pill-date">Sat 28 Nov</span><span class="dp-pill-label">Fuji or Asakusa</span></button>
     <button class="day-pill" onclick="switchDay('tokyo',5,this)"><span class="dp-pill-date">Sun 29 Nov</span><span class="dp-pill-label">Kichijōji &amp; Shinjuku</span></button>
     <button class="day-pill" onclick="switchDay('tokyo',6,this)"><span class="dp-pill-date">Mon 30 Nov</span><span class="dp-pill-label">Fly home</span></button>
   </div>
@@ -1836,7 +1862,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-daytitle">Day 1 — Wednesday, 25 November</div>
         <div class="dp-daysub">Land at dawn · Kuramae coffee · Ginza for lunch and shops · monjayaki · one drink</div>
       </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Haneda <small>05:55</small></span><span class="stop">Flat <small>07:45</small></span><span class="stop">Kuramae <small>09:30</small></span><span class="stop">Ginza <small>12:00</small></span><span class="stop">Moheji <small>18:00</small></span><span class="stop">Nui. bar <small>20:15</small></span></div>
+      <div class="route"><span class="route-k">Route</span><span class="stop">Haneda <small>05:55</small></span><span class="stop">Flat <small>07:45</small></span><span class="stop">Kuramae <small>09:30</small></span><span class="stop">Ginza lunch <small>11:45</small></span><span class="stop">Moheji <small>18:00</small></span><span class="stop">Nui. bar <small>20:15</small></span></div>
       <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -1934,19 +1960,18 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
-          <div class="dp-time">12:00</div>
-          <div class="dp-title">Ginza <span class="jp">銀座</span> — ramen for lunch</div>
+          <div class="dp-time">11:45</div>
+          <div class="dp-title">Ginza <span class="jp">銀座</span> — lunch, pick one</div>
           <div class="dp-desc">
-            <p class="dp-lead">Ginza is the one big neighbourhood that is genuinely close to the flat, so it gets the first afternoon instead of being squeezed into the last morning.</p>
+            <p class="dp-lead">Ginza is the one big neighbourhood that is genuinely close to the flat, so it gets the first afternoon instead of being squeezed into the last morning. Two of yours are here, a few streets apart — have one today and the other on Monday, when you are back in Ginza at lunchtime anyway.</p>
             <div class="dp-facts">
               <div class="dp-fact"><span class="dp-fact-k">Getting there</span><span class="dp-fact-v">Asakusa line from Kuramae or Asakusabashi → Higashi-Ginza, direct, ~10 min</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Lunch</span><span class="dp-fact-v"><strong>Ginza Kagari</strong> — creamy chicken-broth soba, the bowl Ginza queues for</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Queue</span><span class="dp-fact-v">20–40 min at noon; no bookings</span></div>
             </div>
-            <div class="dp-alt"><strong>Queue too long?</strong> Go down into the <strong>Mitsukoshi</strong> food hall, buy sushi and a katsu sando, and take them up to the roof garden on the 9th floor. Faster, and arguably the better first lunch.</div>
+<div class="pick"><div class="pick-h">Lunch · pick one</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">Ginza Sato Yosuke <span class="jp">銀座 佐藤養助</span> <a class="pick-map" href="https://maps.google.com/?q=Ginza+Sato+Yosuke+Ginza+6-4-17" target="_blank">📍</a></div><div class="pick-d">Inaniwa udon from a 165-year-old Akita maker: thin, flat and silky, served cold with a dipping sauce or hot in broth. Light after a night flight. Ginza 6-4-17, Idei Honkan 1F, 5 min from Ginza station exit C2. Opens <strong>11:30</strong> — be there for it, because the line builds by noon. ~¥1,500–2,500.</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">Tonkatsu Marushichi <span class="jp">とんかつ 丸七</span>, Ginza branch <span class="tbc">verify</span> <a class="pick-map" href="https://maps.google.com/?q=とんかつ丸七+銀座" target="_blank">📍</a></div><div class="pick-d">The two-inch-thick cut, cooked low and slow so it stays pink and juicy inside. Walk in; the Ginza shop has an English menu. The original is in Monzen-nakachō and there are several branches, so check the Ginza address and hours on the map before you go.</div></div></div>
+            <div class="dp-alt"><strong>Queue too long at both?</strong> Go down into the <strong>Mitsukoshi</strong> food hall, buy sushi and a katsu sando, and take them up to the roof garden on the 9th floor.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Walk in</span><span class="dp-tag">Ramen</span><span class="dp-tag">10 min from home</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Ginza+Kagari+Honten" target="_blank">📍 Ginza Kagari</a>
+          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Udon or tonkatsu</span><span class="dp-tag">10 min from home</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Ginza+Sato+Yosuke+Ginza+6-4-17" target="_blank">📍 Sato Yosuke, Ginza</a>
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -2014,7 +2039,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <a class="dest-card" href="https://maps.google.com/?q=Haneda+Airport+Terminal+3" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e293b,#334155,#94a3b8)"><span class="dest-time">05:55</span><span class="dest-img-icon">🛬</span><span class="dest-card-name">Haneda T3</span></div><div class="dest-body"><div class="dest-type">JL 36 · dawn arrival</div><div class="dest-info">Out by ~06:45 with the Visit Japan Web QR · Keikyu straight through to Asakusabashi, ~40 min ~¥620</div><div class="dest-tags"><span class="dest-dtag">No changes</span><span class="dest-dtag">HND T3</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Asakusabashi+4-chome-14-5+Taito+City+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7f1d1d,#b3242c,#fca5a5)"><span class="dest-time">07:45</span><span class="dest-img-icon">🏡</span><span class="dest-card-name">The flat</span></div><div class="dest-body"><div class="dest-type">Asakusabashi · yours since Tuesday</div><div class="dest-info">Booked from the 24th, so you walk in and drop the bags instead of hunting lockers · Lift · Confirm the code with Meika first</div><div class="dest-tags"><span class="dest-dtag">The trick</span><span class="dest-dtag">Lift ✓</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Kuramae+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#44403c,#78716c,#e7e5e4)"><span class="dest-time">09:30</span><span class="dest-img-icon">📓</span><span class="dest-card-name">Kuramae</span></div><div class="dest-body"><div class="dest-type">Coffee &amp; makers · 10 min walk</div><div class="dest-info">Roasters, leather, stationery — shops not shrines · Kakimori binds you a notebook · Dandelion Chocolate</div><div class="dest-tags"><span class="dest-dtag">Low energy</span><span class="dest-dtag">On the doorstep</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Ginza+4-chome+crossing+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#78350f,#b45309,#fcd34d)"><span class="dest-time">12:00</span><span class="dest-img-icon">🛍</span><span class="dest-card-name">Ginza</span></div><div class="dest-body"><div class="dest-type">Lunch · shops · café</div><div class="dest-info">Kagari ramen, then Itoya, Muji, Ginza Six · Scout KOMEHYO, buy on Monday</div><div class="dest-tags"><span class="dest-dtag">10 min from home</span><span class="dest-dtag">Tax-free</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Ginza+4-chome+crossing+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#78350f,#b45309,#fcd34d)"><span class="dest-time">11:45</span><span class="dest-img-icon">🛍</span><span class="dest-card-name">Ginza</span></div><div class="dest-body"><div class="dest-type">Lunch · shops · café</div><div class="dest-info">Sato Yosuke udon or Marushichi tonkatsu, then Itoya, Muji, Ginza Six · Scout KOMEHYO, buy on Monday</div><div class="dest-tags"><span class="dest-dtag">10 min from home</span><span class="dest-dtag">Tax-free</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Moheji+Tsukishima+monja" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#451a03,#b45309,#fcd34d)"><span class="dest-time">18:00</span><span class="dest-img-icon">🍳</span><span class="dest-card-name">Moheji</span></div><div class="dest-body"><div class="dest-type">Monjayaki · book</div><div class="dest-info">Tsukishima Monja Street · Two stops from Ginza · Mentaiko-mochi-cheese first</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Booked</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Nui+Hostel+Bar+Lounge+Kuramae" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#44403c,#a8a29e)"><span class="dest-time">20:15</span><span class="dest-img-icon">🍺</span><span class="dest-card-name">Nui.</span></div><div class="dest-body"><div class="dest-type">Bar · Kuramae</div><div class="dest-info">Hostel lounge bar, craft beer and highballs · No cover · Ten minutes from the flat</div><div class="dest-tags"><span class="dest-dtag">Nightcap</span><span class="dest-dtag">Walk home</span></div></div></a>
       </div>
@@ -2028,7 +2053,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-daytitle">Day 2 — Thursday, 26 November</div>
         <div class="dp-daysub">Pudding for breakfast → the ginkgo avenue → Omotesandō → Cat Street → Shibuya after dark</div>
       </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shimbashi</span><span class="stop">Heckeln <small>08:45</small></span><span class="stop">Icho Namiki</span><span class="stop">Maisen <small>11:00</small></span><span class="stop">Omotesandō</span><span class="stop">Cat Street</span><span class="stop">Shibuya shops</span><span class="stop">OH KAMA BAR <small>18:30</small></span><span class="stop">Bars</span></div>
+      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shimbashi</span><span class="stop">Heckeln <small>08:45</small></span><span class="stop">Icho Namiki</span><span class="stop">Maisen or BASO <small>11:00</small></span><span class="stop">Omotesandō</span><span class="stop">Cat Street</span><span class="stop">Shibuya shops</span><span class="stop">OH KAMA BAR <small>18:30</small></span><span class="stop">Bars</span></div>
       <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -2085,7 +2110,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-item">
           <div class="dp-dot key"></div>
           <div class="dp-time">11:00</div>
-          <div class="dp-title">Tonkatsu Maisen, Aoyama main shop <span class="jp">とんかつ まい泉 青山本店</span> <span class="must">on your list</span></div>
+          <div class="dp-title">Lunch in Omotesandō — Maisen or BASO, pick one <span class="must">on your list</span></div>
           <div class="dp-desc">
             <p class="dp-lead">Tonkatsu in a converted 1930s bathhouse — the high ceiling and the changing-room doors are still there. It opens at <strong>11:00</strong>, and being in the first seating is the whole trick: by 12:15 the queue is down the lane.</p>
             <p>One stop on the Ginza line from Gaienmae to <strong>Omotesandō</strong> (exit A2, five minutes), or a fifteen-minute walk from the avenue. Order the <strong>kurobuta hire-katsu</strong> (fillet — soft enough to cut with chopsticks, which is their line) or the rōsu if you like the fat. Cabbage and rice refill free. Ask for the <strong>old bathhouse room</strong> when you are seated.</p>
@@ -2094,8 +2119,9 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <div class="dp-fact"><span class="dp-fact-k">Hours</span><span class="dp-fact-v">11:00–22:00, last order 21:00</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Spend</span><span class="dp-fact-v">~¥2,000–3,800 a set</span></div>
             </div>
+<div class="pick"><div class="pick-h">Lunch · pick one</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">A · Tonkatsu Maisen, Aoyama main shop <span class="jp">とんかつ まい泉 青山本店</span> <a class="pick-map" href="https://maps.google.com/?q=Tonkatsu+Maisen+Aoyama+Honten" target="_blank">📍</a></div><div class="pick-d">Everything above. The pick if you want the room and the classic pork cutlet. Walk in at 11:00.</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">B · BASO Omotesandō <span class="jp">BASO 表参道</span> <a class="pick-map" href="https://maps.google.com/?q=BASO+表参道+神宮前6-11-7" target="_blank">📍</a></div><div class="pick-d">Dipping soba instead of a cutlet: the <strong>salted-duck tsuke-SOBA</strong> (塩鴨つけSOBA), with a side of egg-tempura rice. Lighter, and a better idea if you are doing tonkatsu in Ginza and gyūkatsu on Sunday. Jingūmae 6-11-7, ~5 min from Omotesandō station — about the same walk as Maisen. Opens ~11:30; buy at the ticket machine (cash or Suica); there is a ¥500 skip-the-queue ticket if the line is long. ~¥1,400.</div></div></div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Walk in at 11:00</span><span class="dp-tag">Tonkatsu</span><span class="dp-tag">~¥3,000</span></div>
+          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Tonkatsu or soba</span><span class="dp-tag">~¥1,500–3,000</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Tonkatsu+Maisen+Aoyama+Honten" target="_blank">📍 Maisen Aoyama</a>
         </div>
         <div class="dp-item">
@@ -2227,7 +2253,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-daytitle">Day 3 — Friday, 27 November</div>
         <div class="dp-daysub">Nakameguro → Daikanyama → Ebisu · a river, a hill and a beer town on foot, then Shibuya for dinner</div>
       </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shiraishi, Roppongi <small>10:15</small></span><span class="stop">Naka-Meguro <small>11:15</small></span><span class="stop">Onibus Coffee</span><span class="stop">Meguro River</span><span class="stop">Daikanyama</span><span class="stop">T-Site</span><span class="stop">Ebisu</span><span class="stop">Kinboshi, Shibuya <small>19:00</small></span><span class="stop">Bars</span></div>
+      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shiraishi, Roppongi <small>10:15</small></span><span class="stop">Naka-Meguro <small>11:15</small></span><span class="stop">Onibus Coffee</span><span class="stop">Meguro River</span><span class="stop">Daikanyama</span><span class="stop">T-Site</span><span class="stop">Ebisu</span><span class="stop">Kinboshi or Shodai <small>19:00</small></span><span class="stop">Bars</span></div>
       <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -2374,7 +2400,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-item">
           <div class="dp-dot key"></div>
           <div class="dp-time">19:00</div>
-          <div class="dp-title">Kinboshi <span class="jp">酒場きんぼし</span>, Shibuya — small plates for dinner <span class="must">on your list</span></div>
+          <div class="dp-title">Dinner — Kinboshi in Shibuya or Shodai in Ebisu, pick one <span class="must">on your list</span></div>
           <div class="dp-desc">
             <p class="dp-lead">From the guide you sent: a Shibuya <em>sakaba</em> where dinner arrives as a tray of little dishes — obanzai-style home cooking, with a daily-special menu that changes with what came in. Order the assortment, then add from the specials board.</p>
             <div class="dp-facts">
@@ -2382,9 +2408,10 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <div class="dp-fact"><span class="dp-fact-k">Book</span><span class="dp-fact-v">Try to — it is Friday night in Shibuya and you are three</span></div>
             </div>
             <div class="dp-note warn"><span class="tbc">verify</span> The post only says “Kinboshi, Shibuya”. The best match I can find is the izakaya <strong>酒場きんぼし</strong>, known for exactly this obanzai — but I could not confirm its address, hours or whether it takes reservations. Open the pin tagged on the Instagram post, check Friday hours, and book from there if it lets you.</div>
-            <div class="dp-alt"><strong>If it is full:</strong> <strong>Tsukinikari</strong>, from the same guide, is the other Shibuya small-plates room. Or do not leave Ebisu at all — <strong>Ebisu Yokochō</strong> is a covered market turned into one loud room of two dozen stalls where you sit wherever there is space, and <strong>AFURI</strong>'s yuzu-shio ramen started round the corner.</div>
+<div class="pick"><div class="pick-h">Dinner · pick one</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">A · Kinboshi <span class="jp">酒場きんぼし</span>, Shibuya <a class="pick-map" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍</a></div><div class="pick-d">Everything above: small plates, one stop away, book if it lets you.</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">B · Shodai <span class="jp">初代</span>, Ebisu <span class="tbc">verify hours</span> <a class="pick-map" href="https://maps.google.com/?q=Shodai+Ebisu+curry+udon" target="_blank">📍</a></div><div class="pick-d">You are already standing in Ebisu, so this costs no travel at all. The famous bowl is the <strong>white curry udon</strong> — curry udon hidden under a cloud of whipped potato foam that you stir in. Ebisu-minami 1-1-10, a couple of minutes from Ebisu station west exit. Expect a queue; groups are seated upstairs. Listings disagree on hours (some say from 11:30, others 17:00 until very late), so check on the day. If it is a late-night shop, it also works as the bowl <em>after</em> Bar Trench.</div></div></div>
+            <div class="dp-alt"><strong>If both are full:</strong> <strong>Tsukinikari</strong>, from the same guide, is the other Shibuya small-plates room. Or <strong>Ebisu Yokochō</strong> — a covered market turned into one loud room of two dozen stalls where you sit wherever there is space.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Verify, then book</span><span class="dp-tag">Obanzai</span></div>
+          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Obanzai or curry udon</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍 Kinboshi, Shibuya</a>
         </div>
         <div class="dp-item">
@@ -2397,7 +2424,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <li><strong>Bar Trench</strong>, back in Ebisu — small, candlelit, absinthe and herbal cocktails, the bar other bartenders send you to. One stop back on the Yamanote, and the Hibiya line home leaves from there.</li>
               <li><strong>Whichever of last night's three</strong> you did not get to — the SG Club and Nonbei Yokochō are both ten minutes from Kinboshi.</li>
             </ol>
-            <div class="dp-note warn"><strong>Tomorrow is Mount Fuji and the alarm is 05:45.</strong> One round, not three. Be on a train by <strong>22:15</strong>: from Ebisu the Hibiya line runs direct to Akihabara in ~25 min; from Shibuya it is the Ginza line to Nihombashi and the Asakusa line home, ~35 min.</div>
+            <div class="dp-note warn"><strong>If tomorrow is Mount Fuji, the alarm is 05:45.</strong> One round, not three. (If it is Asakusa, the morning is gentler — stay out.) Be on a train by <strong>22:15</strong>: from Ebisu the Hibiya line runs direct to Akihabara in ~25 min; from Shibuya it is the Ginza line to Nihombashi and the Asakusa line home, ~35 min.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Bars</span><span class="dp-tag">One round</span><span class="dp-tag">Train by 22:15</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Bar+Trench+Ebisu" target="_blank">📍 Bar Trench, Ebisu</a>
@@ -2411,7 +2438,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <a class="dest-card" href="https://maps.google.com/?q=Kyu+Asakura+House+Daikanyama+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#422006,#a16207,#fde68a)"><span class="dest-time">14:30</span><span class="dest-img-icon">🍁</span><span class="dest-card-name">Kyū Asakura House</span></div><div class="dest-body"><div class="dest-type">Daikanyama · ~¥100</div><div class="dest-info">1919 wooden house that survived 1923 and 1945 · Hillside garden, maples peak late November · Almost empty</div><div class="dest-tags"><span class="dest-dtag">The find</span><span class="dest-dtag">Closed Mon</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Daikanyama+T-Site+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0f172a,#1e3a8a,#93c5fd)"><span class="dest-time">16:00</span><span class="dest-img-icon">📚</span><span class="dest-card-name">Daikanyama T-Site</span></div><div class="dest-body"><div class="dest-type">Books · Free</div><div class="dest-info">Three pavilions · Thousands of international magazines · Best after dark, which here means 16:30</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">Calm</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Yebisu+Garden+Place+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e1b4b,#4338ca,#a5b4fc)"><span class="dest-time">17:00</span><span class="dest-img-icon">✨</span><span class="dest-card-name">Yebisu Garden Place</span></div><div class="dest-body"><div class="dest-type">Ebisu · Mostly free</div><div class="dest-info">Built on the 1890 brewery the district is named after · Winter Baccarat chandelier · Beer museum + photography museum</div><div class="dest-tags"><span class="dest-dtag">10 min downhill</span><span class="dest-dtag">Illumination</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">19:00</span><span class="dest-img-icon">🍶</span><span class="dest-card-name">Kinboshi</span></div><div class="dest-body"><div class="dest-type">Small plates · Shibuya</div><div class="dest-info">Obanzai tray and a daily-special board · Verify the pin and hours · Book if it lets you</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Dinner</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">19:00</span><span class="dest-img-icon">🍶</span><span class="dest-card-name">Kinboshi</span></div><div class="dest-body"><div class="dest-type">Dinner · pick one</div><div class="dest-info">Kinboshi small plates in Shibuya, or Shodai white curry udon in Ebisu with no travel · Verify both</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Dinner</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Bar+Trench+Ebisu" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0f172a,#14532d,#86efac)"><span class="dest-time">21:00</span><span class="dest-img-icon">🍸</span><span class="dest-card-name">One more room</span></div><div class="dest-body"><div class="dest-type">Grandfather's · Bar Trench</div><div class="dest-info">A vinyl bar in Shibuya or absinthe cocktails in Ebisu · One round · Train by 22:15</div><div class="dest-tags"><span class="dest-dtag">Bars</span><span class="dest-dtag">Early alarm</span></div></div></a>
       </div>
     </div>
@@ -2421,26 +2448,102 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
   <div class="day-panel" id="tokyo-day-4">
     <div class="card">
       <div class="dp-dayhead">
-        <div class="dp-daytitle">Day 4 — Saturday, 28 November · Mount Fuji <span class="jp">富士山</span></div>
-        <div class="dp-daysub">Out of the city for the day · the full plan is on the Day Trip tab</div>
+        <div class="dp-daytitle">Day 4 — Saturday, 28 November · Mount Fuji <em>or</em> Asakusa</div>
+        <div class="dp-daysub">Pick one: out to the mountain, or the old east side on your doorstep · Jumbo Hanare for dinner either way</div>
       </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Kinshichō <small>07:07</small></span><span class="stop">Shimoyoshida <small>09:13</small></span><span class="stop">Chūreitō Pagoda</span><span class="stop">Honchō Street</span><span class="stop">Kawaguchiko</span><span class="stop">Ropeway</span><span class="stop">Ōishi Park</span><span class="stop">Kawaguchiko <small>16:48</small></span><span class="stop">Shinjuku <small>18:48</small></span></div>
+      <div class="route"><span class="route-k">A · Fuji</span><span class="stop">Kinshichō <small>07:07</small></span><span class="stop">Chūreitō Pagoda</span><span class="stop">Kawaguchiko</span><span class="stop">Ōishi Park</span><span class="stop">Shinjuku <small>18:48</small></span><span class="stop">Jumbo Hanare <small>19:30</small></span></div>
+      <div class="route"><span class="route-k">B · Asakusa</span><span class="stop">Sensō-ji <small>08:00</small></span><span class="stop">Nakamise</span><span class="stop">Kappabashi</span><span class="stop">Hinoya, Okachimachi</span><span class="stop">Nagi, Ueno</span><span class="stop">Ueno Park · Ameyoko</span><span class="stop">Jumbo Hanare <small>19:30</small></span></div>
       <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
-          <div class="dp-time">The day</div>
-          <div class="dp-title">The classic Kawaguchiko loop, by direct train</div>
+          <div class="dp-time">Decide</div>
+          <div class="dp-title">Fuji or Asakusa — how to choose</div>
           <div class="dp-desc">
-            <p class="dp-lead">One reserved train out from Kinshichō, two stops from the flat; the pagoda, the photo street, hōtō noodles, the ropeway and the lake; one reserved train back to Shinjuku, and Negishi for dinner.</p>
+            <p class="dp-lead">Look at a Kawaguchiko live camera at <strong>05:45</strong>. Mountain out → Fuji. Mountain in cloud, or nobody can face the alarm → Asakusa, and you lose nothing but the train fare cancellation fee.</p>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">A · Fuji</span><span class="dp-fact-v">Full day out · 2 reserved trains · alarm 05:45</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">B · Asakusa</span><span class="dp-fact-v">2 stops from the flat · temple, kitchen street, Ueno · start ~08:00</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Either way</span><span class="dp-fact-v">Yakiniku Jumbo Hanare, Hongō, 19:30</span></div>
+            </div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Weather decides</span></div>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">A · all day</div>
+          <div class="dp-title">Mount Fuji — the classic Kawaguchiko loop, by direct train</div>
+          <div class="dp-desc">
+            <p class="dp-lead">One reserved train out from Kinshichō, two stops from the flat; the pagoda, the photo street, hōtō noodles, the ropeway and the lake; one reserved train back to Shinjuku, and the Marunouchi line straight to Jumbo Hanare.</p>
             <div class="dp-facts">
               <div class="dp-fact"><span class="dp-fact-k">Alarm</span><span class="dp-fact-v">05:45 — check the live camera, leave the flat 06:35</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Out</span><span class="dp-fact-v">Fuji Excursion 3 · Kinshichō 07:07 → Shimoyoshida 09:13</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Back</span><span class="dp-fact-v">Fuji Excursion 44 · Kawaguchiko 16:48 → Shinjuku 18:48</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Dinner</span><span class="dp-fact-v">Negishi, Shinjuku, 19:00 — walk in</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Dinner</span><span class="dp-fact-v">Jumbo Hanare, Hongō, 19:30 — booked</span></div>
             </div>
             <p><a href="#" onclick="goFuji();return false" style="color:var(--accent);font-weight:600">Open the full Mount Fuji plan →</a></p>
           </div>
           <div class="dp-tags"><span class="dp-tag">2 trains to book</span><span class="dp-tag">Weather-dependent</span></div>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">B · 08:00</div>
+          <div class="dp-title">Asakusa <span class="jp">浅草</span> — Sensō-ji before the crowds</div>
+          <div class="dp-desc">
+            <p class="dp-lead">Two stops (three minutes) on the Asakusa line from Asakusabashi, or a 20-minute walk up the river. Tokyo's oldest temple is the most visited spot in the city, so the trick is time: before about nine the lanterns are lit and almost nobody is under them.</p>
+            <ol class="dp-steps">
+              <li><strong>Kaminarimon</strong> — the Thunder Gate and its giant red lantern. Photos now, while the street is empty.</li>
+              <li><strong>Nakamise-dōri</strong> — 250 metres of snack and souvenir stalls up to the temple; they open from about nine. Ningyō-yaki cakes, age-manjū, melon pan. Buy, then stand by the stall to eat it.</li>
+              <li><strong>Sensō-ji and the five-storey pagoda</strong> — waft the incense smoke, draw an omikuji fortune for ¥100 (tie a bad one to the rack).</li>
+            </ol>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Option B</span><span class="dp-tag">Free</span><span class="dp-tag">2 stops from home</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Sensoji+Temple+Asakusa+Tokyo" target="_blank">📍 Sensō-ji</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot"></div>
+          <div class="dp-time">B · 10:30</div>
+          <div class="dp-title">Kappabashi <span class="jp">かっぱ橋道具街</span> — kitchen street</div>
+          <div class="dp-desc">
+            <p>Ten minutes' walk west. 800 metres of restaurant-supply shops: knives, ceramics, lacquer, and the plastic food models from shop windows. Saturday is a good day — plenty of it closes on Sunday. Then keep walking west towards Ueno; it is all one flat stroll.</p>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Option B</span><span class="dp-tag">Shopping</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Kappabashi+Kitchen+Town" target="_blank">📍 Kappabashi</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">B · 12:00</div>
+          <div class="dp-title">Lunch, then cake — Hinoya Curry and Nagi <span class="must">on your list</span></div>
+          <div class="dp-desc">
+            <p class="dp-lead">Keep lunch light-ish — Jumbo Hanare is tonight.</p>
+<div class="pick"><div class="pick-h">Lunch and an afternoon café</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">Hinoya Curry <span class="jp">日乃屋カレー</span>, Okachimachi <span class="tbc">verify</span> <a class="pick-map" href="https://maps.google.com/?q=日乃屋カレー+御徒町" target="_blank">📍</a></div><div class="pick-d">Tokyo's favourite chain katsu curry: a sweet-then-spicy roux over rice with a crisp cutlet on top, ~¥1,000, in and out in twenty minutes. There is a branch by Okachimachi, a few minutes south of Ueno — check the map for the nearest one, as the chain opens and moves shops often. (If you do Fuji instead, Hinoya is also a Sunday option in Shinjuku.)</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">Nagi <span class="jp">凪</span>, Ueno — café <a class="pick-map" href="https://maps.google.com/?q=Nagi+cafe+Ueno" target="_blank">📍</a></div><div class="pick-d">A small café about three minutes from Ueno station: the house cheesecake (strawberry and cacao rare cheese), a famously not-too-sweet pudding (~¥650) and its own roasted coffee. Listed 08:30–17:00 — check <strong>@nagiueno</strong> on Instagram for the current hours. Go mid-afternoon as the sit-down break.</div></div></div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Option B</span><span class="dp-tag">Curry</span><span class="dp-tag">Café</span></div>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot"></div>
+          <div class="dp-time">B · 15:00</div>
+          <div class="dp-title">Ueno Park and Ameyoko <span class="jp">上野公園 · アメ横</span></div>
+          <div class="dp-desc">
+            <p>The park's ginkgo and maple are at their best in late November — walk up past Shinobazu Pond to the gingko-lined avenue to the museums. Then <strong>Ameyoko</strong>, the old market street under the train tracks: dried fruit, cosmetics, trainers, fresh-cut fruit on sticks. From there it is one stop on the Ōedo line, or a 20-minute walk, to Hongō for dinner. If there is time to spare, go back to the flat in between — it is 10 minutes away.</p>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Option B</span><span class="dp-tag">Autumn colour</span><span class="dp-tag">Market</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Ameyoko+Ueno" target="_blank">📍 Ameyoko</a>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">19:30</div>
+          <div class="dp-title">Yakiniku Jumbo Hanare <span class="jp">焼肉ジャンボ はなれ</span>, Hongō — dinner either way <span class="must">must eat</span></div>
+          <div class="dp-desc">
+            <p class="dp-lead">The one dinner this trip is built around, and it sits neatly between both plans. Wagyu yakiniku from the Jumbo family, in Hongō near Tokyo University: order the house cuts and the thin-sliced wagyu that is grilled for seconds and dipped in raw egg, which is the dish everyone posts.</p>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">From Fuji</span><span class="dp-fact-v">Shinjuku 18:48 → Marunouchi line direct to Hongō-sanchōme, ~20 min</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">From Asakusa</span><span class="dp-fact-v">Ōedo line Ueno-okachimachi → Hongō-sanchōme, 1 stop · or a 20 min walk from Ueno</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Home</span><span class="dp-fact-v">Ōedo line Hongō-sanchōme → Kuramae direct, ~10 min, then a 10 min walk</span></div>
+            </div>
+            <div class="dp-note warn"><strong>Book now, on the official site — it is the hardest booking on this page.</strong> If Saturday is gone, take <em>any</em> evening they offer and swap that night's dinner for this one; every other dinner on the page is easier to move than this. <span class="tbc">verify</span> Listed at Hongō 3-27-9, Bunkyō — confirm the address and hours on the booking confirmation.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Book now</span><span class="dp-tag">Yakiniku</span><span class="dp-tag">Must eat</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Yakiniku+Jumbo+Hanare+Hongo" target="_blank">📍 Jumbo Hanare, Hongō</a>
         </div>
       </div>
     </div>
@@ -2453,7 +2556,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-daytitle">Day 5 — Sunday, 29 November</div>
         <div class="dp-daysub">Kichijōji → Shinjuku · shops, a park, a food hall, and the last night out</div>
       </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Kichijōji <small>11:30</small></span><span class="stop">Satou</span><span class="stop">Nakamichi-dōri</span><span class="stop">Harmonica Yokochō</span><span class="stop">Inokashira Park</span><span class="stop">Isetan <small>16:45</small></span><span class="stop">Dinner</span><span class="stop">Golden Gai <small>20:30</small></span></div>
+      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Kichijōji <small>11:30</small></span><span class="stop">Satou</span><span class="stop">Nakamichi-dōri</span><span class="stop">Harmonica Yokochō</span><span class="stop">Inokashira Park</span><span class="stop">Isetan <small>16:45</small></span><span class="stop">Dinner, pick one</span><span class="stop">Golden Gai <small>20:30</small></span></div>
       <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -2462,7 +2565,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="dp-desc">
             <p class="dp-lead">This day used to be Asakusa, Kappabashi, Ueno and Yanaka. It is now two places built around the four things you actually want: <strong>shopping, cafés, eating and walking.</strong></p>
             <p><strong>Kichijōji</strong> in the morning — the town Tokyoites vote most desirable to live in, and it earns it: an arcade and a shopping street full of independents, an alley of a hundred tiny food stalls, and a park at the end of it. Then fifteen minutes down the Chūō line to <strong>Shinjuku</strong> for department-store food halls and a night in the alleys.</p>
-            <div class="dp-note">Sensō-ji, Kappabashi and Yanaka are still on the <strong>Places</strong> tab under <em>East side</em> if anyone changes their mind — they are just not costing you a day any more.</div>
+            <div class="dp-note">Asakusa and Kappabashi are now <strong>Saturday's option B</strong>, if you pick them over Fuji. Yanaka is still on the <strong>Places</strong> tab under <em>East side</em>.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Shop</span><span class="dp-tag">Café</span><span class="dp-tag">Eat</span><span class="dp-tag">Walk</span></div>
         </div>
@@ -2549,18 +2652,14 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-item">
           <div class="dp-dot"></div>
           <div class="dp-time">18:30</div>
-          <div class="dp-title">Dinner in Shinjuku — noodles or smoke</div>
+          <div class="dp-title">Dinner in Shinjuku — pick one <span class="must">on your list</span></div>
           <div class="dp-desc">
-            <p>Nothing tonight needs a reservation, which is deliberate — the last night is better improvised.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Udon</span><span class="dp-fact-v"><strong>Udon Shin</strong> — cut and boiled to order, tiny; take a numbered ticket at 17:00 and do Isetan while you wait</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Tsukemen</span><span class="dp-fact-v"><strong>Fūunji</strong> — rich chicken-and-fish dipping ramen; the queue moves fast; cash</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Yakitori</span><span class="dp-fact-v"><strong>Omoide Yokochō</strong> — six-seat counters under the tracks, thick with charcoal smoke; pick any with three free stools</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Sushi</span><span class="dp-fact-v"><strong>Sushiro</strong>, from your guide — conveyor plates from about a dollar; take a queue number from the machine</span></div>
-            </div>
+            <p class="dp-lead">Four of yours are in or next to Shinjuku, so tonight is the big choice. Only option A wants a booking; the rest are queues, so decide by about 17:00.</p>
+<div class="pick"><div class="pick-h">Dinner · pick one</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">A · Gyutan no Lemon <span class="jp">新宿焼肉 牛たんの檸檬 総本店</span> <a class="pick-map" href="https://maps.google.com/?q=新宿焼肉+牛たんの檸檬+総本店" target="_blank">📍</a></div><div class="pick-d">Beef tongue as yakiniku: <strong>very thick-cut tongue</strong> you grill at the table, with A5 wagyu sets, and a lemon sour you squeeze yourself from half a lemon. Nishi-Shinjuku 7-16-12, YS Building B1F, ~6 min from Shinjuku west exit. Book: 050-5571-2239 or Tabelog.</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">B · Gyukatsu Motomura <span class="jp">牛かつ もと村</span>, Shinjuku <a class="pick-map" href="https://maps.google.com/?q=Gyukatsu+Motomura+Shinjuku" target="_blank">📍</a></div><div class="pick-d">Beef cutlet fried rare in a minute, then you finish each slice to your liking on a little hot stone at your seat. Several Shinjuku branches (Nishiguchi, and near Shinjuku-sanchōme) — use whichever queue is shortest. No bookings, ~¥1,900–2,800, the queue moves.</div></div><div class="pick-o mine"><span class="pick-l">C</span><div class="pick-n">C · Udon Shin <span class="jp">うどん 慎</span>, Yoyogi <a class="pick-map" href="https://maps.google.com/?q=Udon+Shin+Yoyogi+2-20-16" target="_blank">📍</a></div><div class="pick-d">Udon cut and boiled to order; the carbonara udon with tempura is the one. Tiny, so it runs on <strong>queue tickets</strong>: get yours from the machine at the shop (Yoyogi 2-20-16, ~10 min south of Shinjuku) as soon as you arrive from Kichijōji around 16:30 — you get a QR code with your wait time — then do Isetan while you wait. Cash only.</div></div><div class="pick-o mine"><span class="pick-l">D</span><div class="pick-n">D · Hinoya Curry <span class="jp">日乃屋カレー</span>, Nishi-Shinjuku <span class="tbc">verify</span> <a class="pick-map" href="https://maps.google.com/?q=日乃屋カレー+西新宿" target="_blank">📍</a></div><div class="pick-d">The quick, cheap fallback if the others have hour-long lines — katsu curry for ~¥1,000. Branch listed at Nishi-Shinjuku 1-13-7. (Skip it here if you had it in Ueno on Saturday.)</div></div></div>
+            <div class="dp-alt"><strong>Something lighter or later:</strong> <strong>Omoide Yokochō</strong> — six-seat yakitori counters under the tracks, thick with charcoal smoke — or <strong>Sushiro</strong>, from your guide, for conveyor plates from about a dollar.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Walk in</span><span class="dp-tag">No booking</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Omoide+Yokocho+Shinjuku" target="_blank">📍 Omoide Yokochō</a>
+          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Book only if A</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=新宿焼肉+牛たんの檸檬+総本店" target="_blank">📍 Gyutan no Lemon</a>
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -2589,7 +2688,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <a class="dest-card" href="https://maps.google.com/?q=Harmonica+Yokocho+Kichijoji+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#450a0a,#b91c1c,#fca5a5)"><span class="dest-time">13:30</span><span class="dest-img-icon">🏮</span><span class="dest-card-name">Harmonica Yokochō</span></div><div class="dest-body"><div class="dest-type">Lunch · cash</div><div class="dest-info">~100 stalls in alleys two people wide · Post-war black market, never redeveloped · Satou's menchi-katsu ~¥300</div><div class="dest-tags"><span class="dest-dtag">Standing</span><span class="dest-dtag">Point to order</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Inokashira+Park+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7c2d12,#ca8a04,#fde68a)"><span class="dest-time">14:30</span><span class="dest-img-icon">🍂</span><span class="dest-card-name">Inokashira Park</span></div><div class="dest-body"><div class="dest-type">Walk · Free</div><div class="dest-info">Pond loop ~40 min · Autumn colour peaking · Swan boats, buskers, island shrine · Ghibli at the far end</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">Before 16:30</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Isetan+Shinjuku+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#3b0764,#7e22ce,#f0abfc)"><span class="dest-time">16:45</span><span class="dest-img-icon">🍱</span><span class="dest-card-name">Isetan depachika</span></div><div class="dest-body"><div class="dest-type">Eat · the best in Japan</div><div class="dest-info">Two basement floors of counters · Samples everywhere · Graze for ~¥2,000 each · Closes around 20:00</div><div class="dest-tags"><span class="dest-dtag">Go before drinks</span><span class="dest-dtag">Sells out</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Omoide+Yokocho+Shinjuku" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">18:30</span><span class="dest-img-icon">🍢</span><span class="dest-card-name">Dinner, Shinjuku</span></div><div class="dest-body"><div class="dest-type">Walk in · four options</div><div class="dest-info">Udon Shin, Fūunji, Omoide Yokochō or Sushiro · Nothing to book</div><div class="dest-tags"><span class="dest-dtag">Last night</span><span class="dest-dtag">No booking</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Omoide+Yokocho+Shinjuku" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">18:30</span><span class="dest-img-icon">🍢</span><span class="dest-card-name">Dinner, Shinjuku</span></div><div class="dest-body"><div class="dest-type">Pick one · four options</div><div class="dest-info">Gyutan no Lemon, Gyukatsu Motomura, Udon Shin or Hinoya Curry · Book only for Lemon</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Last night</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Shinjuku+Golden+Gai" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0c0a09,#7f1d1d,#fbbf24)"><span class="dest-time">20:30</span><span class="dest-img-icon">🍸</span><span class="dest-card-name">Golden Gai</span></div><div class="dest-body"><div class="dest-type">Six alleys of tiny bars</div><div class="dest-info">Start at Albatross G · Cover ¥500–1,500 · No photos in the alleys</div><div class="dest-tags"><span class="dest-dtag">Bars</span><span class="dest-dtag">Cash</span></div></div></a>
       </div>
     </div>
@@ -2671,8 +2770,9 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="dp-time">12:00</div>
           <div class="dp-title">A quick last lunch — nothing you have to queue for</div>
           <div class="dp-desc">
-            <p>You ate at Tsukiji at seven and there is a train at 13:20, so this is a small one. Three that fit the clock:</p>
+            <p>You ate at Tsukiji at seven and there is a train at 13:20, so this is a small one. Four that fit the clock:</p>
             <ol class="dp-steps">
+              <li><strong>Whichever of Wednesday's two you skipped</strong> — <strong>Ginza Sato Yosuke</strong> for udon or <strong>Tonkatsu Marushichi</strong>. Both are a few minutes from KOMEHYO; be at the door for the 11:30 opening and you are out by 12:30.</li>
               <li><strong>Mitsukoshi's depachika</strong> — a katsu sando and something sweet in a box, eaten on the train to Narita. The no-risk answer.</li>
               <li><strong>Sembikiya</strong> — a fruit parfait in the parlour above the fruit shop, if you would rather sit for half an hour.</li>
               <li><strong>Café Heckeln</strong> — ten minutes' walk across the tracks in Nishi-Shimbashi. If Thursday's pudding failed, this is the second chance; go at 10:45 instead of the first shop.</li>
@@ -2838,23 +2938,6 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food" data-area="many">
-        <div class="place-header" onclick="togglePlace(this)">
-          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍜</div>
-          <div class="place-info">
-            <div class="place-nameline"><span class="place-name">Afuri <span class="jp">阿夫利</span></span></div>
-            <div class="place-sub">Yuzu-shio ramen · Several branches, Harajuku and Ebisu</div>
-          </div>
-          <span class="place-chev">▸</span>
-        </div>
-        <div class="place-body">
-          <div class="place-meta"><div class="place-meta-row">📍 Harajuku, Ebisu, Nakameguro and others</div><div class="place-meta-row">🕐 Late — many branches run past 23:00</div></div>
-          <p class="place-desc">Clear chicken-and-dashi broth cut with yuzu, so it lands light rather than heavy. The gateway ramen for anyone who thinks ramen is only tonkotsu, and the easiest one to order — the vending machine at the door has English and pictures.</p>
-          <div class="place-links">
-            <a class="place-link" href="https://maps.google.com/?q=Afuri+Ramen+Harajuku" target="_blank">📍 Maps</a>
-          </div>
-        </div>
-      </div>
 
       <div class="place-row" data-cat="food" data-area="many">
         <div class="place-header" onclick="togglePlace(this)">
@@ -4220,23 +4303,6 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         </div>
       </div>
 
-      <div class="place-row" data-cat="food" data-area="ginza">
-        <div class="place-header" onclick="togglePlace(this)">
-          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍜</div>
-          <div class="place-info">
-            <div class="place-nameline"><span class="place-name">Ginza Kagari <span class="jp">銀座 篝</span></span><span class="place-must">must</span></div>
-            <div class="place-sub">Ginza · chicken soba, and the queue for it</div>
-          </div>
-          <span class="place-chev">▸</span>
-        </div>
-        <div class="place-body">
-          <div class="place-meta"><div class="place-meta-row">📍 A basement counter off Ginza's main streets</div><div class="place-meta-row">🕐 Lunch onwards · <strong>sells out; go early or late</strong></div></div>
-          <p class="place-desc">A cream-thick chicken <em>tori paitan</em> soba that arrives looking more like a sauce than a soup, topped with vegetables cut like a garnish. Eight or nine seats, a queue down the stairs from before opening, and a bowl that is worth it. Nothing else on the menu matters.</p>
-          <div class="place-links">
-            <a class="place-link" href="https://maps.google.com/?q=Ginza+Kagari+ramen+Tokyo" target="_blank">📍 Maps</a>
-          </div>
-        </div>
-      </div>
 
       <div class="place-row" data-cat="food" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
@@ -4357,23 +4423,6 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <p class="place-desc">Rice cooked to order in individual iron pots, with small plates and drinks while you wait for it. Small room up a flight of stairs in Dōgenzaka — book through TableCheck and check the hours and any course minimum when you do.</p>
           <div class="place-links">
             <a class="place-link" href="https://maps.google.com/?q=OH+KAMA+BAR+Shibuya+Dogenzaka" target="_blank">📍 Maps</a>
-          </div>
-        </div>
-      </div>
-      <div class="place-row" data-cat="food" data-area="shinjuku">
-        <div class="place-header" onclick="togglePlace(this)">
-          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥩</div>
-          <div class="place-info">
-            <div class="place-nameline"><span class="place-name">Negishi <span class="jp">ねぎし</span></span><span class="place-must">must</span></div>
-            <div class="place-sub">Shinjuku · Gyūtan set · Sat 19:00 · walk in</div>
-          </div>
-          <span class="place-chev">▸</span>
-        </div>
-        <div class="place-body">
-          <div class="place-meta"><div class="place-meta-row">📍 A dozen branches around Shinjuku station — use whichever has no queue</div><div class="place-meta-row">🕐 Roughly 11:00–22:30</div></div>
-          <p class="place-desc">Charcoal-grilled beef tongue, barley rice, grated yam and oxtail soup: the set meal Tokyo office workers swear by. Order the Shiro-tan or the Negishi set. No bookings; if one branch has a line, the next is two minutes away.</p>
-          <div class="place-links">
-            <a class="place-link" href="https://maps.google.com/?q=Negishi+Shinjuku+gyutan" target="_blank">📍 Maps</a>
           </div>
         </div>
       </div>
@@ -4517,8 +4566,8 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍜</div>
           <div class="place-info">
-            <div class="place-nameline"><span class="place-name">Udon Shin <span class="jp">うどん 慎</span></span></div>
-            <div class="place-sub">Shinjuku · Udon made to order · Sun dinner option</div>
+            <div class="place-nameline"><span class="place-name">Udon Shin <span class="jp">うどん 慎</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Yoyogi, by Shinjuku · Udon made to order · Sun dinner C</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4530,20 +4579,156 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           </div>
         </div>
       </div>
-      <div class="place-row" data-cat="food" data-area="shinjuku">
+      <div class="place-row" data-cat="food" data-area="ginza">
         <div class="place-header" onclick="togglePlace(this)">
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍜</div>
           <div class="place-info">
-            <div class="place-nameline"><span class="place-name">Fūunji <span class="jp">風雲児</span></span></div>
-            <div class="place-sub">Shinjuku · Tsukemen · Sun dinner option</div>
+            <div class="place-nameline"><span class="place-name">Ginza Sato Yosuke <span class="jp">銀座 佐藤養助</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Ginza · Inaniwa udon · Wed lunch A / Mon lunch</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
         <div class="place-body">
-          <div class="place-meta"><div class="place-meta-row">📍 Yoyogi 2-chōme, near Udon Shin</div><div class="place-meta-row">🕐 Lunch and dinner · cash, ticket machine</div></div>
-          <p class="place-desc">Thick dipping ramen in a rich chicken-and-fish broth. The queue runs along the inside wall and moves quickly.</p>
+          <div class="place-meta"><div class="place-meta-row">📍 Ginza 6-4-17, Idei Honkan 1F · Ginza stn C2, 5 min</div><div class="place-meta-row">🕐 From 11:30, lunch and dinner — check the official site</div></div>
+          <p class="place-desc">Thin, silky Inaniwa udon from a 165-year-old Akita maker, cold with dipping sauce or hot in broth. Be there for the 11:30 opening.</p>
           <div class="place-links">
-            <a class="place-link" href="https://maps.google.com/?q=Fuunji+Shinjuku+tsukemen" target="_blank">📍 Maps</a>
+            <a class="place-link" href="https://maps.google.com/?q=Ginza+Sato+Yosuke+Ginza+6-4-17" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="ginza">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🐖</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Tonkatsu Marushichi <span class="jp">とんかつ 丸七</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Ginza · Two-inch tonkatsu · Wed lunch B / Mon lunch</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Ginza branch — verify; original in Monzen-nakachō</div><div class="place-meta-row">🕐 Walk in · check hours on the map</div></div>
+          <p class="place-desc">Very thick pork cutlet cooked low and slow so it stays pink and juicy. English menu at the Ginza shop.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=とんかつ丸七+銀座" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="harajuku">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🦆</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">BASO Omotesandō <span class="jp">BASO 表参道</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Omotesandō · Duck tsuke-soba · Thu lunch B</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Jingūmae 6-11-7 · ~5 min from Omotesandō</div><div class="place-meta-row">🕐 ~11:30–21:00 weekdays, shorter weekends</div></div>
+          <p class="place-desc">Salted-duck dipping soba and egg-tempura rice. Ticket machine (cash or IC); ¥500 skip-the-queue ticket.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=BASO+表参道+神宮前6-11-7" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="ebisu">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍛</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Shodai <span class="jp">初代</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Ebisu · White curry udon · Fri dinner B</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Ebisu-minami 1-1-10 · Ebisu west exit, 2 min</div><div class="place-meta-row">🕐 Listings disagree — check on the day</div></div>
+          <p class="place-desc">Curry udon under a cloud of whipped potato foam. Queue; groups seated upstairs.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Shodai+Ebisu+curry+udon" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="east">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🔥</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Yakiniku Jumbo Hanare <span class="jp">焼肉ジャンボ はなれ</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Hongō · Wagyu yakiniku · Sat 19:30 · book now</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Hongō 3-27-9, Bunkyō (verify) · Hongō-sanchōme stn</div><div class="place-meta-row">🕐 Dinner · reservations via the official site only</div></div>
+          <p class="place-desc">The must-eat. Wagyu yakiniku; the thin-sliced wagyu dipped in raw egg is the famous order. Hardest booking of the trip — take any night they offer.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Yakiniku+Jumbo+Hanare+Hongo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="east">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍰</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Nagi <span class="jp">凪</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Ueno · Café · Sat afternoon if Asakusa</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 ~3 min from Ueno station · @nagiueno</div><div class="place-meta-row">🕐 Listed 08:30–17:00 — check Instagram</div></div>
+          <p class="place-desc">Small café: strawberry-and-cacao rare cheesecake, a not-too-sweet pudding and house-roasted coffee.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Nagi+cafe+Ueno" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="many">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍛</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Hinoya Curry <span class="jp">日乃屋カレー</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Everywhere · Katsu curry · Sat lunch (Okachimachi) or Sun dinner D</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Okachimachi, Akihabara (8 min from the flat), Nishi-Shinjuku and dozens more</div><div class="place-meta-row">🕐 Most branches from ~10:30 or 11:00</div></div>
+          <p class="place-desc">Sweet-then-spicy curry roux with a crisp cutlet, ~¥1,000. The fast fallback anywhere.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Hinoya+Curry+Tokyo" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="shinjuku">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">👅</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Gyutan no Lemon <span class="jp">牛たんの檸檬 総本店</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Shinjuku · Beef-tongue yakiniku · Sun dinner A</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Nishi-Shinjuku 7-16-12, YS Bldg B1F · west exit 6 min</div><div class="place-meta-row">🕐 Lunch and dinner · book 050-5571-2239</div></div>
+          <p class="place-desc">Very thick-cut tongue grilled at the table, A5 wagyu sets, and a lemon sour you squeeze yourself.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=新宿焼肉+牛たんの檸檬+総本店" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="shinjuku">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥩</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Gyukatsu Motomura <span class="jp">牛かつ もと村</span></span><span class="place-must">must</span></div>
+            <div class="place-sub">Shinjuku · Beef cutlet on a hot stone · Sun dinner B</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Several Shinjuku branches — pick the shortest queue</div><div class="place-meta-row">🕐 Lunch to late · no bookings</div></div>
+          <p class="place-desc">Beef cutlet fried rare, finished slice by slice on a hot stone at your seat.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Gyukatsu+Motomura+Shinjuku" target="_blank">📍 Maps</a>
           </div>
         </div>
       </div>
@@ -4675,10 +4860,10 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
 <!-- ════════════════ DAY TRIPS ════════════════ -->
 <div id="tab-trips" class="tab-content">
 
-  <div class="sh"><h2>🗻 Mount Fuji Day Trip</h2><p>Saturday 28 November · Kawaguchiko by direct train, no car · back in Shinjuku for dinner</p></div>
+  <div class="sh"><h2>🗻 Mount Fuji Day Trip</h2><p>Saturday 28 November, if you pick it over Asakusa · Kawaguchiko by direct train, no car · back for dinner at Jumbo Hanare</p></div>
 
   <div class="callout">
-    <strong>Two trains to book, and one thing to check on the morning.</strong> Reserve three seats each way on JR East's Eki-net — out on Fuji Excursion 3 from Kinshichō to <em>Shimoyoshida</em>, back on Fuji Excursion 44 from Kawaguchiko to Shinjuku. Then at 05:45 on the day, look at a Kawaguchiko live camera: if the mountain is in cloud, swap with Sunday.
+    <strong>Two trains to book, and one thing to check on the morning.</strong> Reserve three seats each way on JR East's Eki-net — out on Fuji Excursion 3 from Kinshichō to <em>Shimoyoshida</em>, back on Fuji Excursion 44 from Kawaguchiko to Shinjuku. Then at 05:45 on the day, look at a Kawaguchiko live camera: if the mountain is in cloud, do the Asakusa plan (Day 4, option B) instead.
   </div>
 
   <div class="day-pills" style="display:none">
@@ -4856,19 +5041,17 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-item">
           <div class="dp-dot"></div>
           <div class="dp-time">19:00</div>
-          <div class="dp-title">Negishi <span class="jp">ねぎし</span> — beef tongue, and you are already in Shinjuku <span class="must">on your list</span></div>
+          <div class="dp-title">Yakiniku Jumbo Hanare <span class="jp">焼肉ジャンボ はなれ</span>, Hongō — dinner <span class="must">must eat</span></div>
           <div class="dp-desc">
-            <p class="dp-lead">The train drops you in the one neighbourhood with a Negishi on every other corner, which is why it is tonight. Charcoal-grilled <strong>gyūtan</strong> — thick-cut beef tongue — with barley rice, grated yam to pour over it, and oxtail soup. A set runs roughly ¥1,800–2,800.</p>
-            <p>It is a chain and works like one: <strong>walk in</strong>, put a name down if there is a line, and it turns over quickly. If the branch nearest the station has a queue, the next one is three minutes away — search "ねぎし 新宿" on the map and pick the closest dot.</p>
+            <p class="dp-lead">Off the train at Shinjuku and straight onto the <strong>Marunouchi line</strong>, direct to Hongō-sanchōme in about twenty minutes, for a 19:30 table. Wagyu yakiniku, and the thin-sliced wagyu dipped in raw egg.</p>
             <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Booking</span><span class="dp-fact-v">Not needed</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Order</span><span class="dp-fact-v">The <em>shiro-tan</em> set if they have it</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Home</span><span class="dp-fact-v">Sōbu local, Shinjuku → Asakusabashi direct, ~20 min</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Booking</span><span class="dp-fact-v">Essential — official site</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Home</span><span class="dp-fact-v">Ōedo line, Hongō-sanchōme → Kuramae direct, ~10 min</span></div>
             </div>
-            <div class="dp-alt"><strong>Still standing?</strong> <strong>Omoide Yokochō</strong> is beside the station for one highball at a yakitori counter. Golden Gai is tomorrow night, when nobody has been up since 05:45.</div>
+            <div class="dp-alt"><strong>Train late?</strong> Ring ahead — the number is on the booking. The full write-up is on Day 4 in the Tokyo tab.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Walk in</span><span class="dp-tag">Gyūtan</span><span class="dp-tag">~¥2,500</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Negishi+Shinjuku+gyutan" target="_blank">📍 Negishi, Shinjuku</a>
+          <div class="dp-tags"><span class="dp-tag">Booked</span><span class="dp-tag">Yakiniku</span><span class="dp-tag">Must eat</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Yakiniku+Jumbo+Hanare+Hongo" target="_blank">📍 Jumbo Hanare, Hongō</a>
         </div>
       </div>
       <div class="dest-scroll">
@@ -4877,7 +5060,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <a class="dest-card" href="https://maps.google.com/?q=Hoto+Fudo+Kawaguchiko+Station" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7c2d12,#c2410c,#fed7aa)"><span class="dest-time">11:45</span><span class="dest-img-icon">🍲</span><span class="dest-card-name">Hōtō Fudō</span></div><div class="dest-body"><div class="dest-type">Lunch · walk in</div><div class="dest-info">Flat noodles, pumpkin and miso in an iron pot · Opposite Kawaguchiko station · A little over ¥1,000</div><div class="dest-tags"><span class="dest-dtag">Local dish</span><span class="dest-dtag">No booking</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Mt+Fuji+Panoramic+Ropeway+Kawaguchiko" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6,#dbeafe)"><span class="dest-time">12:45</span><span class="dest-img-icon">🚡</span><span class="dest-card-name">Ropeway</span></div><div class="dest-body"><div class="dest-type">View · ~¥1,000</div><div class="dest-info">Three minutes up Mount Tenjō · Fuji one side, the lake the other · Skip if the queue is over 40 min</div><div class="dest-tags"><span class="dest-dtag">Classic</span><span class="dest-dtag">Skippable</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Oishi+Park+Lake+Kawaguchi" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#164e63,#0891b2,#a5f3fc)"><span class="dest-time">14:15</span><span class="dest-img-icon">🏞</span><span class="dest-card-name">Ōishi Park</span></div><div class="dest-body"><div class="dest-type">North shore · Free</div><div class="dest-info">Lake, then mountain · Red Line bus or taxi ~¥2,500 · Hanaterrace and Lake Bake for coffee</div><div class="dest-tags"><span class="dest-dtag">Chill</span><span class="dest-dtag">Leave by 15:30</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Negishi+Shinjuku+gyutan" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">19:00</span><span class="dest-img-icon">🥩</span><span class="dest-card-name">Negishi</span></div><div class="dest-body"><div class="dest-type">Shinjuku · on your list</div><div class="dest-info">Charcoal beef tongue, barley rice, grated yam · Chain, many branches · Then one direct train home</div><div class="dest-tags"><span class="dest-dtag">Walk in</span><span class="dest-dtag">~¥2,500</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Yakiniku+Jumbo+Hanare+Hongo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#7f1d1d,#f87171)"><span class="dest-time">19:30</span><span class="dest-img-icon">🔥</span><span class="dest-card-name">Jumbo Hanare</span></div><div class="dest-body"><div class="dest-type">Hongō · must eat</div><div class="dest-info">Wagyu yakiniku · Marunouchi line direct from Shinjuku, ~20 min · Ōedo line home</div><div class="dest-tags"><span class="dest-dtag">Book now</span><span class="dest-dtag">Yakiniku</span></div></div></a>
       </div>
     </div>
   </div>
@@ -5700,7 +5883,6 @@ function goFuji() {
   if (btn) switchTab('trips', btn);
 }
 function goDay(n) {
-  if (n === 4) return goFuji();
   const btn = document.querySelector('.tab-btn[onclick*="\'tokyo\'"]');
   if (btn) switchTab('tokyo', btn);
   const pills = document.querySelectorAll('#tab-tokyo .day-pills .day-pill');

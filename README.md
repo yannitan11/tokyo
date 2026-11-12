@@ -89,3 +89,19 @@ match 酒場きんぼし, still `.tbc`) and is now Saturday 19:00 dinner; **Shir
 (Tabelog: 銀座蕎麦うどんしら石 六本木店, APA Hotel Roppongi Ekimae 1F, listed 24h) and is now Sunday 10:15, on the
 Hibiya line on the way to Nakameguro. Monday's Ginza lunch is a quick unbooked one again. The guide's other
 spots (Kiwa Giwa, Amam Dacotan, Tsukinikari, Café Zingaro, Sushiro) are Places rows, not on a day.
+
+## Food rewrite (2026-11-12, evening) — every named place on a day, as options
+
+Meal slots with more wants than meals now carry a `.pick` block (A / B / C options, all near where that day already
+is) — choose on the day. **Removed:** Negishi (beef tongue) and all ramen (Ginza Kagari, Fūunji, Afuri).
+**Saturday is now Mount Fuji *or* Asakusa** (`#tokyo-day-4` holds both; `goDay(4)` no longer redirects to the Fuji tab).
+
+| Day | Slot | Options |
+|---|---|---|
+| Wed | Ginza lunch | Ginza Sato Yosuke (Inaniwa udon) · Tonkatsu Marushichi (Ginza branch, `verify`) |
+| Thu | Omotesandō lunch | Maisen · BASO Omotesandō (duck tsuke-soba) |
+| Fri | Dinner | Kinboshi, Shibuya · Shodai, Ebisu (white curry udon, hours `verify`) |
+| Sat | Asakusa option | Hinoya Curry, Okachimachi · Nagi café, Ueno |
+| Sat | Dinner, either option | **Yakiniku Jumbo Hanare, Hongō — must eat, book now** |
+| Sun | Shinjuku dinner | Gyutan no Lemon (book) · Gyukatsu Motomura · Udon Shin · Hinoya Curry |
+| Mon | Ginza lunch | whichever of Wednesday's two you skipped |
