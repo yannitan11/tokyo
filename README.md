@@ -98,7 +98,7 @@ is) — choose on the day. **Removed:** Negishi (beef tongue) and all ramen (Gin
 | Day | Slot | Options |
 |---|---|---|
 | Wed | Ginza lunch | Ginza Sato Yosuke (Inaniwa udon) · Tonkatsu Marushichi (Ginza branch, `verify`) · Ginza Katsukami (Bib Gourmand tonkatsu, bookable) |
-| Thu | Ebisu, 19:00 | Bar Trench · Ebisu Yokochō · Shodai (shared bowl) — then Ebisu Yoroniku 21:30, booked |
+| Thu | Ebisu, 19:00 light dinner | Ebisu Yokochō small plates · Shodai — then the feast, Ebisu Yoroniku 21:30, booked |
 | Fri | Omotesandō lunch | Maisen · BASO Omotesandō (duck tsuke-soba) |
 | Fri | Dinner | Sukiyaki Chikayo, Shibuya — booked 19:30 |
 | Sat | Asakusa option | Hinoya Curry, Okachimachi · Nagi café, Ueno |
@@ -123,7 +123,7 @@ is) — choose on the day. **Removed:** Negishi (beef tongue) and all ramen (Gin
 | Thu 26, 21:30 | Ebisu Yoroniku, GEMS Ebisu 8F — truffle sukiyaki course, ¥14,900 each, pay on the night (moved from Wed) | ZKHRK84C4D |
 | Fri 27, 19:30 | Sukiyaki Chikayo, Opera House Shibuya 1F — seating only (TableCheck) | 557MKD |
 
-Wednesday evening is Kinboshi, then OH KAMA BAR / Nonbei Yokochō / Nui. Thursday ends in Ebisu: a drink and a bite
-(Bar Trench · Ebisu Yokochō · a shared Shodai bowl), then Ebisu Yoroniku 21:30. Friday dinner is Chikayo, with
+Wednesday evening is Kinboshi, then OH KAMA BAR / Nonbei Yokochō / Nui. Thursday ends in Ebisu: a light dinner
+(Ebisu Yokochō small plates or Shodai), then the feast at Ebisu Yoroniku 21:30. Friday dinner is Chikayo, with
 Yakiniku Ushigoro as the backup. Moheji (Ryōgoku) is a Saturday lunch option on the Asakusa plan. The booking board has a
 "Booked ✓" group (`.bk-group.done`, `.bk-st.done`) and booked items carry a `.booked` badge.
