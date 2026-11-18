@@ -127,3 +127,15 @@ Wednesday evening is Kinboshi, then OH KAMA BAR / Nonbei Yokochō / Nui. Thursda
 (Ebisu Yokochō small plates or Shodai), then the feast at Ebisu Yoroniku 21:30. Friday dinner is Chikayo, with
 Yakiniku Ushigoro as the backup. Moheji (Ryōgoku) is a Saturday lunch option on the Asakusa plan. The booking board has a
 "Booked ✓" group (`.bk-group.done`, `.bk-st.done`) and booked items carry a `.booked` badge.
+
+## No day trip (2026-11-18) — Saturday is Asakusa
+
+Yanni dropped Mount Fuji. `#tokyo-day-4` is now Asakusa & Ueno only: the A/B switch, the Fuji pane, the Fuji train
+bookings, the Kawaguchiko weather card, the Fuji budget row and `goFuji()` are gone (the `.opt-switch`/`.opt-pane`
+CSS and `pickOpt()` are left in place, unused). Three efficiency changes came with it:
+
+- **Friday starts at 09:00, not 08:20** (Heckeln 09:30), because Thursday's Yoroniku course ends near midnight.
+- **Saturday starts at 09:00, not 08:00**, after Friday's late Shibuya night.
+- **Golden Gai moved from Sunday to Saturday** (21:45, after Jumbo Hanare; Marunouchi line Hongō-sanchōme →
+  Shinjuku-sanchōme direct). A lot of its bars take Sunday off, and Sunday needs an early night to pack for the
+  07:00 Tsukiji start. Sunday now ends with one drink at Omoide Yokochō and home by 21:30.
