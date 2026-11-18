@@ -1512,6 +1512,10 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
   .bk-st.now{background:var(--accent);color:#fff}
   .bk-st.opt{background:var(--amber-l);color:#8a6115;border-color:rgba(203,145,47,.35)}
   .bk-st.walk{background:var(--bg);color:var(--muted);border-color:var(--sep)}
+  .bk-st.done{background:rgba(79,157,105,.14);color:#2f7a4b;border-color:rgba(79,157,105,.35)}
+  body.dark .bk-st.done{background:rgba(79,157,105,.2);color:#8fd3a6}
+  .bk-group.done i{background:#4f9d69}
+  .booked{display:inline-block;vertical-align:2px;margin-left:6px;padding:2px 7px;border-radius:99px;background:#4f9d69;color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
   body.dark .bk-st.opt{background:rgba(203,145,47,.16);color:#e3b565}
   .walk-list{display:flex;flex-wrap:wrap;gap:6px;padding:4px 16px 16px}
   .walk-list span{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--bg);border:1px solid var(--sep);color:var(--text2)}
@@ -1611,14 +1615,16 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
 
   <div class="flt-section-label">🎟 Book these — everything else you walk into</div>
   <div class="bk-board">
+    <div class="bk-group done"><i></i>Booked ✓</div>
+    <button class="bk" onclick="goDay(1)"><span class="bk-when"><b>Wed 25</b>18:45</span><span class="bk-what"><strong>Kinboshi — small plates, Shibuya</strong><small>3 people · Reserve with Google · cancel 72 h ahead if plans change. Keep it light — dinner two is at 21:30.</small></span><span class="bk-st done">Booked</span></button>
+    <button class="bk" onclick="goDay(1)"><span class="bk-when"><b>Wed 25</b>21:30</span><span class="bk-what"><strong>Ebisu Yoroniku — truffle sukiyaki course</strong><small>3 people · ref ZKHRK84C4D · pay at the restaurant · GEMS Ebisu 8F</small></span><span class="bk-st done">Booked</span></button>
+    <button class="bk" onclick="goDay(3)"><span class="bk-when"><b>Fri 27</b>19:30</span><span class="bk-what"><strong>Sukiyaki Chikayo — Shibuya</strong><small>3 people · seating only · TableCheck ID 557MKD · Opera House Shibuya 1F</small></span><span class="bk-st done">Booked</span></button>
     <div class="bk-group now"><i></i>Book now · these sell out</div>
     <button class="bk" onclick="goFuji()"><span class="bk-when"><b>Sat 28</b>07:07</span><span class="bk-what"><strong>Fuji Excursion 3 — Kinshichō → Shimoyoshida</strong><small>3 reserved seats on JR East's Eki-net. All-reserved, already on sale, and Saturday mornings go first. Confirm the Saturday time when you book. Only if you go for Fuji over Asakusa — but book anyway; cancelling costs a few hundred yen.</small></span><span class="bk-st now">Book now</span></button>
     <button class="bk" onclick="goFuji()"><span class="bk-when"><b>Sat 28</b>16:48</span><span class="bk-what"><strong>Fuji Excursion 44 — Kawaguchiko → Shinjuku</strong><small>Book in the same sitting. The afternoon trains back are the ones that fill.</small></span><span class="bk-st now">Book now</span></button>
-    <button class="bk" onclick="goDay(1)"><span class="bk-when"><b>Wed 25</b>18:00</span><span class="bk-what"><strong>Moheji — monjayaki, Tsukishima</strong><small>Tabelog, or 03-6204-2314. The most queued-for shop on Monja Street.</small></span><span class="bk-st now">Book</span></button>
-    <button class="bk" onclick="goDay(3)"><span class="bk-when"><b>Fri 27</b>18:30</span><span class="bk-what"><strong>Friday dinner — OH KAMA BAR or Yakiniku Ushigoro</strong><small>Pick one and book it. OH KAMA BAR: Tabelog or TableCheck, or 03-6427-8884. Ushigoro Omotesandō: TableCheck, or 03-3400-4129.</small></span><span class="bk-st now">Book one</span></button>
     <button class="bk" onclick="goDay(4)"><span class="bk-when"><b>Sat 28</b>19:30</span><span class="bk-what"><strong>Yakiniku Jumbo Hanare — Hongō · must eat</strong><small>Official site only, and it is one of the hardest yakiniku bookings in Tokyo. Try every evening of the trip, not just Saturday — whichever night you get, swap that night's dinner for it.</small></span><span class="bk-st now">Book now</span></button>
     <div class="bk-group opt"><i></i>Worth a booking · not fatal without</div>
-    <button class="bk" onclick="goDay(2)"><span class="bk-when"><b>Thu 26</b>19:00</span><span class="bk-what"><strong>Kinboshi — small plates, Shibuya</strong><small>Thursday night for three. Check the pin on the Instagram post for hours first; book if it takes them.</small></span><span class="bk-st opt">Verify, then book</span></button>
+    <button class="bk" onclick="goDay(2)"><span class="bk-when"><b>Thu 26</b>19:00</span><span class="bk-what"><strong>Thursday dinner — OH KAMA BAR, Ushigoro or Moheji</strong><small>Only if you pick one of those (Shodai is walk-in). OH KAMA BAR: TableCheck or 03-6427-8884 · Ushigoro: TableCheck or 03-3400-4129 · Moheji Ryōgoku: Tabelog or 03-6658-5159.</small></span><span class="bk-st opt">If B, C or D</span></button>
     <button class="bk" onclick="goDay(3)"><span class="bk-when"><b>Fri 27</b>11:00</span><span class="bk-what"><strong>Tonkatsu Maisen Aoyama</strong><small>Takes phone bookings (0120-428-485), but arriving at the 11:00 opening does the same job.</small></span><span class="bk-st opt">Optional</span></button>
     <button class="bk" onclick="goDay(1)"><span class="bk-when"><b>Wed 25</b>11:30</span><span class="bk-what"><strong>Ginza Katsukami — tonkatsu, Ginza</strong><small>Only if Wednesday lunch is option C (or Monday's). TableCheck or 03-6263-8720; booking skips the queue.</small></span><span class="bk-st opt">If option C</span></button>
     <button class="bk" onclick="goDay(5)"><span class="bk-when"><b>Sun 29</b>18:30</span><span class="bk-what"><strong>Gyutan no Lemon — beef tongue, Nishi-Shinjuku</strong><small>Only if Sunday dinner is option A. Phone 050-5571-2239 or Tabelog; the 17:00–18:30 slots are the easy ones.</small></span><span class="bk-st opt">If option A</span></button>
@@ -1767,20 +1773,21 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
     <button class="eat mine" onclick="goDay(1)"><span class="eat-e">🐖</span><span class="eat-t">Two-inch tonkatsu<small>Tonkatsu Marushichi · Ginza · lunch B</small></span><span class="eat-d">Wed</span></button>
     <button class="eat mine" onclick="goDay(1)"><span class="eat-e">🥢</span><span class="eat-t">Bib Gourmand tonkatsu<small>Ginza Katsukami · Ginza · lunch C</small></span><span class="eat-d">Wed</span></button>
     <button class="eat" onclick="goDay(1)"><span class="eat-e">🍓</span><span class="eat-t">Fruit parfait<small>Sembikiya · Ginza</small></span><span class="eat-d">Wed</span></button>
-    <button class="eat mine" onclick="goDay(1)"><span class="eat-e">🍳</span><span class="eat-t">Monjayaki<small>Moheji · Tsukishima</small></span><span class="eat-d">Wed</span></button>
-    <button class="eat" onclick="goDay(1)"><span class="eat-e">🍺</span><span class="eat-t">First-night beer<small>Nui. · Kuramae</small></span><span class="eat-d">Wed</span></button>
+    <button class="eat mine" onclick="goDay(1)"><span class="eat-e">🍶</span><span class="eat-t">Obanzai small plates<small>Kinboshi · Shibuya · booked 18:45</small></span><span class="eat-d">Wed</span></button>
+    <button class="eat mine" onclick="goDay(1)"><span class="eat-e">🥩</span><span class="eat-t">Truffle sukiyaki course<small>Ebisu Yoroniku · Ebisu · booked 21:30</small></span><span class="eat-d">Wed</span></button>
     <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍜</span><span class="eat-t">Soba &amp; udon<small>Shiraishi · Roppongi</small></span><span class="eat-d">Thu</span></button>
     <button class="eat mine" onclick="goDay(2)"><span class="eat-e">☕</span><span class="eat-t">Coffee by the train line<small>Onibus Coffee · Nakameguro</small></span><span class="eat-d">Thu</span></button>
     <button class="eat" onclick="goDay(2)"><span class="eat-e">🍺</span><span class="eat-t">A Yebisu at the brewery<small>Yebisu Garden Place · Ebisu</small></span><span class="eat-d">Thu</span></button>
-    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍶</span><span class="eat-t">Obanzai small plates<small>Kinboshi · Shibuya · dinner A</small></span><span class="eat-d">Thu</span></button>
-    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍛</span><span class="eat-t">White curry udon<small>Shodai · Ebisu · dinner B</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍛</span><span class="eat-t">White curry udon<small>Shodai · Ebisu · dinner A</small></span><span class="eat-d">Thu</span></button>
     <button class="eat" onclick="goDay(2)"><span class="eat-e">🍸</span><span class="eat-t">Absinthe cocktails<small>Bar Trench · Ebisu</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍚</span><span class="eat-t">Kamameshi<small>OH KAMA BAR · Shibuya · dinner B</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🥩</span><span class="eat-t">A5 wagyu yakiniku<small>Yakiniku Ushigoro · Omotesandō · dinner C</small></span><span class="eat-d">Thu</span></button>
+    <button class="eat mine" onclick="goDay(2)"><span class="eat-e">🍳</span><span class="eat-t">Monjayaki<small>Moheji · Ryōgoku · dinner D</small></span><span class="eat-d">Thu</span></button>
     <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍮</span><span class="eat-t">Jumbo pudding<small>Café Heckeln · Shimbashi</small></span><span class="eat-d">Fri</span></button>
     <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🐖</span><span class="eat-t">Tonkatsu<small>Maisen Aoyama · Omotesandō · lunch A</small></span><span class="eat-d">Fri</span></button>
     <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🦆</span><span class="eat-t">Duck dipping soba<small>BASO · Omotesandō · lunch B</small></span><span class="eat-d">Fri</span></button>
     <button class="eat" onclick="goDay(3)"><span class="eat-e">☕</span><span class="eat-t">Pour-over, taken seriously<small>Koffee Mameya · Omotesandō</small></span><span class="eat-d">Fri</span></button>
-    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍚</span><span class="eat-t">Kamameshi<small>OH KAMA BAR · Shibuya · dinner A</small></span><span class="eat-d">Fri</span></button>
-    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🥩</span><span class="eat-t">A5 wagyu yakiniku<small>Yakiniku Ushigoro · Omotesandō · dinner B</small></span><span class="eat-d">Fri</span></button>
+    <button class="eat mine" onclick="goDay(3)"><span class="eat-e">🍲</span><span class="eat-t">Wagyu yaki-suki<small>Sukiyaki Chikayo · Shibuya · booked 19:30</small></span><span class="eat-d">Fri</span></button>
     <button class="eat" onclick="goDay(3)"><span class="eat-e">🎷</span><span class="eat-t">Whisky and vinyl<small>JBS · Nonbei Yokochō · SG Club</small></span><span class="eat-d">Fri</span></button>
     <button class="eat" onclick="goFuji()"><span class="eat-e">🍲</span><span class="eat-t">Hōtō noodles<small>Hōtō Fudō · Kawaguchiko</small></span><span class="eat-d">Sat</span></button>
     <button class="eat mine" onclick="goDay(4)"><span class="eat-e">🍰</span><span class="eat-t">Cheesecake &amp; house coffee<small>Nagi · Ueno · if Asakusa</small></span><span class="eat-d">Sat</span></button>
@@ -1875,9 +1882,9 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
     <div class="card">
       <div class="dp-dayhead">
         <div class="dp-daytitle">Day 1 — Wednesday, 25 November</div>
-        <div class="dp-daysub">Land at dawn · Kuramae coffee · Ginza for lunch and shops · monjayaki · one drink</div>
+        <div class="dp-daysub">Land at dawn · Kuramae coffee · Ginza for lunch and shops · Kinboshi in Shibuya · truffle sukiyaki in Ebisu</div>
       </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Haneda <small>05:55</small></span><span class="stop">Flat <small>07:45</small></span><span class="stop">Kuramae <small>09:30</small></span><span class="stop">Ginza lunch <small>11:45</small></span><span class="stop">Moheji <small>18:00</small></span><span class="stop">Nui. bar <small>20:15</small></span></div>
+      <div class="route"><span class="route-k">Route</span><span class="stop">Haneda <small>05:55</small></span><span class="stop">Flat <small>07:45</small></span><span class="stop">Kuramae <small>09:30</small></span><span class="stop">Ginza lunch <small>11:45</small></span><span class="stop">Kinboshi, Shibuya <small>18:45</small></span><span class="stop">Ebisu Yoroniku <small>21:30</small></span></div>
       <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -2015,39 +2022,53 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <li><strong>Café de l'Ambre</strong> — a coffee-only kissaten in Ginza 8-chōme that has been ageing its own beans since 1948. Dark wood, no food, no laptops.</li>
               <li><strong>Tricolore Honten</strong> — brick-fronted and velvet-seated, with pour-over at the table and an apple pie.</li>
             </ol>
-            <div class="dp-alt"><strong>Fading?</strong> This is the exit. The Asakusa line has you back at the flat in ten minutes for a shower and an hour flat on a bed — set an alarm for 17:15 and leave at 17:25 for dinner. Do not sleep past it: you will be awake at three in the morning.</div>
+            <div class="dp-alt"><strong>Fading?</strong> This is the exit, and tonight is long — two booked dinners and home near midnight. The Asakusa line has you back at the flat in ten minutes for a shower and an hour flat on a bed. Set an alarm for 17:30 and leave at <strong>17:50</strong> for Shibuya (Asakusa line to Nihombashi, then the Ginza line, ~35 min). Do not sleep past it: you will be awake at three in the morning.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Café</span><span class="dp-tag">Rest</span></div>
         </div>
         <div class="dp-item">
-          <div class="dp-dot"></div>
-          <div class="dp-time">18:00</div>
-          <div class="dp-title">Moheji <span class="jp">もへじ</span> — monjayaki on Tsukishima <span class="must">on your list</span></div>
+          <div class="dp-dot key"></div>
+          <div class="dp-time">18:45</div>
+          <div class="dp-title">Kinboshi <span class="jp">酒場きんぼし</span>, Shibuya — small plates <span class="booked">booked</span> <span class="must">on your list</span></div>
           <div class="dp-desc">
-            <p class="dp-lead">Tokyo's own hot-plate dish, in the one neighbourhood that is famous for it. A runny batter of cabbage and whatever you ordered gets poured onto the griddle in front of you, and you scrape it off in crisp-edged mouthfuls with a tiny spatula. It is the right first dinner: hot, slow, shared, and nobody has to think.</p>
+            <p class="dp-lead">From the guide you sent: a Shibuya <em>sakaba</em> where dinner arrives as a tray of little dishes — obanzai-style home cooking, with a daily-special menu that changes with what came in.</p>
             <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">From Ginza</span><span class="dp-fact-v">Ginza-itchōme → Tsukishima, Yūrakuchō line, 2 stops, ~4 min. Leave 17:30.</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">From the flat</span><span class="dp-fact-v">Kuramae → Tsukishima, Toei Ōedo line, direct, ~12 min. Leave 17:25.</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Book</span><span class="dp-fact-v">Yes — Tabelog, or phone 03-6204-2314</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Order</span><span class="dp-fact-v">Mentaiko-mochi-cheese monja first, then one seafood</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Booked</span><span class="dp-fact-v">Wed 25 Nov · 18:45 · 3 people · via Reserve with Google</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Where</span><span class="dp-fact-v">Shibuya 150-0043 (the Dōgenzaka side) — use "Get directions" in the confirmation email</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">From Ginza</span><span class="dp-fact-v">Ginza line, Ginza → Shibuya direct, ~16 min. Leave 18:15.</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">From the flat</span><span class="dp-fact-v">Asakusa line → Nihombashi, Ginza line → Shibuya, ~35 min. Leave 17:50.</span></div>
             </div>
-            <div class="dp-note warn"><strong>Book this one.</strong> Moheji is the most queued-for name on Monja Street and an unbooked party of three at 18:00 waits outside. It has several shops on the same street — check which one your confirmation says. <span class="tbc">verify branch</span></div>
-            <div class="dp-alt"><strong>If you are running on empty:</strong> Moheji also has a <strong>Ryōgoku</strong> branch (03-6658-5159), one stop from Asakusabashi on the Sōbu line. Same menu, a quarter of the journey.</div>
-            <p>The staff will make the first one for you if you ask — <em>“tsukutte moraemasu ka?”</em> — and you copy them for the second.</p>
+            <div class="dp-note warn"><strong>Go easy — this is the first of two dinners.</strong> The truffle sukiyaki course is at 21:30. Order a few plates and a drink to share, not the full assortment, and ask for the bill by <strong>20:50</strong>.</div>
+            <div class="dp-alt">Cancellation policy on the booking: cancel at least <strong>72 hours</strong> ahead if plans change — i.e. by Sunday 22 Nov.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Book ahead</span><span class="dp-tag">Monjayaki</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Moheji+Tsukishima+monja" target="_blank">📍 Moheji, Tsukishima</a>
+          <div class="dp-tags"><span class="dp-tag">Booked 18:45</span><span class="dp-tag">Obanzai</span><span class="dp-tag">Light</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍 Kinboshi, Shibuya</a>
         </div>
         <div class="dp-item">
           <div class="dp-dot"></div>
-          <div class="dp-time">20:15</div>
-          <div class="dp-title">One drink on the way home — Nui., Kuramae</div>
+          <div class="dp-time">21:00</div>
+          <div class="dp-title">Shibuya → Ebisu, one stop</div>
           <div class="dp-desc">
-            <p>The Ōedo line runs straight from Tsukishima back to <strong>Kuramae</strong> in twelve minutes, and three minutes from the station is <strong>Nui.</strong> — a hostel whose ground floor is a big, warm, timber-and-plants bar that half the neighbourhood drinks in. Craft beer, highballs, a decent cocktail, no cover charge, no dress code, and a ten-minute walk to bed.</p>
-            <div class="dp-note">Quiet hours at the flat are 22:00–07:00. That is about noise, not a curfew — come in whenever you like, just come in quietly. Thursday is a slow start.</div>
+            <p>JR Yamanote line, Shibuya → Ebisu, two minutes. Leave Kinboshi by 20:55 and you have time to walk out of the east exit and up to the restaurant without rushing. If you are early, the <strong>Ebisu Skywalk</strong> and Yebisu Garden Place's winter lights are five minutes away.</p>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Bar</span><span class="dp-tag">No cover</span><span class="dp-tag">10 min from home</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=Nui+Hostel+Bar+Lounge+Kuramae" target="_blank">📍 Nui. Hostel &amp; Bar Lounge</a>
+          <div class="dp-tags"><span class="dp-tag">Train</span><span class="dp-tag">2 min</span></div>
+        </div>
+        <div class="dp-item">
+          <div class="dp-dot key"></div>
+          <div class="dp-time">21:30</div>
+          <div class="dp-title">Ebisu Yoroniku <span class="jp">恵比寿 よろにく</span> — the truffle sukiyaki course <span class="booked">booked</span></div>
+          <div class="dp-desc">
+            <p class="dp-lead">The Ebisu sister of Yoroniku, one of the best-known wagyu rooms in Tokyo (Tabelog Award 2026 Silver). You booked its signature: the <strong>"No.1 repeat-rate" truffle sukiyaki course</strong> — wagyu cooked in sukiyaki style, dipped in egg, with truffle shaved over it.</p>
+            <div class="dp-facts">
+              <div class="dp-fact"><span class="dp-fact-k">Booked</span><span class="dp-fact-v">Wed 25 Nov · 21:30 · 3 people · ref <strong>ZKHRK84C4D</strong></span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Where</span><span class="dp-fact-v">GEMS Ebisu 8F, Ebisu 1-11-5 · east exit, ~3 min · 03-3440-4629</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Pay</span><span class="dp-fact-v">At the restaurant — nothing prepaid. Listings put this course around ¥14,000–16,000 each, plus a service charge.</span></div>
+            </div>
+            <div class="dp-note warn"><strong>Getting home near midnight.</strong> The course runs about two hours. The Hibiya line from Ebisu runs direct to Akihabara (8 min walk to the flat) in ~25 min — check the last train in Google Maps when you sit down; it is around midnight. Missed it: a taxi from Ebisu to Asakusabashi is roughly ¥6,000–7,000 for the three of you.</div>
+            <div class="dp-alt">Quiet hours at the flat are 22:00–07:00 — come in quietly. Thursday is a slow start, so the late night costs you nothing.</div>
+          </div>
+          <div class="dp-tags"><span class="dp-tag">Booked 21:30</span><span class="dp-tag">Sukiyaki</span><span class="dp-tag">Pay on the night</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Ebisu+Yoroniku+GEMS+Ebisu+1-11-5" target="_blank">📍 Ebisu Yoroniku</a>
         </div>
       </div>
       <div class="dest-scroll">
@@ -2055,8 +2076,8 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <a class="dest-card" href="https://maps.google.com/?q=Asakusabashi+4-chome-14-5+Taito+City+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#7f1d1d,#b3242c,#fca5a5)"><span class="dest-time">07:45</span><span class="dest-img-icon">🏡</span><span class="dest-card-name">The flat</span></div><div class="dest-body"><div class="dest-type">Asakusabashi · yours since Tuesday</div><div class="dest-info">Booked from the 24th, so you walk in and drop the bags instead of hunting lockers · Lift · Confirm the code with Meika first</div><div class="dest-tags"><span class="dest-dtag">The trick</span><span class="dest-dtag">Lift ✓</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Kuramae+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#44403c,#78716c,#e7e5e4)"><span class="dest-time">09:30</span><span class="dest-img-icon">📓</span><span class="dest-card-name">Kuramae</span></div><div class="dest-body"><div class="dest-type">Coffee &amp; makers · 10 min walk</div><div class="dest-info">Roasters, leather, stationery — shops not shrines · Kakimori binds you a notebook · Dandelion Chocolate</div><div class="dest-tags"><span class="dest-dtag">Low energy</span><span class="dest-dtag">On the doorstep</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Ginza+4-chome+crossing+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#78350f,#b45309,#fcd34d)"><span class="dest-time">11:45</span><span class="dest-img-icon">🛍</span><span class="dest-card-name">Ginza</span></div><div class="dest-body"><div class="dest-type">Lunch · shops · café</div><div class="dest-info">Sato Yosuke udon, Marushichi or Katsukami tonkatsu, then Itoya, Muji, Ginza Six · Scout KOMEHYO, buy on Monday</div><div class="dest-tags"><span class="dest-dtag">10 min from home</span><span class="dest-dtag">Tax-free</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Moheji+Tsukishima+monja" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#451a03,#b45309,#fcd34d)"><span class="dest-time">18:00</span><span class="dest-img-icon">🍳</span><span class="dest-card-name">Moheji</span></div><div class="dest-body"><div class="dest-type">Monjayaki · book</div><div class="dest-info">Tsukishima Monja Street · Two stops from Ginza · Mentaiko-mochi-cheese first</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Booked</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=Nui+Hostel+Bar+Lounge+Kuramae" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#44403c,#a8a29e)"><span class="dest-time">20:15</span><span class="dest-img-icon">🍺</span><span class="dest-card-name">Nui.</span></div><div class="dest-body"><div class="dest-type">Bar · Kuramae</div><div class="dest-info">Hostel lounge bar, craft beer and highballs · No cover · Ten minutes from the flat</div><div class="dest-tags"><span class="dest-dtag">Nightcap</span><span class="dest-dtag">Walk home</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">18:45</span><span class="dest-img-icon">🍶</span><span class="dest-card-name">Kinboshi</span></div><div class="dest-body"><div class="dest-type">Small plates · Shibuya</div><div class="dest-info">Obanzai and a daily-special board · Go light, sukiyaki follows · Bill by 20:50</div><div class="dest-tags"><span class="dest-dtag">Booked</span><span class="dest-dtag">On your list</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Ebisu+Yoroniku+GEMS+Ebisu+1-11-5" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#7f1d1d,#fca5a5)"><span class="dest-time">21:30</span><span class="dest-img-icon">🥩</span><span class="dest-card-name">Ebisu Yoroniku</span></div><div class="dest-body"><div class="dest-type">Truffle sukiyaki course · Ebisu</div><div class="dest-info">GEMS Ebisu 8F · Ref ZKHRK84C4D · Pay at the restaurant · Hibiya line home, check the last train</div><div class="dest-tags"><span class="dest-dtag">Booked</span><span class="dest-dtag">Late</span></div></div></a>
       </div>
     </div>
   </div>
@@ -2068,7 +2089,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-daytitle">Day 2 — Thursday, 26 November</div>
         <div class="dp-daysub">Nakameguro → Daikanyama → Ebisu · a river, a hill and a beer town on foot, then Shibuya for dinner</div>
       </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shiraishi, Roppongi <small>10:15</small></span><span class="stop">Naka-Meguro <small>11:15</small></span><span class="stop">Onibus Coffee</span><span class="stop">Meguro River</span><span class="stop">Daikanyama</span><span class="stop">T-Site</span><span class="stop">Ebisu</span><span class="stop">Kinboshi or Shodai <small>19:00</small></span><span class="stop">Bars</span></div>
+      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shiraishi, Roppongi <small>10:15</small></span><span class="stop">Naka-Meguro <small>11:15</small></span><span class="stop">Onibus Coffee</span><span class="stop">Meguro River</span><span class="stop">Daikanyama</span><span class="stop">T-Site</span><span class="stop">Ebisu</span><span class="stop">Dinner, pick one <small>19:00</small></span><span class="stop">Bars</span></div>
       <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
@@ -2215,19 +2236,14 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-item">
           <div class="dp-dot key"></div>
           <div class="dp-time">19:00</div>
-          <div class="dp-title">Dinner — Kinboshi in Shibuya or Shodai in Ebisu, pick one <span class="must">on your list</span></div>
+          <div class="dp-title">Dinner — pick one <span class="must">on your list</span></div>
           <div class="dp-desc">
-            <p class="dp-lead">From the guide you sent: a Shibuya <em>sakaba</em> where dinner arrives as a tray of little dishes — obanzai-style home cooking, with a daily-special menu that changes with what came in. Order the assortment, then add from the specials board.</p>
-            <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Getting there</span><span class="dp-fact-v">Ebisu → Shibuya, JR Yamanote, one stop, 2 min. Leave Ebisu 18:40.</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Book</span><span class="dp-fact-v">Try to — it is a Thursday night in Shibuya and you are three</span></div>
-            </div>
-            <div class="dp-note warn"><span class="tbc">verify</span> The post only says “Kinboshi, Shibuya”. The best match I can find is the izakaya <strong>酒場きんぼし</strong>, known for exactly this obanzai — but I could not confirm its address, hours or whether it takes reservations. Open the pin tagged on the Instagram post, check Thursday hours, and book from there if it lets you.</div>
-<div class="pick"><div class="pick-h">Dinner · pick one</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">A · Kinboshi <span class="jp">酒場きんぼし</span>, Shibuya <a class="pick-map" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍</a></div><div class="pick-d">Everything above: small plates, one stop away, book if it lets you.</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">B · Shodai <span class="jp">初代</span>, Ebisu <span class="tbc">verify hours</span> <a class="pick-map" href="https://maps.google.com/?q=Shodai+Ebisu+curry+udon" target="_blank">📍</a></div><div class="pick-d">You are already standing in Ebisu, so this costs no travel at all. The famous bowl is the <strong>white curry udon</strong> — curry udon hidden under a cloud of whipped potato foam that you stir in. Ebisu-minami 1-1-10, a couple of minutes from Ebisu station west exit. Expect a queue; groups are seated upstairs. Listings disagree on hours (some say from 11:30, others 17:00 until very late), so check on the day. If it is a late-night shop, it also works as the bowl <em>after</em> Bar Trench.</div></div></div>
-            <div class="dp-alt"><strong>If both are full:</strong> <strong>Tsukinikari</strong>, from the same guide, is the other Shibuya small-plates room. Or <strong>Ebisu Yokochō</strong> — a covered market turned into one loud room of two dozen stalls where you sit wherever there is space.</div>
+            <p class="dp-lead">Kinboshi moved to Wednesday with your booking, which frees tonight for four of yours that had nowhere else to go. You are standing in Ebisu at seven: A costs no travel, B and C are one stop away, D is on the way home.</p>
+<div class="pick"><div class="pick-h">Dinner · pick one</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">Shodai <span class="jp">初代</span>, Ebisu <span class="tbc">verify hours</span> <a class="pick-map" href="https://maps.google.com/?q=Shodai+Ebisu+curry+udon" target="_blank">📍</a></div><div class="pick-d">The <strong>white curry udon</strong> — curry udon under a cloud of whipped potato foam. Ebisu-minami 1-1-10, two minutes from the west exit. Queue; groups upstairs. Listings disagree on hours, so check on the day. Walk in, ~¥1,500.</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">OH KAMA BAR <span class="jp">oh 釜 bar 渋谷</span>, Shibuya <a class="pick-map" href="https://maps.google.com/?q=oh+%E9%87%9C+bar+%E6%B8%8B%E8%B0%B7" target="_blank">📍</a></div><div class="pick-d">Iron-pot <strong>kamameshi</strong> and small plates; order the rice early, it takes twenty minutes. 2F, 2-20-10 Dōgenzaka — one stop on the Yamanote. <strong>Needs a booking</strong>: TableCheck, Tabelog or 03-6427-8884. ~¥6,000.</div></div><div class="pick-o mine"><span class="pick-l">C</span><div class="pick-n">Yakiniku Ushigoro <span class="jp">焼肉 うしごろ 表参道店</span>, Omotesandō <a class="pick-map" href="https://maps.google.com/?q=焼肉うしごろ+表参道店+神宮前5-50-3" target="_blank">📍</a></div><div class="pick-d">A5 black-beef yakiniku with an Omotesandō-only Kiwami course (~¥11,000). Jingūmae 5-50-3, Urban Terrace Aoyama 2F — Yamanote to Shibuya, then the Ginza line one stop, ~12 min. <strong>Book on TableCheck</strong> or 03-3400-4129.</div></div><div class="pick-o mine"><span class="pick-l">D</span><div class="pick-n">Moheji <span class="jp">もへじ</span>, Ryōgoku branch — monjayaki <a class="pick-map" href="https://maps.google.com/?q=もへじ+両国" target="_blank">📍</a></div><div class="pick-d">Tokyo's hot-plate dish, scraped off the griddle with tiny spatulas. The <strong>Ryōgoku</strong> branch is one stop past the flat on the Sōbu line: Hibiya line Ebisu → Akihabara, then two stops, ~35 min — and ten minutes home afterwards. Book on Tabelog or 03-6658-5159. Order the mentaiko-mochi-cheese.</div></div></div>
+            <div class="dp-alt"><strong>Heads-up on beef:</strong> Wednesday is wagyu sukiyaki, Friday is sukiyaki again and Saturday is Jumbo Hanare — so A or D tonight gives you a night off meat.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Obanzai or curry udon</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍 Kinboshi, Shibuya</a>
+          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Book B, C or D</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Shodai+Ebisu+curry+udon" target="_blank">📍 Shodai, Ebisu</a>
         </div>
         <div class="dp-item">
           <div class="dp-dot"></div>
@@ -2236,8 +2252,8 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="dp-desc">
             <ol class="dp-steps">
               <li><strong>Grandfather's</strong> — a basement rock-and-soul record bar near Shibuya station that has been playing vinyl since the seventies. Write a request on the slip of paper; they might play it.</li>
-              <li><strong>Bar Trench</strong>, back in Ebisu — small, candlelit, absinthe and herbal cocktails, the bar other bartenders send you to. One stop back on the Yamanote, and the Hibiya line home leaves from there.</li>
-              <li><strong>Nonbei Yokochō</strong> — the alley of six-seat bars by the tracks, ten minutes from Kinboshi. (JBS and the SG Club are tomorrow, after OH KAMA BAR.)</li>
+              <li><strong>Bar Trench</strong>, in Ebisu — small, candlelit, absinthe and herbal cocktails, the bar other bartenders send you to. One stop back on the Yamanote, and the Hibiya line home leaves from there.</li>
+              <li><strong>Nonbei Yokochō</strong> — the alley of six-seat bars by the tracks, five minutes from Shibuya station. (JBS and the SG Club are tomorrow, after Chikayo.)</li>
             </ol>
             <div class="dp-note warn"><strong>Tomorrow leaves at 08:20</strong> for the pudding, which sells out. One round, not three. From Ebisu the Hibiya line runs direct to Akihabara in ~25 min; from Shibuya it is the Ginza line to Nihombashi and the Asakusa line home, ~35 min.</div>
           </div>
@@ -2253,7 +2269,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <a class="dest-card" href="https://maps.google.com/?q=Kyu+Asakura+House+Daikanyama+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#422006,#a16207,#fde68a)"><span class="dest-time">14:30</span><span class="dest-img-icon">🍁</span><span class="dest-card-name">Kyū Asakura House</span></div><div class="dest-body"><div class="dest-type">Daikanyama · ~¥100</div><div class="dest-info">1919 wooden house that survived 1923 and 1945 · Hillside garden, maples peak late November · Almost empty</div><div class="dest-tags"><span class="dest-dtag">The find</span><span class="dest-dtag">Closed Mon</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Daikanyama+T-Site+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0f172a,#1e3a8a,#93c5fd)"><span class="dest-time">16:00</span><span class="dest-img-icon">📚</span><span class="dest-card-name">Daikanyama T-Site</span></div><div class="dest-body"><div class="dest-type">Books · Free</div><div class="dest-info">Three pavilions · Thousands of international magazines · Best after dark, which here means 16:30</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">Calm</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Yebisu+Garden+Place+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1e1b4b,#4338ca,#a5b4fc)"><span class="dest-time">17:00</span><span class="dest-img-icon">✨</span><span class="dest-card-name">Yebisu Garden Place</span></div><div class="dest-body"><div class="dest-type">Ebisu · Mostly free</div><div class="dest-info">Built on the 1890 brewery the district is named after · Winter Baccarat chandelier · Beer museum + photography museum</div><div class="dest-tags"><span class="dest-dtag">10 min downhill</span><span class="dest-dtag">Illumination</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">19:00</span><span class="dest-img-icon">🍶</span><span class="dest-card-name">Kinboshi</span></div><div class="dest-body"><div class="dest-type">Dinner · pick one</div><div class="dest-info">Kinboshi small plates in Shibuya, or Shodai white curry udon in Ebisu with no travel · Verify both</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Dinner</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Shodai+Ebisu+curry+udon" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#78350f,#fbbf24)"><span class="dest-time">19:00</span><span class="dest-img-icon">🍛</span><span class="dest-card-name">Dinner, pick one</span></div><div class="dest-body"><div class="dest-type">Four options</div><div class="dest-info">Shodai curry udon in Ebisu · OH KAMA BAR or Ushigoro one stop away · Moheji on the way home</div><div class="dest-tags"><span class="dest-dtag">On your list</span><span class="dest-dtag">Dinner</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Bar+Trench+Ebisu" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#0f172a,#14532d,#86efac)"><span class="dest-time">21:00</span><span class="dest-img-icon">🍸</span><span class="dest-card-name">One more room</span></div><div class="dest-body"><div class="dest-type">Grandfather's · Bar Trench</div><div class="dest-info">A vinyl bar in Shibuya or absinthe cocktails in Ebisu · One round · Early start tomorrow</div><div class="dest-tags"><span class="dest-dtag">Bars</span><span class="dest-dtag">Early alarm</span></div></div></a>
       </div>
     </div>
@@ -2266,16 +2282,16 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-daytitle">Day 3 — Friday, 27 November</div>
         <div class="dp-daysub">Pudding for breakfast → the ginkgo avenue → Omotesandō → Cat Street → Shibuya after dark</div>
       </div>
-      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shimbashi</span><span class="stop">Heckeln <small>08:45</small></span><span class="stop">Icho Namiki</span><span class="stop">Maisen or BASO <small>11:00</small></span><span class="stop">Omotesandō</span><span class="stop">Cat Street</span><span class="stop">Shibuya shops</span><span class="stop">OH KAMA BAR or Ushigoro <small>18:30</small></span><span class="stop">Bars</span></div>
+      <div class="route"><span class="route-k">Route</span><span class="stop">Flat</span><span class="stop">Shimbashi</span><span class="stop">Heckeln <small>08:45</small></span><span class="stop">Icho Namiki</span><span class="stop">Maisen or BASO <small>11:00</small></span><span class="stop">Omotesandō</span><span class="stop">Cat Street</span><span class="stop">Shibuya shops</span><span class="stop">Chikayo <small>19:30</small></span><span class="stop">Bars</span></div>
       <div class="dp-timeline">
         <div class="dp-item">
           <div class="dp-dot key"></div>
           <div class="dp-time">The shape</div>
           <div class="dp-title">One line across the city, west all day, never doubling back</div>
           <div class="dp-desc">
-            <p class="dp-lead">Three of the places on your list are on this one day, and they happen to sit in a straight line: Heckeln in Shimbashi, Maisen in Omotesandō, OH KAMA BAR in Shibuya. The ginkgo avenue and the architecture walk fall in between.</p>
+            <p class="dp-lead">Three of the places on your list are on this one day, and they happen to sit in a straight line: Heckeln in Shimbashi, Maisen or BASO in Omotesandō, and your booked sukiyaki at Chikayo in Shibuya. The ginkgo avenue and the architecture walk fall in between.</p>
             <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Booked</span><span class="dp-fact-v">Dinner 18:30 — OH KAMA BAR or Ushigoro, book whichever you pick</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Booked</span><span class="dp-fact-v">Sukiyaki Chikayo, Shibuya, 19:30 — the only booking today</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Walk-in</span><span class="dp-fact-v">Heckeln · Maisen (be there at 11:00)</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Bring</span><span class="dp-fact-v">Cash for Heckeln · passports for tax-free</span></div>
             </div>
@@ -2402,7 +2418,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <li><strong>Shibuya Loft</strong> and <strong>Hands</strong> — seven floors each of stationery, kitchen things and skincare. The best souvenir shops in the city, disguised as homeware stores.</li>
               <li><strong>MEGA Don Quijote</strong> — snacks, KitKats and cosmetics, tax-free with a passport. Open all night, so it can also wait until after dinner.</li>
               <li><strong>Miyashita Park</strong> — the rooftop park over a strip of shops, with <strong>Shibuya Yokochō</strong> underneath it: a long lane of regional izakaya stalls, good for a first beer at five.</li>
-              <li><strong>About Life Coffee Brewers</strong> — a standing coffee window on Dōgenzaka, two minutes from dinner.</li>
+              <li><strong>About Life Coffee Brewers</strong> — a standing coffee window on Dōgenzaka, a few minutes from dinner.</li>
             </ol>
           </div>
           <div class="dp-tags"><span class="dp-tag">Shopping</span><span class="dp-tag">Tax-free</span></div>
@@ -2410,27 +2426,26 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
-          <div class="dp-time">18:30</div>
-          <div class="dp-title">Dinner — OH KAMA BAR or Yakiniku Ushigoro, pick one <span class="must">on your list</span></div>
+          <div class="dp-time">19:30</div>
+          <div class="dp-title">Sukiyaki Chikayo <span class="jp">すき焼き ちかよ</span>, Shibuya — dinner <span class="booked">booked</span></div>
           <div class="dp-desc">
-            <p class="dp-lead">An izakaya built around <strong>kamameshi</strong> — rice cooked to order in an individual iron pot, so it arrives twenty minutes after you ask for it with a crust on the bottom. Order small plates and drinks first and put the rice order in early; that is how the meal is paced.</p>
+            <p class="dp-lead">A sukiyaki specialist doing the Kansai-style <em>yaki-suki</em>: black wagyu rib roast seared in the pan with just sugar and soy, no broth, and dipped in egg. A completely different sukiyaki from Wednesday's truffle course — simpler, meat-first.</p>
             <div class="dp-facts">
-              <div class="dp-fact"><span class="dp-fact-k">Booking</span><span class="dp-fact-v"><strong>Yes</strong> — the guide you sent says Tabelog; it is also on TableCheck (search "oh kama bar"), or 03-6427-8884</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Where</span><span class="dp-fact-v">2F, 2-20-10 Dōgenzaka — up the hill, 6 min from the crossing</span></div>
-              <div class="dp-fact"><span class="dp-fact-k">Spend</span><span class="dp-fact-v">~¥5,000–6,000 each with drinks</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Booked</span><span class="dp-fact-v">Fri 27 Nov · 19:30 · 3 people · seating only · ID <strong>557MKD</strong> (TableCheck)</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Where</span><span class="dp-fact-v">Opera House Shibuya 1F, 1-16-15 Dōgenzaka · ~6 min from Shibuya station · 080-8417-5756</span></div>
+              <div class="dp-fact"><span class="dp-fact-k">Order</span><span class="dp-fact-v">You booked seats only, so you order at the table · ~¥4,000–5,000 each</span></div>
             </div>
-            <div class="dp-note">Book a table for three at <strong>18:30</strong>. I could not confirm the opening hours or whether it runs on courses only — the TableCheck page will show both. <span class="tbc">verify</span></div>
-<div class="pick"><div class="pick-h">Dinner · pick one</div><div class="pick-o mine"><span class="pick-l">A</span><div class="pick-n">OH KAMA BAR, Shibuya <a class="pick-map" href="https://maps.google.com/?q=oh+%E9%87%9C+bar+%E6%B8%8B%E8%B0%B7" target="_blank">📍</a></div><div class="pick-d">Everything above: iron-pot rice and small plates on Dōgenzaka, and the bars after dinner are all within ten minutes. ~¥6,000.</div></div><div class="pick-o mine"><span class="pick-l">B</span><div class="pick-n">Yakiniku Ushigoro, Omotesandō branch <span class="jp">焼肉 うしごろ 表参道店</span> <a class="pick-map" href="https://maps.google.com/?q=焼肉うしごろ+表参道店+神宮前5-50-3" target="_blank">📍</a></div><div class="pick-d">Upmarket A5 Japanese black-beef yakiniku, grilled for you at the table, with a course you can only get at this branch (the <strong>Kiwami</strong>, ~¥11,000). Jingūmae 5-50-3, Urban Terrace Aoyama 2F, ~5 min from Omotesandō exit B2 — one stop back from Shibuya on the Ginza line, or a 15-minute walk up. Dinner from 17:00 on weekdays. <strong>Book on TableCheck</strong> (or 03-3400-4129); 2-hour seating, 5% service charge. Heads-up: Saturday is Jumbo Hanare, so this makes two yakiniku nights in a row.</div></div></div>
+            <div class="dp-alt">To change or cancel, use the buttons on the TableCheck confirmation.</div>
           </div>
-          <div class="dp-tags"><span class="dp-tag">Pick one</span><span class="dp-tag">Book either</span><span class="dp-tag">Kamameshi or wagyu</span></div>
-          <a class="dp-map" href="https://maps.google.com/?q=oh+%E9%87%9C+bar+%E6%B8%8B%E8%B0%B7" target="_blank">📍 OH KAMA BAR Shibuya</a>
+          <div class="dp-tags"><span class="dp-tag">Booked 19:30</span><span class="dp-tag">Sukiyaki</span><span class="dp-tag">~¥4,500</span></div>
+          <a class="dp-map" href="https://maps.google.com/?q=Sukiyaki+Chikayo+Shibuya+Opera+House+Dogenzaka" target="_blank">📍 Sukiyaki Chikayo, Shibuya</a>
         </div>
         <div class="dp-item">
           <div class="dp-dot key"></div>
-          <div class="dp-time">20:30</div>
+          <div class="dp-time">21:15</div>
           <div class="dp-title">Shibuya after dinner — records, an alley, a cocktail</div>
           <div class="dp-desc">
-            <p class="dp-lead">Three very different rooms, all within ten minutes of OH KAMA BAR. Pick one, or do two.</p>
+            <p class="dp-lead">Three very different rooms, all within ten minutes of Chikayo. Pick one, or do two.</p>
             <ol class="dp-steps">
               <li><strong>JBS</strong> — Jazz, Blues, Soul. One owner, one counter, eleven thousand records behind him and a whisky list. You do not request songs; you listen. A few doors up Dōgenzaka, cash.</li>
               <li><strong>Nonbei Yokochō</strong> <span class="jp">のんべい横丁</span> — "drunkard's alley": two lanes of post-war bars against the railway, most with five or six seats. With three of you, look for an open door with three stools and ask <em>“san-nin, daijōbu?”</em> Some charge a small seat fee.</li>
@@ -2440,7 +2455,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
               <div class="dp-fact"><span class="dp-fact-k">Home</span><span class="dp-fact-v">Ginza line Shibuya → Nihombashi, change to the Asakusa line → Asakusabashi, ~35 min</span></div>
               <div class="dp-fact"><span class="dp-fact-k">Last sensible train</span><span class="dp-fact-v">Leave Shibuya by 23:30. After that it is a taxi, ~¥5,000.</span></div>
             </div>
-            <div class="dp-note warn"><strong>If tomorrow is Mount Fuji, the alarm is 05:45</strong> — one room, not three, and on the Ginza line by <strong>22:15</strong>. If it is Asakusa, tomorrow starts at eight two stops from home, so this is the night with room in it.</div>
+            <div class="dp-note warn"><strong>If tomorrow is Mount Fuji, the alarm is 05:45</strong> — skip the bars, or one drink and on the Ginza line by <strong>22:15</strong>. If it is Asakusa, tomorrow starts at eight two stops from home, so this is the night with room in it.</div>
           </div>
           <div class="dp-tags"><span class="dp-tag">Bars</span><span class="dp-tag">Walk in</span><span class="dp-tag">Cash helps</span></div>
           <a class="dp-map" href="https://maps.google.com/?q=Nonbei+Yokocho+Shibuya" target="_blank">📍 Nonbei Yokochō</a>
@@ -2453,7 +2468,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <a class="dest-card" href="https://maps.google.com/?q=Prada+Aoyama+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1f2937,#4b5563,#e5e7eb)"><span class="dest-time">12:45</span><span class="dest-img-icon">🏛</span><span class="dest-card-name">Omotesandō</span></div><div class="dest-body"><div class="dest-type">Architecture · Free</div><div class="dest-info">Kuma, Herzog &amp; de Meuron, Itō, Aoki, Ando, SANAA · Downhill from the Aoyama end · Free pineapple cake at Sunny Hills</div><div class="dest-tags"><span class="dest-dtag">Free</span><span class="dest-dtag">~50 min</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=AMORE+Vintage+Omotesando+Tokyo" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#4c0519,#9f1239,#fda4af)"><span class="dest-time">13:40</span><span class="dest-img-icon">👜</span><span class="dest-card-name">Resale strip</span></div><div class="dest-body"><div class="dest-type">Vintage bags · Omotesandō</div><div class="dest-info">AMORE, RAGTAG, Kindal, RINKAN · Shops are on upper floors — look up · Today is for pricing, not buying</div><div class="dest-tags"><span class="dest-dtag">Passport</span><span class="dest-dtag">Calibrate</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Shibuya+Parco" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#3b0764,#7e22ce,#f472b6)"><span class="dest-time">16:00</span><span class="dest-img-icon">🛍</span><span class="dest-card-name">Shibuya shops</span></div><div class="dest-body"><div class="dest-type">Parco · Loft · Hands</div><div class="dest-info">Two hours on the ground · Miyashita Park for a first beer · Tax-free with a passport</div><div class="dest-tags"><span class="dest-dtag">Shopping</span><span class="dest-dtag">No booking</span></div></div></a>
-        <a class="dest-card" href="https://maps.google.com/?q=oh+%E9%87%9C+bar+%E6%B8%8B%E8%B0%B7" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#9a3412,#fdba74)"><span class="dest-time">18:30</span><span class="dest-img-icon">🍚</span><span class="dest-card-name">OH KAMA BAR</span></div><div class="dest-body"><div class="dest-type">Dinner · pick one</div><div class="dest-info">OH KAMA BAR kamameshi on Dōgenzaka, or Ushigoro wagyu yakiniku in Omotesandō · Book either on TableCheck</div><div class="dest-tags"><span class="dest-dtag">Book ahead</span><span class="dest-dtag">~¥6,000</span></div></div></a>
+        <a class="dest-card" href="https://maps.google.com/?q=Sukiyaki+Chikayo+Shibuya+Opera+House+Dogenzaka" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#9a3412,#fdba74)"><span class="dest-time">19:30</span><span class="dest-img-icon">🥩</span><span class="dest-card-name">Chikayo</span></div><div class="dest-body"><div class="dest-type">Sukiyaki · booked</div><div class="dest-info">Chikayo, Opera House Shibuya 1F, Dōgenzaka · Wagyu yaki-suki, no broth · ID 557MKD</div><div class="dest-tags"><span class="dest-dtag">Book ahead</span><span class="dest-dtag">~¥6,000</span></div></div></a>
         <a class="dest-card" href="https://maps.google.com/?q=Nonbei+Yokocho+Shibuya" target="_blank"><div class="dest-img" style="background:linear-gradient(135deg,#1c1917,#7f1d1d,#fca5a5)"><span class="dest-time">20:30</span><span class="dest-img-icon">🍸</span><span class="dest-card-name">Shibuya bars</span></div><div class="dest-body"><div class="dest-type">JBS · Nonbei Yokochō · SG Club</div><div class="dest-info">A record bar, an alley of six-seat rooms, a proper cocktail · All within ten minutes of dinner</div><div class="dest-tags"><span class="dest-dtag">Night</span><span class="dest-dtag">Walk in</span></div></div></a>
       </div>
     </div>
@@ -4585,7 +4600,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍳</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Moheji <span class="jp">もへじ</span></span><span class="place-must">must</span></div>
-            <div class="place-sub">Tsukishima · Monjayaki · Wed 18:00 · book</div>
+            <div class="place-sub">Ryōgoku branch (also Tsukishima) · Monjayaki · Thu dinner D · book</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4602,7 +4617,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍚</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">OH KAMA BAR</span><span class="place-must">must</span> <span class="tbc">verify</span></div>
-            <div class="place-sub">Shibuya · Kamameshi and drinks · Fri 18:30 · book</div>
+            <div class="place-sub">Shibuya · Kamameshi and drinks · Thu dinner B · book</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4619,7 +4634,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍶</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Kinboshi <span class="jp">酒場きんぼし</span></span><span class="place-must">must</span> <span class="tbc">verify</span></div>
-            <div class="place-sub">Shibuya · Obanzai small plates · Thu 19:00</div>
+            <div class="place-sub">Shibuya · Obanzai small plates · Wed 18:45 · booked</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4628,6 +4643,40 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <p class="place-desc">From the Tokyo food guide you sent: a tray of small Japanese home-style dishes plus a daily-special menu. Best match is the izakaya 酒場きんぼし; address, hours and reservations still need checking.</p>
           <div class="place-links">
             <a class="place-link" href="https://maps.google.com/?q=酒場きんぼし+渋谷" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="ebisu">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥩</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Ebisu Yoroniku <span class="jp">恵比寿 よろにく</span></span><span class="place-must">booked</span></div>
+            <div class="place-sub">Ebisu · Truffle sukiyaki course · Wed 21:30 · booked</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 GEMS Ebisu 8F, Ebisu 1-11-5 · east exit, 3 min · 03-3440-4629</div><div class="place-meta-row">🕐 Evenings · ref ZKHRK84C4D · pay at the restaurant</div></div>
+          <p class="place-desc">Wagyu specialist, Tabelog Award 2026 Silver. Booked: the signature truffle sukiyaki course for three.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Ebisu+Yoroniku+GEMS+Ebisu+1-11-5" target="_blank">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="place-row" data-cat="food" data-area="shibuya">
+        <div class="place-header" onclick="togglePlace(this)">
+          <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍲</div>
+          <div class="place-info">
+            <div class="place-nameline"><span class="place-name">Sukiyaki Chikayo <span class="jp">すき焼き ちかよ 渋谷店</span></span><span class="place-must">booked</span></div>
+            <div class="place-sub">Shibuya · Wagyu yaki-suki · Fri 19:30 · booked</div>
+          </div>
+          <span class="place-chev">▸</span>
+        </div>
+        <div class="place-body">
+          <div class="place-meta"><div class="place-meta-row">📍 Opera House Shibuya 1F, 1-16-15 Dōgenzaka · 080-8417-5756</div><div class="place-meta-row">🕐 Booked 19:30 · seating only · TableCheck ID 557MKD</div></div>
+          <p class="place-desc">Kansai-style sukiyaki: black wagyu rib roast seared with sugar and soy, no broth, dipped in egg. ~¥4,000–5,000 at dinner.</p>
+          <div class="place-links">
+            <a class="place-link" href="https://maps.google.com/?q=Sukiyaki+Chikayo+Shibuya+Opera+House+Dogenzaka" target="_blank">📍 Maps</a>
           </div>
         </div>
       </div>
@@ -4693,7 +4742,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         </div>
         <div class="place-body">
           <div class="place-meta"><div class="place-meta-row">📍 Shibuya — use the pin on the Instagram post</div><div class="place-meta-row">🕐 Evenings</div></div>
-          <p class="place-desc">In the guide you sent: a striking interior and traditional home-style dishes in small portions. The fallback if Kinboshi cannot seat you on Thursday.</p>
+          <p class="place-desc">In the guide you sent: a striking interior and traditional home-style dishes in small portions. Another Shibuya small-plates room from the same guide.</p>
           <div class="place-links">
             <a class="place-link" href="https://maps.google.com/?q=ツキニカリ+渋谷" target="_blank">📍 Maps</a>
           </div>
@@ -4840,7 +4889,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🥩</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Yakiniku Ushigoro <span class="jp">焼肉 うしごろ 表参道店</span></span><span class="place-must">must</span></div>
-            <div class="place-sub">Omotesandō · A5 wagyu yakiniku · Fri dinner B · book</div>
+            <div class="place-sub">Omotesandō · A5 wagyu yakiniku · Thu dinner C · book</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -4857,7 +4906,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
           <div class="place-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--chip);font-size:20px">🍛</div>
           <div class="place-info">
             <div class="place-nameline"><span class="place-name">Shodai <span class="jp">初代</span></span><span class="place-must">must</span></div>
-            <div class="place-sub">Ebisu · White curry udon · Thu dinner B</div>
+            <div class="place-sub">Ebisu · White curry udon · Thu dinner A</div>
           </div>
           <span class="place-chev">▸</span>
         </div>
@@ -5365,7 +5414,7 @@ body.dark .places-cat.active .facet-n{color:#16151a;opacity:.7}
         <div class="dp-desc">
           <ol class="dp-steps">
             <li><strong>Fuji Excursion seats, both ways</strong> — Sat 28: No. 3 from Kinshichō 07:07, No. 44 from Kawaguchiko 16:48. All-reserved, on sale a month ahead on Eki-net; confirm the Saturday times there.</li>
-            <li><strong>Three dinners</strong> — Moheji (Wed 18:00), Kinboshi (Thu 19:00, once you have verified it), OH KAMA BAR or Yakiniku Ushigoro (Fri 18:30), and Jumbo Hanare (Sat 19:30).</li>
+            <li><strong>Dinners</strong> — Booked: Kinboshi (Wed 18:45), Ebisu Yoroniku (Wed 21:30), Sukiyaki Chikayo (Fri 19:30). Still to book: Jumbo Hanare (Sat 19:30), and Thursday's dinner if you pick OH KAMA BAR, Ushigoro or Moheji.</li>
             <li><strong>teamLab</strong>, only if you add it — timed entry, routinely sold out days ahead. It is not in the plan.</li>
           </ol>
           <p>The whole list, with how to book each and everything that is walk-in, is the booking board at the top of the <strong>Overview</strong>.</p>

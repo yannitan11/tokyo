@@ -98,9 +98,9 @@ is) — choose on the day. **Removed:** Negishi (beef tongue) and all ramen (Gin
 | Day | Slot | Options |
 |---|---|---|
 | Wed | Ginza lunch | Ginza Sato Yosuke (Inaniwa udon) · Tonkatsu Marushichi (Ginza branch, `verify`) · Ginza Katsukami (Bib Gourmand tonkatsu, bookable) |
-| Thu | Dinner (Nakameguro day) | Kinboshi, Shibuya · Shodai, Ebisu (white curry udon, hours `verify`) |
+| Thu | Dinner (Nakameguro day) | Shodai · OH KAMA BAR · Yakiniku Ushigoro · Moheji Ryōgoku |
 | Fri | Omotesandō lunch | Maisen · BASO Omotesandō (duck tsuke-soba) |
-| Fri | Dinner | OH KAMA BAR, Shibuya · Yakiniku Ushigoro, Omotesandō branch (book either) |
+| Fri | Dinner | Sukiyaki Chikayo, Shibuya — booked 19:30 |
 | Sat | Asakusa option | Hinoya Curry, Okachimachi · Nagi café, Ueno |
 | Sat | Dinner, either option | **Yakiniku Jumbo Hanare, Hongō — must eat, book now** |
 | Sun | Shinjuku dinner | Gyutan no Lemon (book) · Gyukatsu Motomura · Udon Shin · Hinoya Curry |
@@ -114,3 +114,15 @@ is) — choose on the day. **Removed:** Negishi (beef tongue) and all ramen (Gin
 - **The Mt Fuji tab is gone — Day 4 owns both plans.** `#tokyo-day-4` has an A/B switch (`.opt-switch`, `pickOpt()`):
   A is the full hour-by-hour Fuji timeline (moved, not copied), B is Asakusa → Kappabashi → Hinoya → Nagi → Ueno/Ameyoko.
   Jumbo Hanare sits below both as the shared dinner. `goFuji()` now opens Day 4 with A selected.
+
+## Bookings made (2026-11-18)
+
+| When | Where | Ref |
+|---|---|---|
+| Wed 25, 18:45 | Kinboshi, Shibuya (3) — Reserve with Google, cancel 72 h ahead | — |
+| Wed 25, 21:30 | Ebisu Yoroniku, GEMS Ebisu 8F — truffle sukiyaki course, pay on the night | ZKHRK84C4D |
+| Fri 27, 19:30 | Sukiyaki Chikayo, Opera House Shibuya 1F — seating only (TableCheck) | 557MKD |
+
+Wednesday evening is now Ginza → Kinboshi → Ebisu Yoroniku (Moheji and Nui. came off it). Thursday dinner is a pick of
+Shodai · OH KAMA BAR · Yakiniku Ushigoro · Moheji (Ryōgoku). Friday dinner is Chikayo. The booking board has a
+"Booked ✓" group (`.bk-group.done`, `.bk-st.done`) and booked items carry a `.booked` badge.
