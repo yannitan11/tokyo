@@ -139,3 +139,8 @@ CSS and `pickOpt()` are left in place, unused). Three efficiency changes came wi
 - **Golden Gai moved from Sunday to Saturday** (21:45, after Jumbo Hanare; Marunouchi line Hongō-sanchōme →
   Shinjuku-sanchōme direct). A lot of its bars take Sunday off, and Sunday needs an early night to pack for the
   07:00 Tsukiji start. Sunday now ends with one drink at Omoide Yokochō and home by 21:30.
+
+**Later the same day:** Yanni dropped Yakiniku Jumbo Hanare and Gyutan no Lemon. Saturday dinner is now **Moheji,
+Ryōgoku, 19:00** (one stop from the flat on the Sōbu line, with an hour at the flat before it); Golden Gai follows via
+the Sōbu line direct to Shinjuku. Sunday's Shinjuku dinner is three walk-in picks: Gyukatsu Motomura, Udon Shin,
+Hinoya Curry.
