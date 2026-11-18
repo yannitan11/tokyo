@@ -146,3 +146,5 @@ the Sōbu line direct to Shinjuku. Sunday's Shinjuku dinner is three walk-in pic
 Hinoya Curry.
 
 Moheji moved to **17:30**, then home to shower and change before Golden Gai (21:15): monjayaki smoke clings to clothes, so it is never followed straight by going out.
+
+Saturday dinner is now a pick of four by Ueno (18:30): Izu-ei Honten (unagi, book), Ponta Honke (tonkatsu, walk-in), Innsyoutei (tofu set dinner in Ueno Park, book), or Moheji Ryōgoku at 17:30 with a shower before Golden Gai (20:45). Hours are `verify`.
