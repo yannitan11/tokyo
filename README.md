@@ -144,3 +144,5 @@ CSS and `pickOpt()` are left in place, unused). Three efficiency changes came wi
 Ryōgoku, 19:00** (one stop from the flat on the Sōbu line, with an hour at the flat before it); Golden Gai follows via
 the Sōbu line direct to Shinjuku. Sunday's Shinjuku dinner is three walk-in picks: Gyukatsu Motomura, Udon Shin,
 Hinoya Curry.
+
+Moheji moved to **17:30**, then home to shower and change before Golden Gai (21:15): monjayaki smoke clings to clothes, so it is never followed straight by going out.
