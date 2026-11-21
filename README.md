@@ -148,3 +148,5 @@ Hinoya Curry.
 Moheji moved to **17:30**, then home to shower and change before Golden Gai (21:15): monjayaki smoke clings to clothes, so it is never followed straight by going out.
 
 Saturday dinner is now a pick of four by Ueno (18:30): Izu-ei Honten (unagi, book), Ponta Honke (tonkatsu, walk-in), Innsyoutei (tofu set dinner in Ueno Park, book), or Moheji Ryōgoku at 17:30 with a shower before Golden Gai (20:45). Hours are `verify`.
+
+- **2026-11-21:** Yoshino Sushi (Higashi-Ogu 1-19-15, Arakawa — not the other Yoshinos) is Saturday's must-eat lunch, via the Keisei line Ueno → Machiya; Hinoya is the fallback. Hours unconfirmed (`verify`).
