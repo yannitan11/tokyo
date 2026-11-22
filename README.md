@@ -150,3 +150,4 @@ Moheji moved to **17:30**, then home to shower and change before Golden Gai (21:
 Saturday dinner is now a pick of four by Ueno (18:30): Izu-ei Honten (unagi, book), Ponta Honke (tonkatsu, walk-in), Innsyoutei (tofu set dinner in Ueno Park, book), or Moheji Ryōgoku at 17:30 with a shower before Golden Gai (20:45). Hours are `verify`.
 
 - **2026-11-21:** Yoshino Sushi (Higashi-Ogu 1-19-15, Arakawa — not the other Yoshinos) is Saturday's must-eat lunch, via the Keisei line Ueno → Machiya; Hinoya is the fallback. Hours unconfirmed (`verify`).
+- **2026-11-22:** Repetto Ginza (2-5-8 Ginza, by Itōya; address from an older listing, `verify`) added to Wednesday's Ginza shopping and Monday's last haul, plus a Places row.
