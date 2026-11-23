@@ -153,3 +153,4 @@ Saturday dinner is now a pick of four by Ueno (18:30): Izu-ei Honten (unagi, boo
 - **2026-11-22:** Repetto Ginza (2-5-8 Ginza, by Itōya; address from an older listing, `verify`) added to Wednesday's Ginza shopping and Monday's last haul, plus a Places row.
 - **2026-11-23:** Ichiryu Manpuku (onigiri, Solaris Shinjuku Gyoen 1F, 08:00–17:00) is Sunday's 09:30 breakfast on the way to Kichijōji; Shinjuku Gyoen is the optional ten-minute add-on.
 - **2026-11-23:** Sunday breakfast is now a pick — A Ichiryu Manpuku (onigiri, Shinjuku Gyoen) or B Nadoya no Katte (café, Nishihara by Yoyogi-Uehara; listed Fri–Sun 09:00–18:00, `verify`), then Odakyu + Inokashira line to Kichijōji.
+- **2026-11-23:** Onigiri Mamma (Shinjuku 3-14-23, Bongo-trained chef, ~08:30–21:00, `verify`) is Sunday breakfast option C, one Marunouchi stop from Ichiryu.
