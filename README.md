@@ -151,3 +151,4 @@ Saturday dinner is now a pick of four by Ueno (18:30): Izu-ei Honten (unagi, boo
 
 - **2026-11-21:** Yoshino Sushi (Higashi-Ogu 1-19-15, Arakawa — not the other Yoshinos) is Saturday's must-eat lunch, via the Keisei line Ueno → Machiya; Hinoya is the fallback. Hours unconfirmed (`verify`).
 - **2026-11-22:** Repetto Ginza (2-5-8 Ginza, by Itōya; address from an older listing, `verify`) added to Wednesday's Ginza shopping and Monday's last haul, plus a Places row.
+- **2026-11-23:** Ichiryu Manpuku (onigiri, Solaris Shinjuku Gyoen 1F, 08:00–17:00) is Sunday's 09:30 breakfast on the way to Kichijōji; Shinjuku Gyoen is the optional ten-minute add-on.
