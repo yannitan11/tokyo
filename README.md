@@ -154,3 +154,16 @@ Saturday dinner is now a pick of four by Ueno (18:30): Izu-ei Honten (unagi, boo
 - **2026-11-23:** Ichiryu Manpuku (onigiri, Solaris Shinjuku Gyoen 1F, 08:00–17:00) is Sunday's 09:30 breakfast on the way to Kichijōji; Shinjuku Gyoen is the optional ten-minute add-on.
 - **2026-11-23:** Sunday breakfast is now a pick — A Ichiryu Manpuku (onigiri, Shinjuku Gyoen) or B Nadoya no Katte (café, Nishihara by Yoyogi-Uehara; listed Fri–Sun 09:00–18:00, `verify`), then Odakyu + Inokashira line to Kichijōji.
 - **2026-11-23:** Onigiri Mamma (Shinjuku 3-14-23, Bongo-trained chef, ~08:30–21:00, `verify`) is Sunday breakfast option C, one Marunouchi stop from Ichiryu.
+
+## Only Yanni's food (2026-11-24)
+
+Yanni asked for every food option Claude recommended to be removed, keeping only places she named (the `.must` /
+`.pick-o.mine` / `.eat.mine` ones) and her bookings. Removed from the days, eat list and walk-in list: the konbini
+run, Coffee Wrights, Dandelion Chocolate, the Ginza parfait/kissaten stop (Sembikiya, Café de l'Ambre, Tricolore),
+the Mitsukoshi food-hall fallback, Starbucks Reserve Roastery, Nakameguro Kōkashita, Koffee Mameya, About Life
+Coffee, Nakamise snack picks, the Ueno dinner picks (Izu-ei, Ponta Honke, Innsyoutei), Satou, Harmonica Yokochō,
+LIGHT UP COFFEE, the Isetan depachika (Sunday 16:45 is now plain Shinjuku shopping), Omoide Yokochō/Sushiro as a
+dinner alt, Tsukiji Outer Market (Monday now starts at check-out), and the Ginza coffee alts. Saturday dinner is
+Moheji Ryōgoku at 17:30, then home to shower, then Golden Gai 21:00. **Bars were kept** (she asked for bars), and
+the **Places tab was left as-is** — it is the reference list she asked to be filled. Don't add new food picks to
+the days unless she names them.
